@@ -8,7 +8,10 @@ module com.example.payrollapplication {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires eu.hansolo.fx.countries;
+    requires MaterialFX;
 
     opens com.example.payrollapplication to javafx.fxml;
     exports com.example.payrollapplication;
+    exports com.example.payrollapplication.controllers;
+    opens com.example.payrollapplication.controllers to javafx.fxml;
 }
