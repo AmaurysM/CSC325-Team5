@@ -10,7 +10,7 @@ import java.io.IOException;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login-View.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("manager-View.fxml"));
         //System.out.println(fxmlLoader.getLocation());
         Scene scene = new Scene(fxmlLoader.load(), 820, 340);
         stage.setTitle("Roll Tide!");
