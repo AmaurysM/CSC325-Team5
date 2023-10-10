@@ -24,4 +24,5 @@ public class managerController {
     @FXML
     private Circle profilePictureCircle;
 
+
 }
