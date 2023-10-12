@@ -44,8 +44,8 @@
                      </effect></Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
                   <MFXTextField fx:id="usernameTextField" floatMode="BORDER" floatingText="Username" floatingTextGap="6.0" prefHeight="45.0" prefWidth="280.0" promptText="First name &amp; last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <MFXPasswordField allowCopy="true" allowPaste="true" floatMode="BORDER" floatingText="Password" hideCharacter="*" prefHeight="42.0" prefWidth="280.0" promptText="**********" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <MFXButton fx:id="LoginButton" buttonType="RAISED" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #5b6874;" text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <MFXPasswordField fx:id="passwordField" allowCopy="true" allowPaste="true" floatMode="BORDER" floatingText="Password" hideCharacter="*" prefHeight="42.0" prefWidth="280.0" promptText="**********" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <MFXButton fx:id="LoginButton" buttonType="RAISED" onAction="#validateUserNameAndPassword" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #5b6874;" text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Pane disable="true" opacity="0.18" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #59212d;" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
                </children>
             </GridPane>
