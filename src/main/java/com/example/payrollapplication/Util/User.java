@@ -2,16 +2,16 @@ package com.example.payrollapplication.Util;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Comparable<User>{
     private String name;
     private String Username;
     private String password;
     private int age;
-    private int ID;
+    private String ID;
     private int salary;
     private String role;
 
-    public User(String name, String username, String password, int age, int ID, int salary, String role) {
+    public User(String name, String username, String password, int age, String ID, int salary, String role) {
         this.name = name;
         Username = username;
         this.password = password;
@@ -53,11 +53,11 @@ public class User {
         this.age = age;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -101,5 +101,17 @@ public class User {
                 ", salary=" + salary +
                 ", role='" + role + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(User o) {
+        if(this.getID().compareTo(o.getID())>0){
+            return 1;
+        }else if ( this.getID().compareTo(o.getID())<0){
+            return -1;
+        }else {
+            return 0;
+        }
+
     }
 }
