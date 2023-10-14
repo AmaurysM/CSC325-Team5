@@ -47,12 +47,12 @@
                                     </Shadow>
                                  </effect>
                                  <StackPane.margin>
-                                    <Insets top="10.0" />
+                                    <Insets left="-2.5" top="10.0" />
                                  </StackPane.margin>
                               </Circle>
-                              <Circle fx:id="profilePictureCircle" fill="#575863" radius="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                              <Circle fx:id="profilePictureCircle" fill="#575863" radius="74.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                                  <StackPane.margin>
-                                    <Insets left="-1.0" top="-2.0" />
+                                    <Insets left="-2.5" top="-4.0" />
                                  </StackPane.margin>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
