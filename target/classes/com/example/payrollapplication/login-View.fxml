@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.payrollapplication.controllers.loginController">
    <children>
@@ -45,7 +46,10 @@
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
                   <MFXTextField fx:id="usernameTextField" floatMode="BORDER" floatingText="Username" floatingTextGap="6.0" prefHeight="45.0" prefWidth="280.0" promptText="First name &amp; last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <MFXPasswordField fx:id="passwordField" allowCopy="true" allowPaste="true" floatMode="BORDER" floatingText="Password" hideCharacter="*" prefHeight="42.0" prefWidth="280.0" promptText="**********" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <MFXButton fx:id="LoginButton" buttonType="RAISED" onAction="#validateUserNameAndPassword" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #5b6874;" text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <MFXButton fx:id="LoginButton" buttonType="RAISED" onAction="#validateUserNameAndPassword" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #5b6874;" text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                     </font></MFXButton>
                   <Pane disable="true" opacity="0.18" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #59212d;" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
                </children>
             </GridPane>
