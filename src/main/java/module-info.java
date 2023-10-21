@@ -14,4 +14,6 @@ module com.example.payrollapplication {
     exports com.example.payrollapplication;
     exports com.example.payrollapplication.controllers;
     opens com.example.payrollapplication.controllers to javafx.fxml;
+    exports com.example.payrollapplication.controllers.managerViewControllers;
+    opens com.example.payrollapplication.controllers.managerViewControllers to javafx.fxml;
 }
