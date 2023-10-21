@@ -18,9 +18,12 @@
 
 <AnchorPane prefHeight="546.0" prefWidth="693.0" style="-fx-background-color: #212d59;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.payrollapplication.controllers.managerViewControllers.managerController">
    <children>
-      <BorderPane layoutX="186.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" layoutX="186.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
          <center>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <Pane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </BorderPane.margin></Pane>
          </center>
          <left>
             <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="148.0" BorderPane.alignment="CENTER">
@@ -151,6 +154,9 @@
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
+               <BorderPane.margin>
+                  <Insets right="10.0" />
+               </BorderPane.margin>
             </StackPane>
          </left>
       </BorderPane>
