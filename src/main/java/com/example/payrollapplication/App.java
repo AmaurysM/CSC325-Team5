@@ -1,5 +1,6 @@
 package com.example.payrollapplication;
 
+import com.example.payrollapplication.model.UserBag;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,9 +11,12 @@ import java.io.IOException;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("manager-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 820, 340);
         stage.setTitle("Pay Roll!");
+
+
         stage.setScene(scene);
         stage.show();
 
