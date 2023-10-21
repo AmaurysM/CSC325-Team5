@@ -1,4 +1,4 @@
-package com.example.payrollapplication.Util;
+package com.example.payrollapplication.model;
 
 import java.util.Objects;
 
