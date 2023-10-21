@@ -1,14 +1,12 @@
 package com.example.payrollapplication.controllers;
 
-import com.example.payrollapplication.Util.User;
-import com.example.payrollapplication.Util.UserBag;
+import com.example.payrollapplication.model.User;
+import com.example.payrollapplication.model.UserBag;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import java.util.List;
 
 public class loginController {
 
