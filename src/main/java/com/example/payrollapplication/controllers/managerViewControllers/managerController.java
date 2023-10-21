@@ -1,4 +1,4 @@
-package com.example.payrollapplication.controllers;
+package com.example.payrollapplication.controllers.managerViewControllers;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
