@@ -1,6 +1,7 @@
 package com.example.payrollapplication.controllers.managerViewControllers;
 
 import com.example.payrollapplication.App;
+import com.example.payrollapplication.controllers.ScreenController;
 import com.example.payrollapplication.model.User;
 import com.example.payrollapplication.model.UserBag;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -12,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +47,10 @@ public class managerController implements Initializable {
     private BorderPane borderPane;
 
     @FXML
-    private VBox UserCardHolderVBox;
+    void logoutOfManagerView(ActionEvent event) {
+        ScreenController.activate("loginScreen");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
