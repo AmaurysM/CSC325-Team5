@@ -7,8 +7,12 @@ import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 
-public class loginController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class loginController  {
 
     @FXML
     private MFXButton LoginButton;
@@ -25,6 +29,10 @@ public class loginController {
         System.out.println(foundUser);
         if(foundUser != null ){
             UserBag.setCurrentUser(foundUser);
+            ScreenController.activate("managerView");
         }
+
     }
+
+
 }
