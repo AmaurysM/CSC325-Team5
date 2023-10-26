@@ -112,7 +112,7 @@
                               <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="100.0" vgrow="ALWAYS" />
                            </rowConstraints>
                            <children>
-                              <MFXButton fx:id="LogoutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Logout" textFill="#d7ced0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                              <MFXButton fx:id="LogoutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#logoutOfEmployeeView" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Logout" textFill="#d7ced0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
