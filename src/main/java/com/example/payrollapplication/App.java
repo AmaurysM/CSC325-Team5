@@ -14,7 +14,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("manager-View.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 820, 340);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("PayRoll!!");
 
         ScreenController screenController = new ScreenController(scene);
