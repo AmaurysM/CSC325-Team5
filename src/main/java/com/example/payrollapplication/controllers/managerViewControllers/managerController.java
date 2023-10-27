@@ -37,8 +37,7 @@ public class managerController implements Initializable {
     @FXML
     private MFXButton SettingsButton;
 
-    @FXML
-    private Circle profilePictureCircle;
+
 
     @FXML
     private Pane centerPane;
@@ -59,7 +58,7 @@ public class managerController implements Initializable {
         try {
 
             employeesTabLoader.load();
-            borderPane.setCenter(employeesTabLoader.getRoot());
+            //borderPane.setCenter(employeesTabLoader.getRoot());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
