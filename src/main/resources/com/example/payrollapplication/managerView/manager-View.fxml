@@ -5,17 +5,13 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.payrollapplication.controllers.managerViewControllers.managerController">
     <children>
@@ -47,10 +43,10 @@
                         <TextField fx:id="FirstNameTextField" alignment="CENTER" editable="false" text="FIrst Name" />
                         <TextField fx:id="LastNameTextField" alignment="CENTER" editable="false" text="Last Name" />
                         <TextField fx:id="SalaryTextField" alignment="CENTER" editable="false" text="Salary" />
-                  <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" text="Employees" />
-                  <MFXButton fx:id="NotesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" text="Notes" />
-                  <MFXButton fx:id="PayrollButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" text="Payroll" />
-                  <MFXButton fx:id="SettingsButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" text="Settings" />
+                  <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToEmployeesTab" text="Employees" />
+                  <MFXButton fx:id="NotesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToNotesTab" text="Notes" />
+                  <MFXButton fx:id="PayrollButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToPayrollTab" text="Payroll" />
+                  <MFXButton fx:id="SettingsButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToSettingsTab" text="Settings" />
                   <GridPane maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -68,28 +64,7 @@
             </VBox>
             </right>
          <center>
-            <StackPane fx:id="centerPane" alignment="BOTTOM_LEFT" BorderPane.alignment="CENTER">
-               <children>
-                      <TableView prefHeight="371.0" prefWidth="418.0">
-                          <columns>
-                              <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="120.0" sortable="false" text="First Name" />
-                              <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="155.0" sortable="false" text="Last Name" />
-                              <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="142.0" sortable="false" text="Salary" />
-                          </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                      </TableView>
-                  <MFXButton buttonType="RAISED" computeRadiusMultiplier="false" depthLevel="LEVEL5" ellipsisString="" prefHeight="49.0" prefWidth="49.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="10.0" rippleRadiusMultiplier="0.0" style="-fx-background-radius: 100; -fx-background-color: #f4f4f4;" text="+">
-                     <StackPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" />
-                     </StackPane.margin>
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </MFXButton>
-               </children>
-            </StackPane>
+            <AnchorPane fx:id="centerAnchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
         </BorderPane>
     </children>

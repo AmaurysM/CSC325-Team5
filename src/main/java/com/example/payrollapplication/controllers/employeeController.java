@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
 
+import java.io.IOException;
+
 public class employeeController {
 
     @FXML
@@ -23,7 +25,7 @@ public class employeeController {
     private Circle profilePictureCircle;
 
     @FXML
-    void logoutOfEmployeeView(ActionEvent event) {
+    void logoutOfEmployeeView(ActionEvent event) throws IOException {
         ScreenController.activate("loginScreen");
     }
 }
