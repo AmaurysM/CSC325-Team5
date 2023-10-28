@@ -13,14 +13,14 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("manager-View.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("managerView/manager-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("PayRoll!!");
 
         ScreenController screenController = new ScreenController(scene);
         screenController.addScreen("loginScreen", FXMLLoader.load(getClass().getResource( "login-View.fxml" )));
-        screenController.addScreen("managerView", FXMLLoader.load(getClass().getResource( "manager-View.fxml" )));
-        screenController.addScreen("employeeView", FXMLLoader.load(getClass().getResource( "employee-View.fxml" )));
+        screenController.addScreen("managerView", FXMLLoader.load(getClass().getResource( "managerView/manager-View.fxml" )));
+        screenController.addScreen("employeeView", FXMLLoader.load(getClass().getResource( "employeeView/employee-View.fxml" )));
 
         stage.setScene(scene);
         stage.show();
