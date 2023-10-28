@@ -53,12 +53,12 @@ public class managerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        FXMLLoader employeesTabLoader = new FXMLLoader(App.class.getResource("employeesTab.fxml"));
+        FXMLLoader employeesTabLoader = new FXMLLoader(App.class.getResource("managerView/employeesTab.fxml"));
 
         try {
 
             employeesTabLoader.load();
-            //borderPane.setCenter(employeesTabLoader.getRoot());
+            borderPane.setCenter(employeesTabLoader.getRoot());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
