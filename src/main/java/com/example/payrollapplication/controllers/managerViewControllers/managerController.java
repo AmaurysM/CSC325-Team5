@@ -17,6 +17,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -26,9 +27,11 @@ import java.util.ResourceBundle;
 
 public class managerController implements Initializable {
 
-    ScreenController managerScreenController;
+    private Stage primaryStage;
 
-    Scene mainScreenController;
+    private ScreenController managerScreenController;
+
+    private Scene mainScreenController;
 
     @FXML
     private MFXButton EmployeesButton;
@@ -54,6 +57,15 @@ public class managerController implements Initializable {
 
     @FXML
     private AnchorPane centerAnchorPane;
+
+    public Stage getPrimaryStage() {
+
+        return primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
 
     @FXML
     void goToEmployeesTab(ActionEvent event) throws IOException {
@@ -87,12 +99,18 @@ public class managerController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("managerView/employeesTab.fxml"));
             ScreenController.addScreen("employeesTab", loader.load(),loader.getController());
+            ((employeesTabController)loader.getController()).setPrimaryStage(primaryStage);
+
             loader = new FXMLLoader(App.class.getResource("managerView/notesTab.fxml"));
             ScreenController.addScreen("notesTab", loader.load(),loader.getController());
+
             loader = new FXMLLoader(App.class.getResource("managerView/payrollTab.fxml"));
             ScreenController.addScreen("payrollTab", loader.load(),loader.getController());
+
             loader = new FXMLLoader(App.class.getResource("managerView/settingsTab.fxml"));
             ScreenController.addScreen("settingsTab", loader.load(),loader.getController());
+
+
             borderPane.setCenter(ScreenController.find("employeesTab"));
 
         } catch (IOException e) {

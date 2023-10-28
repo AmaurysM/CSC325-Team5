@@ -1,6 +1,7 @@
 package com.example.payrollapplication;
 
 import com.example.payrollapplication.controllers.ScreenController;
+import com.example.payrollapplication.controllers.loginController;
 import com.example.payrollapplication.model.UserBag;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("PayRoll!!");
+        ((loginController)fxmlLoader.getController()).setPrimaryStage(stage);
 
         new ScreenController(scene);
         ScreenController.addScreen("loginScreen", (Pane)scene.getRoot(),fxmlLoader.getController());
