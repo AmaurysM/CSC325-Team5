@@ -5,6 +5,7 @@ import com.example.payrollapplication.model.UserBag;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,14 +14,17 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("managerView/manager-View.fxml"));
+        // 2 basic users to check log into the manager view and employee view
+        UserBag.createUser("a","a","a",0,"a",0,"manager");
+        UserBag.createUser("b","b","b",0,"b",0,"employee");
+        //
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("PayRoll!!");
 
-        ScreenController screenController = new ScreenController(scene);
-        screenController.addScreen("loginScreen", FXMLLoader.load(getClass().getResource( "login-View.fxml" )));
-        screenController.addScreen("managerView", FXMLLoader.load(getClass().getResource( "managerView/manager-View.fxml" )));
-        screenController.addScreen("employeeView", FXMLLoader.load(getClass().getResource( "employeeView/employee-View.fxml" )));
+        new ScreenController(scene);
+        ScreenController.addScreen("loginScreen", (Pane)scene.getRoot(),fxmlLoader.getController());
 
         stage.setScene(scene);
         stage.show();
