@@ -9,7 +9,9 @@ module com.example.payrollapplication {
     requires eu.hansolo.tilesfx;
     requires eu.hansolo.fx.countries;
     requires MaterialFX;
+    requires controlsfx;
 
+    opens com.example.payrollapplication.model to javafx.base;
     opens com.example.payrollapplication to javafx.fxml;
     exports com.example.payrollapplication;
     exports com.example.payrollapplication.controllers;
