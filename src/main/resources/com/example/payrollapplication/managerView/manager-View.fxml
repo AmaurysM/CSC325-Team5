@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.payrollapplication.controllers.managerViewControllers.managerController">
+    <children>
+        <BorderPane fx:id="borderPane" layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <MenuBar BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </top>
+            <right>
+            <VBox maxHeight="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                        <TextField fx:id="FirstNameTextField" alignment="CENTER" editable="false" text="FIrst Name" />
+                        <TextField fx:id="LastNameTextField" alignment="CENTER" editable="false" text="Last Name" />
+                        <TextField fx:id="SalaryTextField" alignment="CENTER" editable="false" text="Salary" />
+                  <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToEmployeesTab" text="Employees" />
+                  <MFXButton fx:id="NotesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToNotesTab" text="Notes" />
+                  <MFXButton fx:id="PayrollButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToPayrollTab" text="Payroll" />
+                  <MFXButton fx:id="SettingsButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToSettingsTab" text="Settings" />
+                  <GridPane maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" vgrow="ALWAYS" />
+                    </rowConstraints>
+                  </GridPane>
+                  <MFXButton fx:id="LogoutButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#logoutOfManagerView" text="Logout">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </MFXButton>
+               </children>
+            </VBox>
+            </right>
+         <center>
+            <AnchorPane fx:id="centerAnchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
