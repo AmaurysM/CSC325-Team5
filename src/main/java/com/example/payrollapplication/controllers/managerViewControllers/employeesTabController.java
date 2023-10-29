@@ -140,15 +140,21 @@ public class employeesTabController implements Initializable {
         if(!popOver.isShowing() && !popOver.isDetached()) {
             VBox content = new VBox();
 
-            Button actionButton = new Button("Delete");
+            Button deleteButton = new Button("Delete");
+            Button editButton = new Button("Edit");
 
-            actionButton.setOnAction((e) -> {
+            deleteButton.setOnAction((e) -> {
                 deleteUser(user);
                 popOver.hide();
             });
 
+            editButton.setOnAction((e) -> {
+                editUser();
+                popOver.hide();
+            });
 
-            content.getChildren().addAll(actionButton);
+
+            content.getChildren().addAll(deleteButton,editButton);
             popOver.setContentNode(content);
             popOver.show(tableView, event.getScreenX(), event.getScreenY());
 
@@ -162,9 +168,35 @@ public class employeesTabController implements Initializable {
         tableView.getItems().remove(user);
     }
 
+    void editUser(){// runs when you hit the user edit button on the drop-down menu
+        managerController manager = ((managerController)ScreenController.getMapItem("manager")[1]);
+        manager.getAddUserStackPane().setVisible(true);
+
+        //manager.getNameTextField().setText("Yes");
+
+        User userToBeEdited = tableView.getSelectionModel().getSelectedItem();
+        //System.out.println("In employeeView edit user: " + userToBeEdited.getName());
+
+        manager.getNameTextField().setText(userToBeEdited.getName());
+        manager.getUserNameTextField().setText(userToBeEdited.getUsername());
+        manager.getPasswordTextField().setText(userToBeEdited.getPassword());
+        manager.getAgeTextField().setText(String.valueOf(userToBeEdited.getAge()));
+        manager.getRoleTextField().setText(userToBeEdited.getRole());
+        manager.getSalaryTextField().setText( String.valueOf(userToBeEdited.getSalary()));
+
+        manager.getEditUserButton().setText("EDIT");
+        //System.out.println("before" + manager.getNameTextField().getText());
+        //manager.getEditUserButton().setId("updateUser");
+        //System.out.println("after" + manager.getNameTextField().getText());
+
+    }
+
     @FXML
     void addNewUser(ActionEvent event) {
-        ((managerController)ScreenController.getMapItem("manager")[1]).getAddUserStackPane().setVisible(true);
+        managerController manager = ((managerController)ScreenController.getMapItem("manager")[1]);
+        manager.getAddUserStackPane().setVisible(true);
+        manager.getEditUserButton().setText("ADD");
+        //manager.getEditUserButton().setId("createNewUser");
     }
 
     public void populateTableView(){
