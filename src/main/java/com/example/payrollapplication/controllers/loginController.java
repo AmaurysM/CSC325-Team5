@@ -45,23 +45,25 @@ public class loginController implements Initializable{
 
         if(foundUser != null ){
             UserBag.setCurrentUser(foundUser);
+            loadViews();
+            //System.out.println(UserBag.getCurrentUser());
             ScreenController.activate(UserBag.getCurrentUser().getRole());
+
         }
+    }
+
+    public void loadViews() throws IOException {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("managerView/manager-View.fxml"));
+        ScreenController.addScreen("manager", loader.load(),loader.getController());
+        ((managerController)(loader.getController())).setPrimaryStage(primaryStage);
+
+        loader = new FXMLLoader(App.class.getResource("employeeView/employee-View.fxml"));
+        ScreenController.addScreen("employee", loader.load(),loader.getController());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("managerView/manager-View.fxml"));
-            ScreenController.addScreen("manager", loader.load(),loader.getController());
-            ((managerController)(loader.getController())).setPrimaryStage(primaryStage);
 
-            loader = new FXMLLoader(App.class.getResource("employeeView/employee-View.fxml"));
-            ScreenController.addScreen("employee", loader.load(),loader.getController());
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
     }
 }

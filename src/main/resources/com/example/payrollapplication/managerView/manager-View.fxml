@@ -47,8 +47,8 @@
                   <right>
                   <VBox maxHeight="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                              <TextField fx:id="FirstNameTextField" alignment="CENTER" editable="false" text="FIrst Name" />
-                              <TextField fx:id="LastNameTextField" alignment="CENTER" editable="false" text="Last Name" />
+                              <TextField fx:id="CurrentNameTextField" alignment="CENTER" editable="false" text="First Name" />
+                              <TextField fx:id="CurrentUserNameTextField" alignment="CENTER" editable="false" text="Last Name" />
                               <TextField fx:id="CurrentSalaryTextField" alignment="CENTER" editable="false" text="Salary" />
                         <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToEmployeesTab" text="Employees" />
                         <MFXButton fx:id="NotesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToNotesTab" text="Notes" />
@@ -74,7 +74,7 @@
                   <AnchorPane fx:id="centerAnchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                </center>
               </BorderPane>
-            <StackPane fx:id="addUserStackPane">
+            <StackPane fx:id="addUserStackPane" visible="false">
                <children>
                   <AnchorPane style="-fx-background-color: #000000;">
                      <effect>

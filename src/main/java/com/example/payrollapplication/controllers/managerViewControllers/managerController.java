@@ -28,6 +28,15 @@ public class managerController implements Initializable {
     private MFXButton EmployeesButton;
 
     @FXML
+    private TextField CurrentNameTextField;
+
+    @FXML
+    private TextField CurrentSalaryTextField;
+
+    @FXML
+    private TextField CurrentUserNameTextField;
+
+    @FXML
     private TextField FirstNameTextField;
 
     @FXML
@@ -41,9 +50,6 @@ public class managerController implements Initializable {
 
     @FXML
     private MFXButton PayrollButton;
-
-    @FXML
-    private TextField CurrentSalaryTextField;
 
     @FXML
     private MFXButton SettingsButton;
@@ -90,6 +96,22 @@ public class managerController implements Initializable {
 
     public void setManagerScreenController(ScreenController managerScreenController) {
         this.managerScreenController = managerScreenController;
+    }
+
+    public TextField getCurrentNameTextField() {
+        return CurrentNameTextField;
+    }
+
+    public void setCurrentNameTextField(TextField currentNameTextField) {
+        CurrentNameTextField = currentNameTextField;
+    }
+
+    public TextField getCurrentUserNameTextField() {
+        return CurrentUserNameTextField;
+    }
+
+    public void setCurrentUserNameTextField(TextField currentUserNameTextField) {
+        CurrentUserNameTextField = currentUserNameTextField;
     }
 
     public MFXButton getEmployeesButton() {
@@ -421,6 +443,10 @@ public class managerController implements Initializable {
             borderPane.setCenter(ScreenController.find("employeesTab"));
 
             addUserStackPane.setVisible(false);
+
+            CurrentNameTextField.setText(UserBag.getCurrentUser().getName());
+            CurrentUserNameTextField.setText(UserBag.getCurrentUser().getUsername());
+            CurrentSalaryTextField.setText(String.valueOf(UserBag.getCurrentUser().getSalary()));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
