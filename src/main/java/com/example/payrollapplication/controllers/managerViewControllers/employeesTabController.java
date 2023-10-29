@@ -186,6 +186,11 @@ public class employeesTabController implements Initializable {
         tableView.setItems(FXCollections.observableArrayList(UserBag.getUserBag().stream().toList()));
     }
 
+    public void refreshTableView(){
+        tableView.getItems().removeAll(UserBag.getUserBag());
+        populateTableView();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
