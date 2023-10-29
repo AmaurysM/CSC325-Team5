@@ -9,13 +9,11 @@ public class UserBag {
     private static User currentUser;
     private static TreeSet<User> userBag = new TreeSet<>();
 
-    //String name, String username, String password, int age, int ID, int salary, String role
+    //String name, String username, String password, int age, String ID, int salary, String role
     public static void createUser(String name, String username, String password, int age, String ID, int salary, String role){
         userBag.add(new User(name,username,password,age,ID,salary,role));
         numOfUsers++;
     }
-
-
 
     public static Stream<User> findUserByName(String name){
         return userBag.stream().filter(u-> u.getName().equals(name));

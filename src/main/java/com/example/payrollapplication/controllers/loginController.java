@@ -46,9 +46,7 @@ public class loginController implements Initializable{
         if(foundUser != null ){
             UserBag.setCurrentUser(foundUser);
             ScreenController.activate(UserBag.getCurrentUser().getRole());
-
         }
-
     }
 
     @Override
@@ -60,8 +58,6 @@ public class loginController implements Initializable{
 
             loader = new FXMLLoader(App.class.getResource("employeeView/employee-View.fxml"));
             ScreenController.addScreen("employee", loader.load(),loader.getController());
-
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);
