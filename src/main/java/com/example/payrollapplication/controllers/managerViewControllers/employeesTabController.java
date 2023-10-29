@@ -1,5 +1,6 @@
 package com.example.payrollapplication.controllers.managerViewControllers;
 
+import com.example.payrollapplication.controllers.ScreenController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.controlsfx.control.PopOver;
@@ -57,23 +58,79 @@ public class employeesTabController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
+    public TableColumn<User, String> getNameColumn() {
+        return NameColumn;
+    }
+
+    public void setNameColumn(TableColumn<User, String> nameColumn) {
+        NameColumn = nameColumn;
+    }
+
+    public TableColumn<User, String> getRoleColumn() {
+        return RoleColumn;
+    }
+
+    public void setRoleColumn(TableColumn<User, String> roleColumn) {
+        RoleColumn = roleColumn;
+    }
+
+    public TableColumn<User, Integer> getSalaryColumn() {
+        return SalaryColumn;
+    }
+
+    public void setSalaryColumn(TableColumn<User, Integer> salaryColumn) {
+        SalaryColumn = salaryColumn;
+    }
+
+    public MFXButton getAddButton() {
+        return addButton;
+    }
+
+    public void setAddButton(MFXButton addButton) {
+        this.addButton = addButton;
+    }
+
+    public StackPane getCenterPane() {
+        return centerPane;
+    }
+
+    public void setCenterPane(StackPane centerPane) {
+        this.centerPane = centerPane;
+    }
+
+    public TableView<User> getTableView() {
+        return tableView;
+    }
+
+    public void setTableView(TableView<User> tableView) {
+        this.tableView = tableView;
+    }
+
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
+    }
+
+    public void setAnchorPane(AnchorPane anchorPane) {
+        this.anchorPane = anchorPane;
+    }
+
     public Stage getPrimaryStage() {
 
         return primaryStage;
     }
 
-    public void setPrimaryStage(Stage primaryStage) {
+    public void setPrimaryStage(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
     }
 
     @FXML
     void getSelectedUser(MouseEvent  event) {
-        //System.out.println(tableView.getSelectionModel().getSelectedItem());
+
         if(event.getClickCount() == 2){
             User selectedUser = tableView.getSelectionModel().getSelectedItem();
             createPopupWindow(selectedUser, event);
-            System.out.println("Do it");
-        }//
+
+        }
     }
 
     private void createPopupWindow(User user, MouseEvent event){
@@ -96,7 +153,7 @@ public class employeesTabController implements Initializable {
             popOver.show(tableView, event.getScreenX(), event.getScreenY());
 
         }
-        /*popupOver.setContentNode(createPopOver);*/
+
 
     }
 
@@ -107,21 +164,20 @@ public class employeesTabController implements Initializable {
 
     @FXML
     void addNewUser(ActionEvent event) {
-        System.out.println("+ADD+");
+        ((managerController)ScreenController.getMapItem("manager")[1]).getAddUserStackPane().setVisible(true);
+    }
+
+    public void populateTableView(){
+        tableView.setItems(FXCollections.observableArrayList(UserBag.getUserBag().stream().toList()));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*UserBag.getUserBag().forEach((e) -> {
 
-            }
-        );*/
         NameColumn.setCellValueFactory(new PropertyValueFactory<User,String>("name"));
         SalaryColumn.setCellValueFactory(new PropertyValueFactory<User,Integer>("salary"));
         RoleColumn.setCellValueFactory(new PropertyValueFactory<User,String>("role"));
-        tableView.setItems(FXCollections.observableArrayList(UserBag.getUserBag().stream().toList()));
-
-
+        populateTableView();
     }
 
 
