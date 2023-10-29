@@ -23,7 +23,6 @@ public class ScreenController {
     }
 
     public static void activate(String name) throws IOException {
-
         main.setRoot((Pane) screenMap.get(name)[0]);
     }
 
@@ -38,6 +37,5 @@ public class ScreenController {
     public static Object[] getMapItem(String name){
         return screenMap.get(name);
     }
-
 
 }

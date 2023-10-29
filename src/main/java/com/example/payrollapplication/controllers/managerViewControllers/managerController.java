@@ -3,6 +3,7 @@ package com.example.payrollapplication.controllers.managerViewControllers;
 import com.example.payrollapplication.App;
 
 import com.example.payrollapplication.controllers.ScreenController;
+import com.example.payrollapplication.model.User;
 import com.example.payrollapplication.model.UserBag;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
@@ -42,13 +43,13 @@ public class managerController implements Initializable {
     private MFXButton PayrollButton;
 
     @FXML
-    private TextField SalaryTextField;
+    private TextField CurrentSalaryTextField;
 
     @FXML
     private MFXButton SettingsButton;
 
     @FXML
-    private Button addNewUserButton;
+    private MFXButton editUserButton;
 
     @FXML
     private StackPane addUserStackPane;
@@ -63,22 +64,22 @@ public class managerController implements Initializable {
     private AnchorPane centerAnchorPane;
 
     @FXML
-    private TextField newNameTextField;
+    private TextField nameTextField;
 
     @FXML
-    private TextField newUserNameTextField;
+    private TextField userNameTextField;
 
     @FXML
     private TextField passwordTextField;
 
     @FXML
-    private Button quitAddingUserButton;
+    private MFXButton quitAddingUserButton;
 
     @FXML
     private TextField roleTextField;
 
     @FXML
-    private TextField salaryTextField;
+    private TextField SalaryTextField;
 
     @FXML
     private StackPane stackPane;
@@ -139,12 +140,20 @@ public class managerController implements Initializable {
         PayrollButton = payrollButton;
     }
 
+    public TextField getCurrentSalaryTextField() {
+        return CurrentSalaryTextField;
+    }
+
     public TextField getSalaryTextField() {
         return SalaryTextField;
     }
 
     public void setSalaryTextField(TextField salaryTextField) {
         SalaryTextField = salaryTextField;
+    }
+
+    public void setCurrentSalaryTextField(TextField currentSalaryTextField) {
+        CurrentSalaryTextField = currentSalaryTextField;
     }
 
     public StackPane getStackPane() {
@@ -163,12 +172,12 @@ public class managerController implements Initializable {
         SettingsButton = settingsButton;
     }
 
-    public Button getAddNewUserButton() {
-        return addNewUserButton;
+    public MFXButton getEditUserButton() {
+        return editUserButton;
     }
 
-    public void setAddNewUserButton(Button addNewUserButton) {
-        this.addNewUserButton = addNewUserButton;
+    public void setAddNewUserButton(MFXButton addNewUserButton) {
+        this.editUserButton = addNewUserButton;
     }
 
     public StackPane getAddUserStackPane() {
@@ -203,20 +212,20 @@ public class managerController implements Initializable {
         this.centerAnchorPane = centerAnchorPane;
     }
 
-    public TextField getNewNameTextField() {
-        return newNameTextField;
+    public TextField getNameTextField() {
+        return nameTextField;
     }
 
-    public void setNewNameTextField(TextField newNameTextField) {
-        this.newNameTextField = newNameTextField;
+    public void setNameTextField(TextField nameTextField) {
+        this.nameTextField = nameTextField;
     }
 
-    public TextField getNewUserNameTextField() {
-        return newUserNameTextField;
+    public TextField getUserNameTextField() {
+        return userNameTextField;
     }
 
-    public void setNewUserNameTextField(TextField newUserNameTextField) {
-        this.newUserNameTextField = newUserNameTextField;
+    public void setUserNameTextField(TextField userNameTextField) {
+        this.userNameTextField = userNameTextField;
     }
 
     public TextField getPasswordTextField() {
@@ -227,11 +236,11 @@ public class managerController implements Initializable {
         this.passwordTextField = passwordTextField;
     }
 
-    public Button getQuitAddingUserButton() {
+    public MFXButton getQuitAddingUserButton() {
         return quitAddingUserButton;
     }
 
-    public void setQuitAddingUserButton(Button quitAddingUserButton) {
+    public void setQuitAddingUserButton(MFXButton quitAddingUserButton) {
         this.quitAddingUserButton = quitAddingUserButton;
     }
 
@@ -283,64 +292,112 @@ public class managerController implements Initializable {
         addUserStackPane.setVisible(false);
     }
 
+
     @FXML
-    void createNewUser(ActionEvent event) {
+    public void editEmployees(ActionEvent event) {
+
+        if(editUserButton.getText().toLowerCase().compareTo("add") == 0){
+            createNewUser();
+            return;
+        }
+        if(editUserButton.getText().toLowerCase().compareTo("edit") == 0){
+            updateUser();
+            return;
+
+        }
+
+    }
+
+    public void createNewUser() {
         if(!allFieldsFilled()){
             return;
         }
 
         //String name, String username, String password, int age, String ID, int salary, String role
-        UserBag.createUser(newNameTextField.getText(),
-                newUserNameTextField.getText(),
+        UserBag.createUser(nameTextField.getText(),
+                userNameTextField.getText(),
                 passwordTextField.getText(),
                 Integer.valueOf(ageTextField.getText()),
                 "0",
-                Integer.valueOf(salaryTextField.getText()),
+                Integer.valueOf(SalaryTextField.getText()),
                 roleTextField.getText());
 
-        UserBag.printUsers();
-        ((employeesTabController)ScreenController.getMapItem("employeesTab")[1]).getTableView().getItems().removeAll();
-        ((employeesTabController)ScreenController.getMapItem("employeesTab")[1]).populateTableView();
-
+        resetTableView();
         clearAllTextFields();
         addUserStackPane.setVisible(false);
 
     }
 
+
+    public void updateUser(){
+        //System.out.println(nameTextField.getText());
+        if(!allFieldsFilled()){
+            return;
+        }
+
+
+        employeesTabController controller = ((employeesTabController) ScreenController.getMapItem("employeesTab")[1]);
+        User user = (User) (controller).getTableView().getSelectionModel().getSelectedItem();
+        //System.out.println("In managerView update user: " + user);
+        //nameTextField.setText("D");
+
+        //System.out.println("nameTextField: " + nameTextField.getText());
+
+        //managerController manager = ((managerController)ScreenController.getMapItem("manager")[1]);
+        //System.out.println("ageTextField: " + manager.getAgeTextField().getText());
+        //nameTextField.setText("no");
+
+        //System.out.println("getNameTextField" + getNameTextField().getText());
+        UserBag.findUser(user).setName(nameTextField.getText());
+        UserBag.findUser(user).setUsername(userNameTextField.getText());
+        UserBag.findUser(user).setPassword(passwordTextField.getText());
+        user.setAge(Integer.valueOf(ageTextField.getText()));
+        user.setSalary(Integer.valueOf(SalaryTextField.getText()));
+        UserBag.findUser(user).setRole(roleTextField.getText());
+
+        //System.out.println("a");
+
+
+        resetTableView();
+        clearAllTextFields();
+        addUserStackPane.setVisible(false);
+    }
+    public void resetTableView(){
+        employeesTabController controller = ((employeesTabController)ScreenController.getMapItem("employeesTab")[1]);
+        controller.getTableView().getItems().removeAll(UserBag.getUserBag());
+        controller.populateTableView();
+    }
+
     public boolean allFieldsFilled(){
-        if(newNameTextField.getText().isBlank()){
-            clearAllTextFields();
+        if(nameTextField.getText().isBlank()){
             return false;
         }
-        if(newUserNameTextField.getText().isBlank()){
-            clearAllTextFields();
+        if(userNameTextField.getText().isBlank()){
             return false;
         }
         if(passwordTextField.getText().isBlank()){
-            clearAllTextFields();
             return false;
         }
         if(ageTextField.getText().isBlank()){
-            clearAllTextFields();
             return false;
         }
-        if(salaryTextField.getText().isBlank()){
-            clearAllTextFields();
+        if(SalaryTextField.getText().isBlank()){
             return false;
         }
         if(roleTextField.getText().isBlank()){
-            clearAllTextFields();
+
             return false;
         }
+
         return true;
     }
 
     public void clearAllTextFields(){
-        newNameTextField.clear();
-        newUserNameTextField.clear();
+        nameTextField.clear();
+        userNameTextField.clear();
         passwordTextField.clear();
         ageTextField.clear();
-        salaryTextField.clear();
+        SalaryTextField.clear();
         roleTextField.clear();
     }
 
