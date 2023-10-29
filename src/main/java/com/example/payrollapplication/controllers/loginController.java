@@ -1,7 +1,6 @@
 package com.example.payrollapplication.controllers;
 
 import com.example.payrollapplication.App;
-import com.example.payrollapplication.controllers.managerViewControllers.employeesTabController;
 import com.example.payrollapplication.controllers.managerViewControllers.managerController;
 import com.example.payrollapplication.model.User;
 import com.example.payrollapplication.model.UserBag;
@@ -16,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class loginController implements Initializable{
@@ -46,7 +44,6 @@ public class loginController implements Initializable{
         if(foundUser != null ){
             UserBag.setCurrentUser(foundUser);
             loadViews();
-            //System.out.println(UserBag.getCurrentUser());
             ScreenController.activate(UserBag.getCurrentUser().getRole());
 
         }

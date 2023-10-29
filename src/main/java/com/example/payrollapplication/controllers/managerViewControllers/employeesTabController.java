@@ -2,30 +2,22 @@ package com.example.payrollapplication.controllers.managerViewControllers;
 
 import com.example.payrollapplication.controllers.ScreenController;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import org.controlsfx.control.PopOver;
-import com.example.payrollapplication.App;
 import com.example.payrollapplication.model.User;
 import com.example.payrollapplication.model.UserBag;
 import io.github.palexdev.materialfx.controls.MFXButton;
+
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
-import javafx.scene.*;
-
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -129,7 +121,6 @@ public class employeesTabController implements Initializable {
         if(event.getClickCount() == 2){
             User selectedUser = tableView.getSelectionModel().getSelectedItem();
             createPopupWindow(selectedUser, event);
-
         }
     }
 
@@ -153,7 +144,6 @@ public class employeesTabController implements Initializable {
                 popOver.hide();
             });
 
-
             content.getChildren().addAll(deleteButton,editButton);
             popOver.setContentNode(content);
             popOver.show(tableView, event.getScreenX(), event.getScreenY());
@@ -172,10 +162,7 @@ public class employeesTabController implements Initializable {
         managerController manager = ((managerController)ScreenController.getMapItem("manager")[1]);
         manager.getAddUserStackPane().setVisible(true);
 
-        //manager.getNameTextField().setText("Yes");
-
         User userToBeEdited = tableView.getSelectionModel().getSelectedItem();
-        //System.out.println("In employeeView edit user: " + userToBeEdited.getName());
 
         manager.getNameTextField().setText(userToBeEdited.getName());
         manager.getUserNameTextField().setText(userToBeEdited.getUsername());
@@ -185,9 +172,6 @@ public class employeesTabController implements Initializable {
         manager.getSalaryTextField().setText( String.valueOf(userToBeEdited.getSalary()));
 
         manager.getEditUserButton().setText("EDIT");
-        //System.out.println("before" + manager.getNameTextField().getText());
-        //manager.getEditUserButton().setId("updateUser");
-        //System.out.println("after" + manager.getNameTextField().getText());
 
     }
 
@@ -196,7 +180,6 @@ public class employeesTabController implements Initializable {
         managerController manager = ((managerController)ScreenController.getMapItem("manager")[1]);
         manager.getAddUserStackPane().setVisible(true);
         manager.getEditUserButton().setText("ADD");
-        //manager.getEditUserButton().setId("createNewUser");
     }
 
     public void populateTableView(){
