@@ -1,5 +1,9 @@
 package com.example.payrollapplication.model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class User implements Comparable<User>{
@@ -61,6 +65,25 @@ public class User implements Comparable<User>{
         this.ID = ID;
     }
 
+    //Returns the current time in "HH:mm:ss" format as a string in 24-hour format
+    public String getCurrentTime(){
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+        return dateFormat.format(date);
+    }
+    //Method for calculating the clock-in and clock-out time. Returns the time as String
+    public String getTimeDifference(String start_time, String end_time) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        Date date1 = format.parse(start_time);
+        Date date2 = format.parse(end_time);
+        long difference = date2.getTime() - date1.getTime();
+
+        long differenceSeconds = difference / 1000 % 60;
+        long differenceMinutes = difference / (60 * 1000) % 60;
+        long differenceHours = difference / (60 * 60 * 1000) % 24;
+        return differenceHours+":"+differenceMinutes+":"+differenceSeconds;
+    }
     public int getSalary() {
         return salary;
     }
