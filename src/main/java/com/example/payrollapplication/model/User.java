@@ -100,20 +100,6 @@ public class User implements Comparable<User>{
         this.role = role;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        User user = (User) o;
-//        return getAge() == user.getAge() && getID() == user.getID() && Objects.equals(getName(), user.getName()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword());
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(getName(), getUsername(), getPassword(), getAge(), getID());
-//    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

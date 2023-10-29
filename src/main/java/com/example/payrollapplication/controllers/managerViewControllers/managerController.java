@@ -37,12 +37,6 @@ public class managerController implements Initializable {
     private TextField CurrentUserNameTextField;
 
     @FXML
-    private TextField FirstNameTextField;
-
-    @FXML
-    private TextField LastNameTextField;
-
-    @FXML
     private MFXButton LogoutButton;
 
     @FXML
@@ -120,22 +114,6 @@ public class managerController implements Initializable {
 
     public void setEmployeesButton(MFXButton employeesButton) {
         EmployeesButton = employeesButton;
-    }
-
-    public TextField getFirstNameTextField() {
-        return FirstNameTextField;
-    }
-
-    public void setFirstNameTextField(TextField firstNameTextField) {
-        FirstNameTextField = firstNameTextField;
-    }
-
-    public TextField getLastNameTextField() {
-        return LastNameTextField;
-    }
-
-    public void setLastNameTextField(TextField lastNameTextField) {
-        LastNameTextField = lastNameTextField;
     }
 
     public MFXButton getLogoutButton() {
@@ -352,33 +330,19 @@ public class managerController implements Initializable {
 
 
     public void updateUser(){
-        //System.out.println(nameTextField.getText());
         if(!allFieldsFilled()){
             return;
         }
 
-
         employeesTabController controller = ((employeesTabController) ScreenController.getMapItem("employeesTab")[1]);
         User user = (User) (controller).getTableView().getSelectionModel().getSelectedItem();
-        //System.out.println("In managerView update user: " + user);
-        //nameTextField.setText("D");
 
-        //System.out.println("nameTextField: " + nameTextField.getText());
-
-        //managerController manager = ((managerController)ScreenController.getMapItem("manager")[1]);
-        //System.out.println("ageTextField: " + manager.getAgeTextField().getText());
-        //nameTextField.setText("no");
-
-        //System.out.println("getNameTextField" + getNameTextField().getText());
         UserBag.findUser(user).setName(nameTextField.getText());
         UserBag.findUser(user).setUsername(userNameTextField.getText());
         UserBag.findUser(user).setPassword(passwordTextField.getText());
         user.setAge(Integer.valueOf(ageTextField.getText()));
         user.setSalary(Integer.valueOf(SalaryTextField.getText()));
         UserBag.findUser(user).setRole(roleTextField.getText());
-
-        //System.out.println("a");
-
 
         resetTableView();
         clearAllTextFields();
