@@ -322,7 +322,7 @@ public class managerController implements Initializable {
                 Integer.valueOf(SalaryTextField.getText()),
                 roleTextField.getText());
 
-        resetTableView();
+        refreshTableView();
         clearAllTextFields();
         addUserStackPane.setVisible(false);
 
@@ -344,14 +344,14 @@ public class managerController implements Initializable {
         user.setSalary(Integer.valueOf(SalaryTextField.getText()));
         UserBag.findUser(user).setRole(roleTextField.getText());
 
-        resetTableView();
+        refreshTableView();
         clearAllTextFields();
         addUserStackPane.setVisible(false);
     }
-    public void resetTableView(){
+    public void refreshTableView(){
         employeesTabController controller = ((employeesTabController)ScreenController.getMapItem("employeesTab")[1]);
-        controller.getTableView().getItems().removeAll(UserBag.getUserBag());
-        controller.populateTableView();
+        controller.refreshTableView();
+
     }
 
     public boolean allFieldsFilled(){
