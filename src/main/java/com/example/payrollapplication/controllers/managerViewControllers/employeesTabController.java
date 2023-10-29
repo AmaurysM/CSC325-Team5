@@ -183,12 +183,13 @@ public class employeesTabController implements Initializable {
     }
 
     public void populateTableView(){
-        tableView.setItems(FXCollections.observableArrayList(UserBag.getUserBag().stream().toList()));
+        tableView.setItems(FXCollections.observableArrayList(UserBag.getUserBag().stream().toList()).filtered(e->(e.getRole().compareTo("manager") != 0)));
     }
 
-    public void refreshTableView(){
-        tableView.getItems().removeAll(UserBag.getUserBag());
+    public void refreshTableView() {
+        tableView.refresh();
         populateTableView();
+        tableView.sort();
     }
 
     @Override
