@@ -1,14 +1,10 @@
 package com.example.payrollapplication.controllers;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class ScreenController {
     private static HashMap<String, Object[]> screenMap = new HashMap<>();
@@ -27,7 +23,6 @@ public class ScreenController {
     }
 
     public static void activate(String name) throws IOException {
-
         main.setRoot((Pane) screenMap.get(name)[0]);
     }
 
@@ -39,5 +34,10 @@ public class ScreenController {
         return (Pane)screenMap.get(name)[0];
     }
 
+
+
+    public static Object[] getMapItem(String name){
+        return screenMap.get(name);
+    }
 
 }

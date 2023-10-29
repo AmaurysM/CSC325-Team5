@@ -15,12 +15,12 @@ public class User implements Comparable<User>{
     private int salary;
     private String role;
 
-    public User(String name, String username, String password, int age, String ID, int salary, String role) {
+    public User(String name, String username, String password, int age, int salary, String role) {
         this.name = name;
         Username = username;
         this.password = password;
         this.age = age;
-        this.ID = ID;
+        this.ID = String.valueOf(Math.floor(Math.random() * 1000));
         this.salary = salary;
         this.role = role;
     }
@@ -99,20 +99,6 @@ public class User implements Comparable<User>{
     public void setRole(String role) {
         this.role = role;
     }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        User user = (User) o;
-//        return getAge() == user.getAge() && getID() == user.getID() && Objects.equals(getName(), user.getName()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword());
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(getName(), getUsername(), getPassword(), getAge(), getID());
-//    }
-
 
     @Override
     public boolean equals(Object o) {
