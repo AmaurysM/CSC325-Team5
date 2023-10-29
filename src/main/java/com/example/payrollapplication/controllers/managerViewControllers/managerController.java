@@ -318,7 +318,6 @@ public class managerController implements Initializable {
                 userNameTextField.getText(),
                 passwordTextField.getText(),
                 Integer.valueOf(ageTextField.getText()),
-                "0",
                 Integer.valueOf(SalaryTextField.getText()),
                 roleTextField.getText());
 

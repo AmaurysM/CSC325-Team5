@@ -15,12 +15,12 @@ public class User implements Comparable<User>{
     private int salary;
     private String role;
 
-    public User(String name, String username, String password, int age, String ID, int salary, String role) {
+    public User(String name, String username, String password, int age, int salary, String role) {
         this.name = name;
         Username = username;
         this.password = password;
         this.age = age;
-        this.ID = ID;
+        this.ID = String.valueOf(Math.floor(Math.random() * 1000));
         this.salary = salary;
         this.role = role;
     }

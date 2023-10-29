@@ -39,7 +39,7 @@ public class loginController implements Initializable{
 
     @FXML // This tries to find the user based on username and password.
     void validateUserNameAndPassword(ActionEvent event) throws IOException {
-        User foundUser = UserBag.findUser(new User("0",usernameTextField.getText(),passwordField.getText(),0,"0",0,"0"));
+        User foundUser = UserBag.findUser(new User("0",usernameTextField.getText(),passwordField.getText(),0,0,"0"));
 
         if(foundUser != null ){
             UserBag.setCurrentUser(foundUser);
