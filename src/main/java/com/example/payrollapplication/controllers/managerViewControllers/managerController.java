@@ -313,7 +313,6 @@ public class managerController implements Initializable {
             return;
         }
 
-        //String name, String username, String password, int age, String ID, int salary, String role
         UserBag.createUser(nameTextField.getText(),
                 userNameTextField.getText(),
                 passwordTextField.getText(),
