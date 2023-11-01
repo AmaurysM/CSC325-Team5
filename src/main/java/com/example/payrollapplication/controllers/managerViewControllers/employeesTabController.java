@@ -107,7 +107,6 @@ public class employeesTabController implements Initializable {
     }
 
     public Stage getPrimaryStage() {
-
         return primaryStage;
     }
 
@@ -163,7 +162,6 @@ public class employeesTabController implements Initializable {
         manager.getAddUserStackPane().setVisible(true);
 
         User userToBeEdited = tableView.getSelectionModel().getSelectedItem();
-
         manager.getNameTextField().setText(userToBeEdited.getName());
         manager.getUserNameTextField().setText(userToBeEdited.getUsername());
         manager.getPasswordTextField().setText(userToBeEdited.getPassword());
@@ -194,7 +192,6 @@ public class employeesTabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         NameColumn.setCellValueFactory(new PropertyValueFactory<User,String>("name"));
         SalaryColumn.setCellValueFactory(new PropertyValueFactory<User,Integer>("salary"));
         RoleColumn.setCellValueFactory(new PropertyValueFactory<User,String>("role"));
