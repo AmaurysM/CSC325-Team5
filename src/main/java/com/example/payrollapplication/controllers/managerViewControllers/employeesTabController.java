@@ -1,6 +1,8 @@
 package com.example.payrollapplication.controllers.managerViewControllers;
 
+import com.example.payrollapplication.App;
 import com.example.payrollapplication.controllers.ScreenController;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import org.controlsfx.control.PopOver;
 import com.example.payrollapplication.model.User;
@@ -115,46 +117,42 @@ public class employeesTabController implements Initializable {
     }
 
     @FXML
-    void getSelectedUser(MouseEvent  event) {
+    void getSelectedUser(MouseEvent  event) throws IOException {
 
         if(event.getClickCount() == 2){
             User selectedUser = tableView.getSelectionModel().getSelectedItem();
             createPopupWindow(selectedUser, event);
         }
     }
+    private PopOver popOver;
 
-    private void createPopupWindow(User user, MouseEvent event){
+    public PopOver getPopOver() {
+        return popOver;
+    }
 
-        PopOver popOver = new PopOver();
+    public void setPopOver(PopOver popOver) {
+        this.popOver = popOver;
+    }
+
+    private void createPopupWindow(User user, MouseEvent event) throws IOException {
+
+        popOver = new PopOver();
 
         if(!popOver.isShowing() && !popOver.isDetached()) {
-            VBox content = new VBox();
 
-            Button deleteButton = new Button("Delete");
-            Button editButton = new Button("Edit");
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("managerView/popOver.fxml"));
+            fxmlLoader.load();
 
-            deleteButton.setOnAction((e) -> {
-                deleteUser(user);
-                popOver.hide();
-            });
-
-            editButton.setOnAction((e) -> {
-                editUser();
-                popOver.hide();
-            });
-
-            content.getChildren().addAll(deleteButton,editButton);
-            popOver.setContentNode(content);
+            popOver.setContentNode(fxmlLoader.getRoot());
             popOver.show(tableView, event.getScreenX(), event.getScreenY());
 
         }
-
 
     }
 
     void deleteUser(User user){
         UserBag.removeUser(user);
-        tableView.getItems().remove(user);
+        refreshTableView();
     }
 
     void editUser(){// runs when you hit the user edit button on the drop-down menu
