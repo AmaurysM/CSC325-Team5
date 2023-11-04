@@ -55,6 +55,9 @@ public class employeeController implements Initializable {
 
     @FXML
     void logoutOfEmployeeView(ActionEvent event) throws IOException {
+        ScreenController.removeScreen("payrollTab");
+        ScreenController.removeScreen("notesTab");
+        ScreenController.removeScreen("settingsTab");
         ScreenController.activate("loginScreen");
     }
 

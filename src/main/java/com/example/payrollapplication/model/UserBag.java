@@ -12,9 +12,7 @@ public class UserBag {
     //String name, String username, String password, int age, String ID, int salary, String role
     public static void createUser(String name, String username, String password, int age, int salary, String role){
         User user = new User(name,username,password,age,salary,role);
-        System.out.println(user);
         userBag.add(user);
-        printUsers();
         numOfUsers++;
     }
 

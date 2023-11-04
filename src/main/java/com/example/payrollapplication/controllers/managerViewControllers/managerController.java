@@ -283,6 +283,10 @@ public class managerController implements Initializable {
 
     @FXML
     void logoutOfManagerView(ActionEvent event) throws IOException {
+        ScreenController.removeScreen("employeesTab");
+        ScreenController.removeScreen("payrollTab");
+        ScreenController.removeScreen("notesTab");
+        ScreenController.removeScreen("settingsTab");
         ScreenController.activate("loginScreen");
 
     }

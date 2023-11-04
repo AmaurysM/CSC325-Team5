@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class loginController implements Initializable{
+public class loginController implements Initializable {
     private Stage primaryStage;
 
     @FXML
@@ -37,25 +37,35 @@ public class loginController implements Initializable{
         this.primaryStage = primaryStage;
     }
 
-    @FXML // This tries to find the user based on username and password.
+    @FXML
+        // This tries to find the user based on username and password.
     void validateUserNameAndPassword(ActionEvent event) throws IOException {
-        User foundUser = UserBag.findUser(new User("0",usernameTextField.getText(),passwordField.getText(),0,0,"0"));
+        User foundUser = UserBag.findUser(new User("0", usernameTextField.getText(), passwordField.getText(), 0, 0, "0"));
 
-        if(foundUser != null ){
-            UserBag.setCurrentUser(foundUser);
-            loadViews();
-            ScreenController.activate(UserBag.getCurrentUser().getRole());
-
+        if (foundUser == null) {
+            return;
         }
+
+        UserBag.setCurrentUser(foundUser);
+        loadViews();
     }
 
     public void loadViews() throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("managerView/manager-View.fxml"));
-        ScreenController.addScreen("manager", loader.load(),loader.getController());
-        ((managerController)(loader.getController())).setPrimaryStage(primaryStage);
 
-        loader = new FXMLLoader(App.class.getResource("employeeView/employee-View.fxml"));
-        ScreenController.addScreen("employee", loader.load(),loader.getController());
+        if (UserBag.getCurrentUser().getRole().compareTo("manager") == 0) {
+            ScreenController.addScreen("manager", loader.load(), loader.getController());
+            ((managerController) (loader.getController())).setPrimaryStage(primaryStage);
+            ScreenController.activate("manager");
+
+        }
+
+        if (UserBag.getCurrentUser().getRole().compareTo("employee") == 0) {
+            loader = new FXMLLoader(App.class.getResource("employeeView/employee-View.fxml"));
+            ScreenController.addScreen("employee", loader.load(), loader.getController());
+            ScreenController.activate("employee");
+
+        }
     }
 
     @Override
