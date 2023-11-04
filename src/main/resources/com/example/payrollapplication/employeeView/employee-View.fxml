@@ -16,11 +16,17 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="546.0" prefWidth="693.0" style="-fx-background-color: #212d59;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.payrollapplication.controllers.employeeController">
+<AnchorPane prefHeight="546.0" prefWidth="693.0" style="-fx-background-color: #212d59;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.payrollapplication.controllers.employeeViewControllers.employeeController">
    <children>
-      <BorderPane layoutX="186.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" layoutX="186.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
          <center>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <Pane BorderPane.alignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin></Pane>
          </center>
          <left>
             <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="148.0" BorderPane.alignment="CENTER">
@@ -60,7 +66,7 @@
                               </Circle>
                            </children>
                         </StackPane>
-                        <MFXButton fx:id="PayrollButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Payroll" textFill="#d7ced0" VBox.vgrow="NEVER">
+                        <MFXButton fx:id="PayrollButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goToPayrollTab" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Payroll" textFill="#d7ced0" VBox.vgrow="NEVER">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -74,7 +80,7 @@
                               <Font name="Segoe UI Semilight" size="14.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton fx:id="NotesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Notes" textFill="#d7ced0">
+                        <MFXButton fx:id="NotesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goToNotesTab" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Notes" textFill="#d7ced0">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -85,7 +91,7 @@
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton fx:id="SettingsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Settings" textFill="#d7ced0">
+                        <MFXButton fx:id="SettingsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goToSettingsTab" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Settings" textFill="#d7ced0">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
