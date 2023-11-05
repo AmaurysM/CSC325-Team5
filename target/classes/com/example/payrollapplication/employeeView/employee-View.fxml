@@ -44,7 +44,7 @@
                      <children>
                         <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="165.0">
                            <children>
-                              <Circle radius="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                              <Circle fx:id="profilePicShadow" radius="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                                  <effect>
                                     <Shadow blurType="GAUSSIAN" height="164.26" radius="40.565" width="0.0">
                                        <color>
@@ -56,7 +56,12 @@
                                     <Insets left="-2.5" top="10.0" />
                                  </StackPane.margin>
                               </Circle>
-                              <Circle fx:id="profilePictureCircle" fill="#575863" radius="74.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                              <Circle fx:id="profilePicBackground" fill="#555661" radius="74.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Circle>
+                              <Circle fx:id="profilePictureCircle" fill="#555661" radius="74.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                                  <StackPane.margin>
                                     <Insets left="-2.5" top="-4.0" />
                                  </StackPane.margin>
