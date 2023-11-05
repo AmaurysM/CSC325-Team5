@@ -107,6 +107,28 @@
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
                         </MFXButton>
+                        <MFXButton fx:id="clockInButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clockIn" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #138402;" text="Clock-In" textFill="#d7ced0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="ClockOutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clockOut" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #fe0000;" text="Clock-Out" textFill="#d7ced0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                        </MFXButton>
                         <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="-Infinity" prefHeight="0.0" prefWidth="153.0" VBox.vgrow="ALWAYS">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
