@@ -23,9 +23,6 @@ import java.util.ResourceBundle;
 
 public class employeeController implements Initializable {
 
-    private String clockInTime;
-    private String clockOutTime;
-
     @FXML
     private MFXButton LogoutButton;
 
@@ -71,7 +68,7 @@ public class employeeController implements Initializable {
     void clockIn(ActionEvent event) {
         User user = UserBag.getCurrentUser();
         if(!user.isClockedIn()) {
-            clockInTime = UserBag.getCurrentUser().getCurrentTime();
+            user.setClockInTime(UserBag.getCurrentUser().getCurrentTime());
             user.setClockedIn(true);
         }
     }
@@ -80,19 +77,12 @@ public class employeeController implements Initializable {
     void clockOut(ActionEvent event) throws ParseException {
         User user = UserBag.getCurrentUser();
         if(user.isClockedIn()) {
-            clockOutTime = UserBag.getCurrentUser().getCurrentTime();
+            user.setClockOutTime(UserBag.getCurrentUser().getCurrentTime());
             user.setClockedIn(false);
 
-            System.out.println(user.getTimeDifference(clockInTime,clockOutTime));
-            /*
+            System.out.println(user.getTimeDifference(user.getClockInTime(),user.getClockOutTime()));
 
-            Here you would calculate the difference
-
-            */
         }
-
-
-
 
     }
 

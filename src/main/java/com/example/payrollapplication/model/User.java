@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class User implements Comparable<User>{
+
+
     private String name;
     private String Username;
     private String password;
@@ -14,8 +16,10 @@ public class User implements Comparable<User>{
     private String ID;
     private int salary;
     private String role;
-
     private boolean clockedIn;
+    private String clockInTime;
+    private String clockOutTime;
+
 
     public User(String name, String username, String password, int age, int salary, String role) {
         this.name = name;
@@ -73,6 +77,22 @@ public class User implements Comparable<User>{
 
     public void setClockedIn(boolean clockedIn) {
         this.clockedIn = clockedIn;
+    }
+
+    public String getClockInTime() {
+        return clockInTime;
+    }
+
+    public void setClockInTime(String clockInTime) {
+        this.clockInTime = clockInTime;
+    }
+
+    public String getClockOutTime() {
+        return clockOutTime;
+    }
+
+    public void setClockOutTime(String clockOutTime) {
+        this.clockOutTime = clockOutTime;
     }
 
     //Returns the current time in "HH:mm:ss" format as a string in 24-hour format
