@@ -15,6 +15,8 @@ public class User implements Comparable<User>{
     private int salary;
     private String role;
 
+    private boolean clockedIn;
+
     public User(String name, String username, String password, int age, int salary, String role) {
         this.name = name;
         Username = username;
@@ -63,6 +65,14 @@ public class User implements Comparable<User>{
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public boolean isClockedIn() {
+        return clockedIn;
+    }
+
+    public void setClockedIn(boolean clockedIn) {
+        this.clockedIn = clockedIn;
     }
 
     //Returns the current time in "HH:mm:ss" format as a string in 24-hour format

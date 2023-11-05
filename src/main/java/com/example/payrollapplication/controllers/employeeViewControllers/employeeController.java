@@ -3,6 +3,8 @@ package com.example.payrollapplication.controllers.employeeViewControllers;
 import com.example.payrollapplication.App;
 import com.example.payrollapplication.controllers.ScreenController;
 import com.example.payrollapplication.controllers.managerViewControllers.employeesTabController;
+import com.example.payrollapplication.model.User;
+import com.example.payrollapplication.model.UserBag;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,9 +18,13 @@ import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class employeeController implements Initializable {
+
+    private String clockInTime;
+    private String clockOutTime;
 
     @FXML
     private MFXButton LogoutButton;
@@ -59,6 +65,35 @@ public class employeeController implements Initializable {
         ScreenController.removeScreen("notesTab");
         ScreenController.removeScreen("settingsTab");
         ScreenController.activate("loginScreen");
+    }
+
+    @FXML
+    void clockIn(ActionEvent event) {
+        User user = UserBag.getCurrentUser();
+        if(!user.isClockedIn()) {
+            clockInTime = UserBag.getCurrentUser().getCurrentTime();
+            user.setClockedIn(true);
+        }
+    }
+
+    @FXML
+    void clockOut(ActionEvent event) throws ParseException {
+        User user = UserBag.getCurrentUser();
+        if(user.isClockedIn()) {
+            clockOutTime = UserBag.getCurrentUser().getCurrentTime();
+            user.setClockedIn(false);
+
+            System.out.println(user.getTimeDifference(clockInTime,clockOutTime));
+            /*
+
+            Here you would calculate the difference
+
+            */
+        }
+
+
+
+
     }
 
     @Override
