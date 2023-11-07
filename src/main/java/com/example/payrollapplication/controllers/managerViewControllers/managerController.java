@@ -323,7 +323,7 @@ public class managerController implements Initializable {
         if(!allFieldsFilled()){
             return;
         }
-        addData();
+        addUser();
         UserBag.createUser(nameTextField.getText(),
                 userNameTextField.getText(),
                 passwordTextField.getText(),
@@ -389,7 +389,7 @@ public class managerController implements Initializable {
         return true;
     }
 
-    public void addData() {
+    public void addUser() {
         System.out.println("inside add data function1");
         DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
         System.out.println("inside add data function2");
