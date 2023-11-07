@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import java.util.TreeSet;
 
 public class User implements Comparable<User>{
 
@@ -19,6 +20,7 @@ public class User implements Comparable<User>{
     private boolean clockedIn;
     private String clockInTime;
     private String clockOutTime;
+    private static TreeSet<Note> notes = new TreeSet<>();
 
 
     public User(String name, String username, String password, int age, int salary, String role) {
@@ -29,6 +31,14 @@ public class User implements Comparable<User>{
         this.ID = String.valueOf(Math.floor(Math.random() * 1000));
         this.salary = salary;
         this.role = role;
+    }
+
+    public void addNote(String note){
+        notes.add(new Note(note,getCurrentTime()));
+    }
+
+    public void removeNote(String note){
+        notes.remove(new Note(note,getCurrentTime()));
     }
 
     public String getName() {
