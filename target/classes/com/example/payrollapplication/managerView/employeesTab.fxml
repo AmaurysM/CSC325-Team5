@@ -24,7 +24,7 @@
             </TableView>
             <MFXButton fx:id="addButton" buttonType="RAISED" computeRadiusMultiplier="false" depthLevel="LEVEL5" ellipsisString="" onAction="#addNewUser" prefHeight="49.0" prefWidth="49.0" rippleAnimateBackground="false" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="10.0" rippleRadiusMultiplier="0.0" style="-fx-background-radius: 100; -fx-background-color: #f4f4f4;" text="+">
                <StackPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" />
+                  <Insets bottom="5.0" left="5.0" />
                </StackPane.margin>
                <font>
                   <Font size="22.0" />

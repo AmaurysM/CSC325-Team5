@@ -37,6 +37,11 @@ public class loginController implements Initializable {
         this.primaryStage = primaryStage;
     }
 
+    public void clearFields(){
+        usernameTextField.clear();
+        passwordField.clear();
+    }
+
     @FXML
         // This tries to find the user based on username and password.
     void validateUserNameAndPassword(ActionEvent event) throws IOException {
@@ -46,6 +51,7 @@ public class loginController implements Initializable {
             return;
         }
 
+        clearFields();
         UserBag.setCurrentUser(foundUser);
         loadViews();
     }
