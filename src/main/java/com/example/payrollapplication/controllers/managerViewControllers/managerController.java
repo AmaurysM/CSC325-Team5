@@ -16,7 +16,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.UUID;
+
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
 
 public class managerController implements Initializable {
 
@@ -312,7 +323,7 @@ public class managerController implements Initializable {
         if(!allFieldsFilled()){
             return;
         }
-
+        addData();
         UserBag.createUser(nameTextField.getText(),
                 userNameTextField.getText(),
                 passwordTextField.getText(),
@@ -323,6 +334,8 @@ public class managerController implements Initializable {
         refreshTableView();
         clearAllTextFields();
         addUserStackPane.setVisible(false);
+
+
 
     }
 
@@ -375,6 +388,26 @@ public class managerController implements Initializable {
 
         return true;
     }
+
+    public void addData() {
+        System.out.println("inside add data function1");
+        DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
+        System.out.println("inside add data function2");
+        // Add document data  with id "alovelace" using a hashmap
+        Map<String, Object> data = new HashMap<>();
+        data.put("Name", nameTextField.getText());
+        data.put("User_Name",userNameTextField.getText());
+        data.put("Password",passwordTextField.getText());
+        data.put("Role",roleTextField.getText());
+        data.put("Salary",SalaryTextField.getText());
+        System.out.println("inside add data function3");
+
+        data.put("Age", Integer.parseInt(ageTextField.getText()));
+        //asynchronously write data
+        ApiFuture<WriteResult> result = docRef.set(data);
+
+    }
+
 
     public void clearAllTextFields(){
         nameTextField.clear();
