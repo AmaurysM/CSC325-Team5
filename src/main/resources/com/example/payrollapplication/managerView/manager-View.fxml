@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -47,12 +48,30 @@
                   <right>
                   <VBox maxHeight="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                              <TextField fx:id="CurrentNameTextField" alignment="CENTER" editable="false" text="First Name" />
-                              <TextField fx:id="CurrentUserNameTextField" alignment="CENTER" editable="false" text="Last Name" />
-                              <TextField fx:id="CurrentSalaryTextField" alignment="CENTER" editable="false" text="Salary" />
+                        <StackPane>
+                           <children>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <TextField alignment="CENTER" editable="false" opacity="0.0" prefHeight="0.0" prefWidth="150.0" />
+                                          <TextField fx:id="CurrentNameTextField" alignment="CENTER" editable="false" text="First Name" />
+                                          <TextField fx:id="CurrentUserNameTextField" alignment="CENTER" editable="false" text="Last Name" />
+                                          <TextField fx:id="CurrentSalaryTextField" alignment="CENTER" editable="false" text="Salary" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </VBox>
+                              <Region />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="-20.0" />
+                           </VBox.margin>
+                        </StackPane>
                         <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToEmployeesTab" text="Employees" />
                         <MFXButton fx:id="NotesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToNotesTab" text="Notes" />
-                        <MFXButton fx:id="PayrollButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToPayrollTab" text="Payroll" />
                         <MFXButton fx:id="SettingsButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToSettingsTab" text="Settings" />
                         <GridPane maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                           <columnConstraints>
