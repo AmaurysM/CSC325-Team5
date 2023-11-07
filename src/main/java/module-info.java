@@ -3,6 +3,14 @@ module com.example.payrollapplication {
     requires javafx.fxml;
     requires javafx.web;
 
+    requires firebase.admin;
+    requires com.google.auth.oauth2;
+    requires com.google.auth;
+    requires google.cloud.firestore;
+    requires com.google.api.apicommon;
+    requires google.cloud.core;
+    requires com.fasterxml.jackson.core;
+
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
