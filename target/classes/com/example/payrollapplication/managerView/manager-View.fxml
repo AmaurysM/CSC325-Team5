@@ -72,7 +72,6 @@
                         </StackPane>
                         <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToEmployeesTab" text="Employees" />
                         <MFXButton fx:id="NotesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToNotesTab" text="Notes" />
-                        <MFXButton fx:id="PayrollButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToPayrollTab" text="Payroll" />
                         <MFXButton fx:id="SettingsButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToSettingsTab" text="Settings" />
                         <GridPane maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                           <columnConstraints>
