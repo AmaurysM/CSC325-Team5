@@ -3,9 +3,9 @@ package com.example.payrollapplication.model;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
-import java.util.TreeSet;
 
 public class User implements Comparable<User>{
 
@@ -20,7 +20,7 @@ public class User implements Comparable<User>{
     private boolean clockedIn;
     private String clockInTime;
     private String clockOutTime;
-    private static TreeSet<Note> notes = new TreeSet<>();
+    private ArrayList<Note> notes = new ArrayList<>();
 
 
     public User(String name, String username, String password, int age, int salary, String role) {
@@ -33,12 +33,20 @@ public class User implements Comparable<User>{
         this.role = role;
     }
 
-    public void addNote(String note){
-        notes.add(new Note(note,getCurrentTime()));
+    public void addNote(User sender,String note,User receiver){
+        notes.add(new Note(sender,note,getCurrentTime(),receiver));
     }
 
-    public void removeNote(String note){
-        notes.remove(new Note(note,getCurrentTime()));
+    public void addNote(Note note){
+        notes.add(note);
+    }
+
+    public void removeNote(Note note){
+        notes.remove(note);
+    }
+
+    public ArrayList<Note> getNotes(){
+        return notes;
     }
 
     public String getName() {
@@ -155,26 +163,15 @@ public class User implements Comparable<User>{
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", Username='" + Username + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
+        return
+                name +
                 ", ID=" + ID +
-                ", salary=" + salary +
-                ", role='" + role + '\'' +
-                '}';
+                ", role='" + role + '\'';
     }
 
     @Override
     public int compareTo(User o) {
-        if(this.getID().compareTo(o.getID())>0){
-            return 1;
-        }else if ( this.getID().compareTo(o.getID())<0){
-            return -1;
-        }else {
-            return 0;
-        }
+        return Integer.compare(this.getID().compareTo(o.getID()), 0);
 
     }
 }

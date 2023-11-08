@@ -18,7 +18,7 @@ public class PopOverController {
     @FXML
     private VBox vbox;
 
-    private final employeesTabController employees = (employeesTabController) ScreenController.getMapItem("employeesTab")[1];
+    private final employeesTabController employees = (employeesTabController) ScreenController.findController("employeesTab");
 
 
     @FXML

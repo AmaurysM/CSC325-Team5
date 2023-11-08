@@ -156,7 +156,7 @@ public class employeesTabController implements Initializable {
     }
 
     void editUser(){// runs when you hit the user edit button on the drop-down menu
-        managerController manager = ((managerController)ScreenController.getMapItem("manager")[1]);
+        managerController manager = ((managerController)ScreenController.findController("manager"));
         manager.getAddUserStackPane().setVisible(true);
 
         User userToBeEdited = tableView.getSelectionModel().getSelectedItem();
@@ -173,7 +173,7 @@ public class employeesTabController implements Initializable {
 
     @FXML
     void addNewUser(ActionEvent event) {
-        managerController manager = ((managerController)ScreenController.getMapItem("manager")[1]);
+        managerController manager = ((managerController)ScreenController.findController("manager"));
         manager.getAddUserStackPane().setVisible(true);
         manager.getEditUserButton().setText("ADD");
     }

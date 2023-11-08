@@ -43,7 +43,7 @@ public class settingsTabController implements Initializable {
         UserBag.getCurrentUser().setPassword(passwordTextField.getText());
         UserBag.getCurrentUser().setUsername(usernameTextField.getText());
 
-        ((employeesTabController)ScreenController.getMapItem("employeesTab")[1]).refreshTableView();
+        ((employeesTabController)ScreenController.findController("employeesTab")).refreshTableView();
     }
 
     public boolean allFieldsFilled(){

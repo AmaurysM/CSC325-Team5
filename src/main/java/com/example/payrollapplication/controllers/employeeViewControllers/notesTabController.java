@@ -1,14 +1,22 @@
 package com.example.payrollapplication.controllers.employeeViewControllers;
 
+import com.example.payrollapplication.App;
+import com.example.payrollapplication.model.UserBag;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 
-public class notesTabController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class notesTabController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
@@ -33,5 +41,23 @@ public class notesTabController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        UserBag.getCurrentUser().getNotes().stream().forEach((e)->{
+
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("employeeView/notesWidget.fxml"));
+            try {
+                loader.load();
+                NotesWidgetController controller = loader.getController();
+                controller.createWidget(e,loader.getController());
+                tilePane.getChildren().add(controller.getGridPane());
+
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
+        });
+    }
 }
 
