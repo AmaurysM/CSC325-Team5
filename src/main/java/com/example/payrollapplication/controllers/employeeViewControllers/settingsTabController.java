@@ -39,7 +39,7 @@ public class settingsTabController implements Initializable {
 
     @FXML
     void logout(ActionEvent event) throws IOException {
-        ((employeeController) ScreenController.getMapItem("employee")[1]).logoutOfEmployeeView(event);
+        ((employeeController) ScreenController.findController("employee")).logoutOfEmployeeView(event);
 
     }
 

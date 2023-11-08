@@ -18,6 +18,7 @@ module com.example.payrollapplication {
     requires eu.hansolo.fx.countries;
     requires MaterialFX;
     requires controlsfx;
+    requires com.jfoenix;
 
     opens com.example.payrollapplication.model to javafx.base;
     opens com.example.payrollapplication to javafx.fxml;

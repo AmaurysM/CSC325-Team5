@@ -2,15 +2,28 @@ package com.example.payrollapplication.model;
 
 import java.util.Objects;
 
-public class Note {
+public class Note{
 
+    private User sender;
+    private User receiver;
     private String note;
     private String time;
 
-    public Note(String note, String time) {
+    public Note(User sender, String note, String time, User receiver) {
+        this.sender = sender;
         this.note = note;
         this.time = time;
+        this.receiver = receiver;
     }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
 
     public String getNote() {
         return note;
@@ -39,5 +52,15 @@ public class Note {
     @Override
     public int hashCode() {
         return Objects.hash(note);
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "senderName='" + sender + '\'' +
+                ", receiverName='" + receiver + '\'' +
+                ", note='" + note + '\'' +
+                ", time='" + time + '\'' +
+                '}';
     }
 }

@@ -21,7 +21,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <MFXButton fx:id="addNoteButton" buttonType="RAISED" depthLevel="LEVEL5" ellipsisString="" onAction="#addNewNote" prefHeight="49.0" prefWidth="49.0" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="10.0" rippleRadiusMultiplier="0.0" style="-fx-background-radius: 100;" text="+">
+            <MFXButton fx:id="addNoteButton" buttonType="RAISED" depthLevel="LEVEL5" ellipsisString="" onAction="#addNewNote" prefHeight="49.0" prefWidth="49.0" rippleAnimationSpeed="0.0" rippleBackgroundOpacity="0.0" rippleRadius="10.0" rippleRadiusMultiplier="0.0" style="-fx-background-radius: 100; -fx-background-color: #f4f4f4;" text="+">
                <font>
                   <Font size="22.0" />
                </font>

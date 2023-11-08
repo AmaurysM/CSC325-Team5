@@ -298,6 +298,7 @@ public class managerController implements Initializable {
         ScreenController.removeScreen("payrollTab");
         ScreenController.removeScreen("notesTab");
         ScreenController.removeScreen("settingsTab");
+        ScreenController.removeScreen("createNote");
         ScreenController.activate("loginScreen");
 
     }
@@ -349,7 +350,7 @@ public class managerController implements Initializable {
             return;
         }
 
-        employeesTabController controller = ((employeesTabController) ScreenController.getMapItem("employeesTab")[1]);
+        employeesTabController controller = ((employeesTabController) ScreenController.findController("employeesTab"));
         User user = (User) (controller).getTableView().getSelectionModel().getSelectedItem();
 
         UserBag.findUser(user).setName(nameTextField.getText());
@@ -364,7 +365,7 @@ public class managerController implements Initializable {
         addUserStackPane.setVisible(false);
     }
     public void refreshTableView(){
-        employeesTabController controller = ((employeesTabController)ScreenController.getMapItem("employeesTab")[1]);
+        employeesTabController controller = ((employeesTabController)ScreenController.findController("employeesTab"));
         controller.refreshTableView();
 
     }
@@ -438,6 +439,9 @@ public class managerController implements Initializable {
 
             loader = new FXMLLoader(App.class.getResource("managerView/settingsTab.fxml"));
             ScreenController.addScreen("settingsTab", loader.load(),loader.getController());
+
+            loader = new FXMLLoader(App.class.getResource("managerView/createNote-View.fxml"));
+            ScreenController.addScreen("createNote", loader.load(),loader.getController());
 
             borderPane.setCenter(ScreenController.find("employeesTab"));
 
