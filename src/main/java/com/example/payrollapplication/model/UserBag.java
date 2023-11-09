@@ -22,6 +22,7 @@ public class UserBag {
 
     public static User findUserByID(String ID){
         Stream<User> foundUsers = userBag.stream().filter(u-> u.getName().equals(ID));
+
         if(foundUsers.toList().isEmpty()){
             return null;
         }else{

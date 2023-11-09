@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.payrollapplication.controllers.employeeViewControllers.settingsTabController">
    <children>
-      <BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #cdc4c6; -fx-background-radius: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #d7ced0; -fx-background-radius: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -25,7 +25,7 @@
                   <Insets top="5.0" />
                </BorderPane.margin>
                <children>
-                  <GridPane layoutX="-1.0" layoutY="-3.0" prefHeight="198.0" prefWidth="209.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
+                  <GridPane layoutX="-1.0" layoutY="-3.0" prefHeight="198.0" prefWidth="209.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="72.19998779296876" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.60001525878909" minWidth="-Infinity" prefWidth="110.60001220703126" />
@@ -39,14 +39,14 @@
                         <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="16.400000000000006" vgrow="ALWAYS" />
                     </rowConstraints>
                      <children>
-                        <Pane style="-fx-background-color: #9a9394; -fx-background-radius: 5;" GridPane.rowSpan="3" />
-                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Name:" />
-                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="ID:" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Username:" GridPane.rowIndex="1" />
+                        <Pane style="-fx-background-color: #575863; -fx-background-radius: 5;" GridPane.rowSpan="3" />
+                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Name:" textFill="#d7ced0" />
+                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="ID:" textFill="#d7ced0" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Username:" textFill="#d7ced0" GridPane.rowIndex="1" />
                         <Label fx:id="nameLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="******" GridPane.columnIndex="1" />
                         <Label fx:id="usernameLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="******" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="iDLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="******" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <MFXButton fx:id="logoutButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#logout" style="-fx-background-color: #9a9394;" text="Logout" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+                        <MFXButton fx:id="logoutButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#logout" rippleColor="#d7ced0" style="-fx-background-color: #575863;" text="Logout" textFill="#d7ced0" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>

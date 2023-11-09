@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class User implements Comparable<User>{
 
-
     private String name;
     private String Username;
     private String password;
@@ -28,9 +27,25 @@ public class User implements Comparable<User>{
         Username = username;
         this.password = password;
         this.age = age;
-        this.ID = String.valueOf(Math.floor(Math.random() * 1000));
+        this.ID = createID();
         this.salary = salary;
         this.role = role;
+    }
+
+    public String createID(){
+        String tempID = randomNumber(1000) + "-"  + randomNumber(1000) + "-" + randomNumber(1000);
+        if(!checkIDUniqueness(tempID)){
+            createID();
+        }
+        return tempID;
+    }
+
+    public boolean checkIDUniqueness(String ID){
+        return UserBag.findUserByID(ID) == null;
+    }
+
+    public String randomNumber(int max){
+        return String.valueOf((int) Math.floor(Math.random() * max));
     }
 
     public void addNote(User sender,String note,User receiver){
@@ -83,10 +98,6 @@ public class User implements Comparable<User>{
 
     public String getID() {
         return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public boolean isClockedIn() {
