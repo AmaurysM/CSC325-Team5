@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="546.0" prefWidth="693.0" style="-fx-background-color: #212d59;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csc325Team5.payrollapplication.controllers.employeeViewControllers.EmployeeController">
+   <children>
+      <BorderPane fx:id="borderPane" layoutX="186.0" layoutY="54.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane BorderPane.alignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin></Pane>
+         </center>
+         <left>
+            <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="148.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="400.0" prefWidth="100.0" style="-fx-background-radius: 100; -fx-background-color: #ffffff;">
+                     <effect>
+                        <Shadow height="155.83" radius="77.415" width="155.83">
+                           <color>
+                              <Color red="0.09210526198148727" green="0.09210526198148727" blue="0.09210526198148727" />
+                           </color>
+                        </Shadow>
+                     </effect>
+                  </VBox>
+                  <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="114.0" spacing="10.0" style="-fx-background-color: #d7ced0; -fx-background-radius: 100;">
+                     <children>
+                        <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="165.0">
+                           <children>
+                              <Circle fx:id="profilePicShadow" radius="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                 <effect>
+                                    <Shadow blurType="GAUSSIAN" height="164.26" radius="40.565" width="0.0">
+                                       <color>
+                                          <Color opacity="0.7709923982620239" />
+                                       </color>
+                                    </Shadow>
+                                 </effect>
+                                 <StackPane.margin>
+                                    <Insets left="-2.5" top="10.0" />
+                                 </StackPane.margin>
+                              </Circle>
+                              <Circle fx:id="profilePicBackground" fill="#555661" radius="74.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Circle>
+                              <Circle fx:id="profilePictureCircle" fill="#555661" radius="74.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                 <StackPane.margin>
+                                    <Insets left="-2.5" top="-4.0" />
+                                 </StackPane.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Circle>
+                           </children>
+                        </StackPane>
+                        <MFXButton fx:id="PayrollButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goToPayrollTab" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Payroll" textFill="#d7ced0" VBox.vgrow="NEVER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Segoe UI Semilight" size="14.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="NotesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goToNotesTab" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Notes" textFill="#d7ced0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="SettingsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#goToSettingsTab" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Settings" textFill="#d7ced0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="clockInButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clockIn" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #138402;" text="Clock-In" textFill="#d7ced0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="ClockOutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#clockOut" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #fe0000;" text="Clock-Out" textFill="#d7ced0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                        </MFXButton>
+                        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="-Infinity" prefHeight="0.0" prefWidth="153.0" VBox.vgrow="ALWAYS">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="100.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                        </GridPane>
+                        <GridPane prefHeight="86.0" prefWidth="148.0" style="-fx-background-color: #d7ced0; -fx-background-radius: 10;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="100.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <MFXButton fx:id="LogoutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#logoutOfEmployeeView" prefHeight="47.0" prefWidth="135.0" style="-fx-background-radius: 5; -fx-background-color: #575863;" text="Logout" textFill="#d7ced0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <GridPane.margin>
+                                    <Insets bottom="7.0" />
+                                 </GridPane.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="14.0" />
+                                 </font>
+                              </MFXButton>
+                           </children>
+                        </GridPane>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </StackPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
