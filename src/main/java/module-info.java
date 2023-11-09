@@ -20,13 +20,13 @@ module com.example.payrollapplication {
     requires controlsfx;
     requires com.jfoenix;
 
-    opens com.example.payrollapplication.model to javafx.base;
-    opens com.example.payrollapplication to javafx.fxml;
-    exports com.example.payrollapplication;
-    exports com.example.payrollapplication.controllers;
-    opens com.example.payrollapplication.controllers to javafx.fxml;
-    exports com.example.payrollapplication.controllers.managerViewControllers;
-    opens com.example.payrollapplication.controllers.managerViewControllers to javafx.fxml;
-    exports com.example.payrollapplication.controllers.employeeViewControllers;
-    opens com.example.payrollapplication.controllers.employeeViewControllers to javafx.fxml;
+    opens com.csc325Team5.payrollapplication.model to javafx.base;
+    opens com.csc325Team5.payrollapplication to javafx.fxml;
+    exports com.csc325Team5.payrollapplication;
+    exports com.csc325Team5.payrollapplication.controllers;
+    opens com.csc325Team5.payrollapplication.controllers to javafx.fxml;
+    exports com.csc325Team5.payrollapplication.controllers.managerViewControllers;
+    opens com.csc325Team5.payrollapplication.controllers.managerViewControllers to javafx.fxml;
+    exports com.csc325Team5.payrollapplication.controllers.employeeViewControllers;
+    opens com.csc325Team5.payrollapplication.controllers.employeeViewControllers to javafx.fxml;
 }
