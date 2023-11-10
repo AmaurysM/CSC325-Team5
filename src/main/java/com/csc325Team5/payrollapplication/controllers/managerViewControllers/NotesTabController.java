@@ -4,6 +4,9 @@ import com.csc325Team5.payrollapplication.controllers.ScreenController;
 import com.csc325Team5.payrollapplication.model.UserBag;
 import com.csc325Team5.payrollapplication.model.Note;
 import io.github.palexdev.materialfx.controls.MFXButton;
+
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,11 +15,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class NotesTabController implements Initializable {
+
+    @FXML
+    private TableColumn<Note, String> IDColumn;
 
     @FXML
     private TableColumn<Note, String> NameColumn;
@@ -51,8 +58,13 @@ public class NotesTabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        NameColumn.setCellValueFactory(new PropertyValueFactory<Note,String>("receiver"));
+        NameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Note, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Note, String> p) {
+                return new ReadOnlyObjectWrapper(p.getValue().getReceiver().getName());
+            }
+        });
         NoteColumn.setCellValueFactory(new PropertyValueFactory<Note,String>("note"));
+        IDColumn.setCellValueFactory((new PropertyValueFactory<Note, String>("receiverID") ));
         populateTableView();
     }
 }

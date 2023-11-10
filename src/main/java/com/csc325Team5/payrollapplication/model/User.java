@@ -1,5 +1,8 @@
 package com.csc325Team5.payrollapplication.model;
 
+import com.csc325Team5.payrollapplication.utilities.Role;
+
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,8 +12,10 @@ import java.util.Objects;
 
 public class User implements Comparable<User>{
 
+
+
     private String name;
-    private String Username;
+    private String username;
     private String password;
     private int age;
     private String ID;
@@ -21,32 +26,16 @@ public class User implements Comparable<User>{
     private String clockOutTime;
     private ArrayList<Note> notes = new ArrayList<>();
 
-
-    public User(String name, String username, String password, int age, int salary, String role) {
+    public User(String name, String username, String password, int age, int salary, String role, String ID) {
         this.name = name;
-        Username = username;
+        this.username = username;
         this.password = password;
         this.age = age;
-        this.ID = createID();
+        this.ID = ID;
         this.salary = salary;
         this.role = role;
     }
 
-    public String createID(){
-        String tempID = randomNumber(1000) + "-"  + randomNumber(1000) + "-" + randomNumber(1000);
-        if(!checkIDUniqueness(tempID)){
-            createID();
-        }
-        return tempID;
-    }
-
-    public boolean checkIDUniqueness(String ID){
-        return UserBag.findUserByID(ID) == null;
-    }
-
-    public String randomNumber(int max){
-        return String.valueOf((int) Math.floor(Math.random() * max));
-    }
 
     public void addNote(User sender,String note,User receiver){
         notes.add(new Note(sender,note,getCurrentTime(),receiver));
@@ -73,11 +62,11 @@ public class User implements Comparable<User>{
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        username = username;
     }
 
     public String getPassword() {

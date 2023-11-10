@@ -38,4 +38,8 @@ public class ScreenController {
         return screenMap.get(name)[1];
     }
 
+    public static void setMap(HashMap<String, Object[]> map){
+        screenMap = map;
+    }
+
 }

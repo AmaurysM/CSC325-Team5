@@ -35,17 +35,7 @@ public class PopOverController {
         employees.editUser();
         employees.getPopOver().hide();
     }
-    /*
-    *             deleteButton.setOnAction((e) -> {
-                deleteUser(user);
-                popOver.hide();
-            });
 
-            editButton.setOnAction((e) -> {
-                editUser();
-                popOver.hide();
-            });
-            * */
 
 }
 
