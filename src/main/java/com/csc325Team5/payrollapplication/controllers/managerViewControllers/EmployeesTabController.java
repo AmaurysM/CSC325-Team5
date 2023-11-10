@@ -3,6 +3,7 @@ package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
 import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.utilities.Role;
 import javafx.fxml.FXMLLoader;
 import org.controlsfx.control.PopOver;
 import com.csc325Team5.payrollapplication.model.User;
@@ -154,30 +155,39 @@ public class EmployeesTabController implements Initializable {
     }
 
     void editUser(){// runs when you hit the user edit button on the drop-down menu
-        ManagerController manager = ((ManagerController) ScreenController.findController("manager"));
-        manager.getAddUserStackPane().setVisible(true);
+        CreateOrEditUserController createOrEditUserController = ((CreateOrEditUserController) ScreenController.findController("createOrEditUser"));
+        ManagerController managerController = (ManagerController) ScreenController.findController("manager");
+        //createUserController.().setVisible(true);
 
         User userToBeEdited = tableView.getSelectionModel().getSelectedItem();
-        manager.getNameTextField().setText(userToBeEdited.getName());
-        manager.getUserNameTextField().setText(userToBeEdited.getUsername());
-        manager.getPasswordTextField().setText(userToBeEdited.getPassword());
-        manager.getAgeTextField().setText(String.valueOf(userToBeEdited.getAge()));
-        manager.getRoleTextField().setText(userToBeEdited.getRole());
-        manager.getSalaryTextField().setText( String.valueOf(userToBeEdited.getSalary()));
+        createOrEditUserController.getNameTextField().setText(userToBeEdited.getName());
+        createOrEditUserController.getUserNameTextField().setText(userToBeEdited.getUsername());
+        createOrEditUserController.getPasswordTextField().setText(userToBeEdited.getPassword());
+        createOrEditUserController.getAgeTextField().setText(String.valueOf(userToBeEdited.getAge()));
+        createOrEditUserController.getRoleComboBox().getSelectionModel().select(userToBeEdited.getRole().toUpperCase());
+        createOrEditUserController.getSalaryTextField().setText( String.valueOf(userToBeEdited.getSalary()));
 
-        manager.getEditUserButton().setText("EDIT");
+        createOrEditUserController.getCreateOrEditUserButton().setText("EDIT");
+
+        managerController.getStackPane().getChildren().add(createOrEditUserController.getStackPane());
+
 
     }
 
     @FXML
     void addNewUser(ActionEvent event) {
-        ManagerController manager = ((ManagerController)ScreenController.findController("manager"));
-        manager.getAddUserStackPane().setVisible(true);
-        manager.getEditUserButton().setText("ADD");
+        CreateOrEditUserController createOrEditUserController = ((CreateOrEditUserController)ScreenController.findController("createOrEditUser"));
+        ManagerController managerController = (ManagerController) ScreenController.findController("manager");
+        managerController.getStackPane().getChildren().add(createOrEditUserController.getStackPane());
+        createOrEditUserController.getCreateOrEditUserButton().setText("ADD");
     }
 
     public void populateTableView(){
-        tableView.setItems(FXCollections.observableArrayList(UserBag.getUserBag().stream().toList()).filtered(e->(e.getRole().compareTo("manager") != 0)));
+        tableView.setItems(
+            FXCollections.observableArrayList(UserBag.getUserBag().stream().toList()).filtered(e->
+                Role.MANAGER.name().compareTo(e.getRole().toUpperCase()) != 0
+            )
+        );
     }
 
     public void refreshTableView() {

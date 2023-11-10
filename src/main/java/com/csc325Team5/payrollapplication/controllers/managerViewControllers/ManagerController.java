@@ -55,8 +55,6 @@ public class ManagerController implements Initializable {
     @FXML
     private MFXButton SettingsButton;
 
-    @FXML
-    private MFXButton editUserButton;
 
     @FXML
     private StackPane addUserStackPane;
@@ -79,8 +77,7 @@ public class ManagerController implements Initializable {
     @FXML
     private TextField passwordTextField;
 
-    @FXML
-    private MFXButton quitAddingUserButton;
+
 
     @FXML
     private TextField roleTextField;
@@ -179,13 +176,6 @@ public class ManagerController implements Initializable {
         SettingsButton = settingsButton;
     }
 
-    public MFXButton getEditUserButton() {
-        return editUserButton;
-    }
-
-    public void setAddNewUserButton(MFXButton addNewUserButton) {
-        this.editUserButton = addNewUserButton;
-    }
 
     public StackPane getAddUserStackPane() {
         return addUserStackPane;
@@ -243,13 +233,6 @@ public class ManagerController implements Initializable {
         this.passwordTextField = passwordTextField;
     }
 
-    public MFXButton getQuitAddingUserButton() {
-        return quitAddingUserButton;
-    }
-
-    public void setQuitAddingUserButton(MFXButton quitAddingUserButton) {
-        this.quitAddingUserButton = quitAddingUserButton;
-    }
 
     public TextField getRoleTextField() {
         return roleTextField;
@@ -290,134 +273,23 @@ public class ManagerController implements Initializable {
 
     @FXML
     void logoutOfManagerView(ActionEvent event) throws IOException {
-        ScreenController.removeScreen("employeesTab");
-        ScreenController.removeScreen("payrollTab");
-        ScreenController.removeScreen("notesTab");
-        ScreenController.removeScreen("settingsTab");
-        ScreenController.removeScreen("createNote");
+
+        ScreenController.setMap( new HashMap<String, Object[]>());
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("login-View.fxml"));
+        ScreenController.addScreen("loginScreen", loader.load(),loader.getController());
         ScreenController.activate("loginScreen");
 
     }
 
-    @FXML
-    void quitAddingUser(ActionEvent event) {
-        addUserStackPane.setVisible(false);
-    }
 
-
-    @FXML
-    public void editEmployees(ActionEvent event) {
-
-        if(editUserButton.getText().toLowerCase().compareTo("add") == 0){
-            createNewUser();
-            return;
-        }
-        if(editUserButton.getText().toLowerCase().compareTo("edit") == 0){
-            updateUser();
-            return;
-
-        }
-
-    }
-
-    public void createNewUser() {
-        if(!allFieldsFilled()){
-            return;
-        }
-        addUser();
-        UserBag.createUser(nameTextField.getText(),
-                userNameTextField.getText(),
-                passwordTextField.getText(),
-                Integer.valueOf(ageTextField.getText()),
-                Integer.valueOf(SalaryTextField.getText()),
-                roleTextField.getText());
-
-        refreshTableView();
-        clearAllTextFields();
-        addUserStackPane.setVisible(false);
-
-
-
-    }
-
-
-    public void updateUser(){
-        if(!allFieldsFilled()){
-            return;
-        }
-
-        EmployeesTabController controller = ((EmployeesTabController) ScreenController.findController("employeesTab"));
-        User user = (User) (controller).getTableView().getSelectionModel().getSelectedItem();
-
-        UserBag.findUser(user).setName(nameTextField.getText());
-        UserBag.findUser(user).setUsername(userNameTextField.getText());
-        UserBag.findUser(user).setPassword(passwordTextField.getText());
-        user.setAge(Integer.valueOf(ageTextField.getText()));
-        user.setSalary(Integer.valueOf(SalaryTextField.getText()));
-        UserBag.findUser(user).setRole(roleTextField.getText());
-
-        refreshTableView();
-        clearAllTextFields();
-        addUserStackPane.setVisible(false);
-    }
     public void refreshTableView(){
         EmployeesTabController controller = ((EmployeesTabController)ScreenController.findController("employeesTab"));
         controller.refreshTableView();
 
     }
 
-    public boolean allFieldsFilled(){
-        if(nameTextField.getText().isBlank()){
-            return false;
-        }
-        if(userNameTextField.getText().isBlank()){
-            return false;
-        }
-        if(passwordTextField.getText().isBlank()){
-            return false;
-        }
-        if(ageTextField.getText().isBlank()){
-            return false;
-        }
-        if(SalaryTextField.getText().isBlank()){
-            return false;
-        }
-        if(roleTextField.getText().isBlank()){
-
-            return false;
-        }
-
-        return true;
-    }
-
-    public void addUser() {
-        System.out.println("inside add data function1");
-        DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
-        System.out.println("inside add data function2");
-        // Add document data  with id "alovelace" using a hashmap
-        Map<String, Object> data = new HashMap<>();
-        data.put("Name", nameTextField.getText());
-        data.put("User_Name",userNameTextField.getText());
-        data.put("Password",passwordTextField.getText());
-        data.put("Role",roleTextField.getText());
-        data.put("Salary",SalaryTextField.getText());
-        System.out.println("inside add data function3");
-
-        data.put("Age", Integer.parseInt(ageTextField.getText()));
-        //asynchronously write data
-        ApiFuture<WriteResult> result = docRef.set(data);
-
-    }
 
 
-    public void clearAllTextFields(){
-        nameTextField.clear();
-        userNameTextField.clear();
-        passwordTextField.clear();
-        ageTextField.clear();
-        SalaryTextField.clear();
-        roleTextField.clear();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -439,9 +311,12 @@ public class ManagerController implements Initializable {
             loader = new FXMLLoader(App.class.getResource("managerView/createNote-View.fxml"));
             ScreenController.addScreen("createNote", loader.load(),loader.getController());
 
+            loader = new FXMLLoader(App.class.getResource("managerView/createOrEditUser-View.fxml"));
+            ScreenController.addScreen("createOrEditUser", loader.load(),loader.getController());
+
             borderPane.setCenter(ScreenController.find("employeesTab"));
 
-            addUserStackPane.setVisible(false);
+
 
             CurrentNameTextField.setText(UserBag.getCurrentUser().getName());
             CurrentUserNameTextField.setText(UserBag.getCurrentUser().getUsername());

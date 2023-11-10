@@ -4,6 +4,7 @@ import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.managerViewControllers.ManagerController;
 import com.csc325Team5.payrollapplication.model.UserBag;
 import com.csc325Team5.payrollapplication.model.User;
+import com.csc325Team5.payrollapplication.utilities.Role;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -45,7 +46,7 @@ public class LoginController implements Initializable {
     @FXML
         // This tries to find the user based on username and password.
     void validateUserNameAndPassword(ActionEvent event) throws IOException {
-        User foundUser = UserBag.findUser(new User("0", usernameTextField.getText(), passwordField.getText(), 0, 0, "0"));
+        User foundUser = UserBag.findUser(new User("0", usernameTextField.getText(), passwordField.getText(), 0, 0, null,"0"));
 
         if (foundUser == null) {
             return;
@@ -59,14 +60,12 @@ public class LoginController implements Initializable {
     public void loadViews() throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("managerView/manager-View.fxml"));
 
-        if (UserBag.getCurrentUser().getRole().compareTo("manager") == 0) {
+        if (Role.MANAGER.name().compareTo(UserBag.getCurrentUser().getRole().toUpperCase()) == 0) {
             ScreenController.addScreen("manager", loader.load(), loader.getController());
             ((ManagerController) (loader.getController())).setPrimaryStage(primaryStage);
             ScreenController.activate("manager");
 
-        }
-
-        if (UserBag.getCurrentUser().getRole().compareTo("employee") == 0) {
+        } else {
             loader = new FXMLLoader(App.class.getResource("employeeView/employee-View.fxml"));
             ScreenController.addScreen("employee", loader.load(), loader.getController());
             ScreenController.activate("employee");

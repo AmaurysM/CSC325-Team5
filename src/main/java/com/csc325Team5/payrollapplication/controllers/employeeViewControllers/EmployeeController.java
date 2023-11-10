@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
@@ -57,9 +58,11 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void logoutOfEmployeeView(ActionEvent event) throws IOException {
-        ScreenController.removeScreen("payrollTab");
-        ScreenController.removeScreen("notesTab");
-        ScreenController.removeScreen("settingsTab");
+        ScreenController.setMap( new HashMap<String, Object[]>());
+
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("login-View.fxml"));
+        ScreenController.addScreen("loginScreen", loader.load(),loader.getController());
+
         ScreenController.activate("loginScreen");
     }
 

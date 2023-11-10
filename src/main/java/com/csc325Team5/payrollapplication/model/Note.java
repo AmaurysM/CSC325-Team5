@@ -8,12 +8,40 @@ public class Note{
     private User receiver;
     private String note;
     private String time;
+    private String receiverID;
+    private String senderID;
 
     public Note(User sender, String note, String time, User receiver) {
         this.sender = sender;
         this.note = note;
         this.time = time;
         this.receiver = receiver;
+        this.receiverID = receiver.getID();
+        this.senderID = sender.getID();
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getReceiverID() {
+        return receiverID;
+    }
+
+    public void setReceiverID(String receiverID) {
+        this.receiverID = receiverID;
+    }
+
+    public String getSenderID() {
+        return senderID;
+    }
+
+    public void setSenderID(String senderID) {
+        this.senderID = senderID;
     }
 
     public User getSender() {
