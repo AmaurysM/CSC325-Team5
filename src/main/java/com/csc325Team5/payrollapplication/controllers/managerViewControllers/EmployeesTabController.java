@@ -40,6 +40,9 @@ public class EmployeesTabController implements Initializable {
     private TableColumn<User, Integer> SalaryColumn;
 
     @FXML
+    private TableColumn<User, String> IDColumn;
+
+    @FXML
     private MFXButton addButton;
 
     @FXML
@@ -50,6 +53,8 @@ public class EmployeesTabController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
+
+
 
     public TableColumn<User, String> getNameColumn() {
         return NameColumn;
@@ -201,6 +206,7 @@ public class EmployeesTabController implements Initializable {
         NameColumn.setCellValueFactory(new PropertyValueFactory<User,String>("name"));
         SalaryColumn.setCellValueFactory(new PropertyValueFactory<User,Integer>("salary"));
         RoleColumn.setCellValueFactory(new PropertyValueFactory<User,String>("role"));
+        IDColumn.setCellValueFactory(new PropertyValueFactory<User,String>("ID"));
         populateTableView();
     }
 

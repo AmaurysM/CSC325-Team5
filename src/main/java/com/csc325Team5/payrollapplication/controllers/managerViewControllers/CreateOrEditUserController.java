@@ -134,7 +134,6 @@ public class CreateOrEditUserController implements Initializable {
             updateUser(event);
         }
 
-
     }
 
     public void createNewUser(ActionEvent event) {
@@ -237,8 +236,7 @@ public class CreateOrEditUserController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*UserBag.getUserBag().stream().filter(e -> e.getRole().compareTo("manager") != 0)
-                .forEach(e-> roleComboBox.getItems().add(e));*/
+
         Arrays.stream(Role.values()).forEach( e -> {
             roleComboBox.getItems().add(e.name());
         });

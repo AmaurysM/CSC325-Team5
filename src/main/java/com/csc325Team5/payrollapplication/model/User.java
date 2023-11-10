@@ -163,10 +163,7 @@ public class User implements Comparable<User>{
 
     @Override
     public String toString() {
-        return
-                name +
-                ", ID=" + ID +
-                ", role='" + role + '\'';
+        return name + " : ID = " + ID ;
     }
 
     @Override
