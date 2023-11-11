@@ -4,6 +4,7 @@ import com.csc325Team5.payrollapplication.model.Note;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
@@ -13,6 +14,9 @@ public class NotesWidgetController {
 
 
     private NotesWidgetController controller;
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private GridPane gridPane;
@@ -36,7 +40,15 @@ public class NotesWidgetController {
     @FXML
     void widgetPressed(MouseEvent event) {
         // What to do, what to do ...
-        System.out.println("Hello from widgetPressed();");
+        //System.out.println("Hello from widgetPressed();");
+    }
+
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
+    }
+
+    public void setAnchorPane(AnchorPane anchorPane) {
+        this.anchorPane = anchorPane;
     }
 
     public GridPane getGridPane() {
