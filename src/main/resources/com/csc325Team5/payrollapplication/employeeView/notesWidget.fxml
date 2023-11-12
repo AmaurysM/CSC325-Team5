@@ -30,7 +30,7 @@
                   <Label fx:id="managerNameLabel" maxHeight="1.7976931348623157E308" text="Manager:" textFill="WHITE" />
                </children>
             </HBox>
-            <MFXScrollPane style="-fx-background-color: #cbc2c4; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <MFXScrollPane style="-fx-background-color: #d7ced0; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <content>
                   <TextFlow fx:id="noteTextFlow" prefWidth="200.0" style="-fx-background-color: #cbc2c4;" />
                </content>
