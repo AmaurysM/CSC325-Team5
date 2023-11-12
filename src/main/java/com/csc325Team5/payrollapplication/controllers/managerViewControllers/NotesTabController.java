@@ -8,6 +8,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class NotesTabController implements Initializable {
@@ -30,6 +33,8 @@ public class NotesTabController implements Initializable {
 
     @FXML
     private TableColumn<Note, String> NoteColumn;
+    @FXML
+    private TableColumn<Note, String> TimeColumn;
 
     @FXML
     private MFXButton addNoteButton;
@@ -43,10 +48,18 @@ public class NotesTabController implements Initializable {
         CreateNoteController noteController = (CreateNoteController) ScreenController.findController("createNote");
         ManagerController manager = (ManagerController)ScreenController.findController("manager");
         manager.getStackPane().getChildren().add(noteController.getAnchorPane());
+
     }
 
     public void populateTableView(){
+        //UserBag.getCurrentUser().getNotes().stream().forEachOrdered(e->tableView.getItems().add(e));
+
         tableView.setItems(FXCollections.observableArrayList(UserBag.getCurrentUser().getNotes()));
+
+        /*for(int i = UserBag.getCurrentUser().getNotes().size() -1; i >= 0; i--){
+            tableView.
+        }*/
+
     }
 
     public void refreshTableView(){
@@ -58,13 +71,10 @@ public class NotesTabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        NameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Note, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Note, String> p) {
-                return new ReadOnlyObjectWrapper(p.getValue().getReceiver().getName());
-            }
-        });
+        NameColumn.setCellValueFactory(p -> new ReadOnlyObjectWrapper(p.getValue().getReceiver().getName()));
         NoteColumn.setCellValueFactory(new PropertyValueFactory<Note,String>("note"));
-        IDColumn.setCellValueFactory((new PropertyValueFactory<Note, String>("receiverID") ));
+        IDColumn.setCellValueFactory((new PropertyValueFactory<Note,String>("receiverID")));
+        TimeColumn.setCellValueFactory(new PropertyValueFactory<Note,String>("time"));
         populateTableView();
     }
 }

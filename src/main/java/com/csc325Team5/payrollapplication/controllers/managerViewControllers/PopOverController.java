@@ -23,7 +23,6 @@ public class PopOverController {
 
     @FXML
     void deleteUser(ActionEvent event) {
-        //employeesTabController employees = (employeesTabController) ScreenController.getMapItem("employeesTab")[1];
         User user = employees.getTableView().getSelectionModel().getSelectedItem();
         employees.deleteUser(user);
         employees.getPopOver().hide();
@@ -31,11 +30,9 @@ public class PopOverController {
 
     @FXML
     void editUser(ActionEvent event) {
-        //employeesTabController employees = (employeesTabController) ScreenController.getMapItem("employeesTab")[1];
         employees.editUser();
         employees.getPopOver().hide();
     }
-
 
 }
 

@@ -30,9 +30,9 @@
                   <Label fx:id="managerNameLabel" maxHeight="1.7976931348623157E308" text="Manager:" textFill="WHITE" />
                </children>
             </HBox>
-            <MFXScrollPane style="-fx-background-color: #cbc2c4; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <MFXScrollPane style="-fx-background-color: #d7ced0; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <content>
-                  <TextFlow fx:id="noteTextFlow" prefWidth="200.0" style="-fx-background-color: #cbc2c4;" />
+                  <TextFlow fx:id="noteTextFlow" prefWidth="200.0" style="-fx-background-color: #d7ced0;" />
                </content>
             </MFXScrollPane>
             <Region fx:id="widgetRegion" focusTraversable="true" onMousePressed="#widgetPressed" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />

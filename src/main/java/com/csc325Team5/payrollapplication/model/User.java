@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class User implements Comparable<User>{
@@ -24,7 +25,7 @@ public class User implements Comparable<User>{
     private boolean clockedIn;
     private String clockInTime;
     private String clockOutTime;
-    private ArrayList<Note> notes = new ArrayList<>();
+    private LinkedList<Note> notes = new LinkedList<>();
 
     public User(String name, String username, String password, int age, int salary, String role, String ID) {
         this.name = name;
@@ -49,7 +50,7 @@ public class User implements Comparable<User>{
         notes.remove(note);
     }
 
-    public ArrayList<Note> getNotes(){
+    public LinkedList<Note> getNotes(){
         return notes;
     }
 
