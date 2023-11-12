@@ -147,16 +147,24 @@ public class CreateOrEditUserController implements Initializable {
         }
 
         //This function adds user to firebase based on "User_Name"
-        addUserToDatabase();
+        if(foundUserInDatabase()){
+            System.out.println("User with this User Name already exists in database!!!");
+            quitCreatingOrEditingUser(event);
+        }
+        else
+        {
+            addUserToDatabase();
 
-        UserBag.createUser(nameTextField.getText(),
-                userNameTextField.getText(),
-                passwordTextField.getText(),
-                Integer.valueOf(ageTextField.getText()),
-                Integer.valueOf(SalaryTextField.getText()),
-                roleComboBox.getSelectionModel().getSelectedItem().toString());
+            UserBag.createUser(nameTextField.getText(),
+                    userNameTextField.getText(),
+                    passwordTextField.getText(),
+                    Integer.valueOf(ageTextField.getText()),
+                    Integer.valueOf(SalaryTextField.getText()),
+                    roleComboBox.getSelectionModel().getSelectedItem().toString());
 
-        quitCreatingOrEditingUser(event);
+            quitCreatingOrEditingUser(event);
+        }
+
 
     }
 
