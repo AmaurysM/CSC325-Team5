@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -50,6 +51,9 @@
                      <font>
                         <Font name="Segoe UI Semibold" size="14.0" />
                      </font></MFXButton>
+                  <Label fx:id="warningLabel" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="THIS USER DOES NOT EXIST" textFill="#212d58" visible="false" GridPane.columnIndex="1" />
+                  <Label fx:id="usernameWarningLabel" text="&lt; USERNAME" textFill="#212d58" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="passwordWarningLabel" text="&lt; PASSWORD" textFill="#212d58" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Pane disable="true" opacity="0.18" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #59212d;" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
                </children>
             </GridPane>
