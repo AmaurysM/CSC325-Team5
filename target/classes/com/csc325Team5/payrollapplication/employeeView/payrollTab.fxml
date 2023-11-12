@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 
 <AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csc325Team5.payrollapplication.controllers.employeeViewControllers.PayrollTabController">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
    <children>
-      <BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #cdc4c6; -fx-background-radius: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #d7ced0; -fx-background-radius: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" BorderPane.alignment="CENTER">
                <children>
-                  <MFXTextField fx:id="textField" floatMode="DISABLED" maxWidth="1.7976931348623157E308" minWidth="0.0" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </MFXTextField>
-                  <MFXButton fx:id="searchButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#search" text="Search">
+                  <StackPane alignment="CENTER_RIGHT">
+                     <children>
+                        <JFXComboBox fx:id="filterComboBox" />
+                        <ImageView fitHeight="20.0" fitWidth="19.0">
+                           <image>
+                              <Image url="@../images/Filter-icon.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets right="20.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <MFXButton fx:id="searchButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onAction="#search" prefHeight="31.0" prefWidth="54.0" text="Search">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -37,9 +51,9 @@
          <center>
             <AnchorPane fx:id="centerPane">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="0.8000001907348633" layoutY="0.7999992370605469" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="0.8000001907348633" layoutY="0.7999992370605469" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="553.0" style="-fx-background-color: #d7ced0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <TilePane fx:id="tilePane" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="5.0" />
+                        <TilePane fx:id="tilePane" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #d7ced0; -fx-border-color: #d7ced0;" vgap="5.0" />
                      </content>
                   </ScrollPane>
                </children>
@@ -50,7 +64,4 @@
          </center>
       </BorderPane>
    </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
 </AnchorPane>
