@@ -3,5 +3,7 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="eu.hansolo.fx.countries" level="project" />
+    <orderEntry type="library" name="io.github.palexdev.materialfx" level="project" />
   </component>
 </module>

@@ -215,8 +215,30 @@ public class CreateOrEditUserController implements Initializable {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
 
+        System.out.println("add your code here...");
+
+        addUserToDatabase();
     }
 
+
+    public void addUserToDatabase() {
+
+        DocumentReference docRef = App.fstore.collection("Persons").document(UUID.randomUUID().toString());
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("Name", nameTextField.getText());
+        data.put("Age", Integer.parseInt(ageTextField.getText()));
+        data.put("User_Name",userNameTextField.getText());
+        data.put("Password",passwordTextField.getText());
+        data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
+        data.put("Salary",SalaryTextField.getText());
+        //asynchronously write data
+        ApiFuture<WriteResult> result = docRef.set(data);
+    }
+
+    public void foundUserInDatabase(){
+
+    }
 
     public void clearAllTextFields(){
         nameTextField.clear();
