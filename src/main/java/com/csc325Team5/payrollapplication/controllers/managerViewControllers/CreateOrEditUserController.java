@@ -7,6 +7,8 @@ import com.csc325Team5.payrollapplication.model.UserBag;
 import com.csc325Team5.payrollapplication.utilities.Role;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.jfoenix.controls.JFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -18,6 +20,7 @@ import javafx.scene.layout.StackPane;
 
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class CreateOrEditUserController implements Initializable {
 
@@ -143,7 +146,9 @@ public class CreateOrEditUserController implements Initializable {
             return;
         }
 
-        addUser();
+        //This function adds user to firebase based on "User_Name"
+        addUserToDatabase();
+
         UserBag.createUser(nameTextField.getText(),
                 userNameTextField.getText(),
                 passwordTextField.getText(),
@@ -199,45 +204,59 @@ public class CreateOrEditUserController implements Initializable {
         return true;
     }
 
-    public void addUser() {
-
-        DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
-
-        // Add document data  with id "alovelace" using a hashmap
-        Map<String, Object> data = new HashMap<>();
-        data.put("Name", nameTextField.getText());
-        data.put("User_Name",userNameTextField.getText());
-        data.put("Password",passwordTextField.getText());
-        data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
-        data.put("Salary",SalaryTextField.getText());
-
-        data.put("Age", Integer.parseInt(ageTextField.getText()));
-        //asynchronously write data
-        ApiFuture<WriteResult> result = docRef.set(data);
-
-        System.out.println("add your code here...");
-
-        addUserToDatabase();
-    }
 
 
+
+    //This function adds user to firebase based on "User_Name"
     public void addUserToDatabase() {
 
-        DocumentReference docRef = App.fstore.collection("Persons").document(UUID.randomUUID().toString());
+        DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
+       if(foundUserInDatabase()){
+           System.out.println("User with this User Name already exists in database!!!");
 
-        Map<String, Object> data = new HashMap<>();
-        data.put("Name", nameTextField.getText());
-        data.put("Age", Integer.parseInt(ageTextField.getText()));
-        data.put("User_Name",userNameTextField.getText());
-        data.put("Password",passwordTextField.getText());
-        data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
-        data.put("Salary",SalaryTextField.getText());
-        //asynchronously write data
-        ApiFuture<WriteResult> result = docRef.set(data);
+       }
+       else{
+           Map<String, Object> data = new HashMap<>();
+           data.put("Name", nameTextField.getText());
+           data.put("Age", Integer.parseInt(ageTextField.getText()));
+           data.put("User_Name",userNameTextField.getText());
+           data.put("Password",passwordTextField.getText());
+           data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
+           data.put("Salary",SalaryTextField.getText());
+           //asynchronously write data
+           ApiFuture<WriteResult> result = docRef.set(data);
+       }
+
     }
 
-    public void foundUserInDatabase(){
+    //This function return true if the user exists in firebase database and false if not
+    public boolean foundUserInDatabase() {
+        ApiFuture<QuerySnapshot> future =  App.fstore.collection("Users").get();
+        List<QueryDocumentSnapshot> documents;
 
+        try
+        {
+            documents = future.get().getDocuments();
+            if(documents.size()>0)
+            {
+
+                for (QueryDocumentSnapshot document : documents)
+                {
+                   if(document.getData().get("User_Name").equals(userNameTextField.getText()) )
+                   {
+                       System.out.println("user found");
+                       return true;
+                   }
+
+                }
+            }
+
+        }
+        catch (InterruptedException | ExecutionException ex)
+        {
+            ex.printStackTrace();
+        }
+   return false;
     }
 
     public void clearAllTextFields(){
