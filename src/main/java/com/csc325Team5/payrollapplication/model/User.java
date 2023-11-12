@@ -6,7 +6,6 @@ import com.csc325Team5.payrollapplication.utilities.Role;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -67,7 +66,7 @@ public class User implements Comparable<User>{
     }
 
     public void setUsername(String username) {
-        username = username;
+        this.username = username;
     }
 
     public String getPassword() {

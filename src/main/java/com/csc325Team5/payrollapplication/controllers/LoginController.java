@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +30,15 @@ public class LoginController implements Initializable {
 
     @FXML
     private MFXTextField usernameTextField;
+
+    @FXML
+    private Label passwordWarningLabel;
+
+    @FXML
+    private Label usernameWarningLabel;
+
+    @FXML
+    private Label warningLabel;
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -48,13 +58,50 @@ public class LoginController implements Initializable {
     void validateUserNameAndPassword(ActionEvent event) throws IOException {
         User foundUser = UserBag.findUser(new User("0", usernameTextField.getText(), passwordField.getText(), 0, 0, null,"0"));
 
-        if (foundUser == null) {
+        if(!allFieldsFilled()){
             return;
         }
+
+        if(!usernameExists(usernameTextField.getText())){
+            warningLabel.setVisible(true);
+            warningLabel.setText("THIS USER DOES NOT EXIST");
+            return;
+        }
+
+        if (foundUser == null) {
+            warningLabel.setVisible(true);
+            warningLabel.setText("THIS USERNAME AND PASSWORD DON'T MATCH");
+            return;
+        }
+        
+        warningLabel.setVisible(false);
 
         clearFields();
         UserBag.setCurrentUser(foundUser);
         loadViews();
+    }
+
+    public boolean usernameExists(String username){
+        return !UserBag.findUserByName(username).toList().isEmpty();
+    }
+
+    public boolean allFieldsFilled(){
+        usernameWarningLabel.setVisible(false);
+        passwordWarningLabel.setVisible(false);
+        warningLabel.setVisible(false);
+
+        if(usernameTextField.getText().isEmpty()){
+            usernameWarningLabel.setVisible(true);
+            return false;
+        }
+
+        if(passwordField.getText().isEmpty()){
+            passwordWarningLabel.setVisible(true);
+            return false;
+        }
+
+        return true;
+
     }
 
     public void loadViews() throws IOException {
