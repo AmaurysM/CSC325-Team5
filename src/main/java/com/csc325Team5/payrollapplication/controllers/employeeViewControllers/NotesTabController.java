@@ -114,6 +114,8 @@ public class NotesTabController implements Initializable {
         UserBag.getCurrentUser().getNotes().stream().sorted(Comparator.comparing(Note::getTime).reversed()).forEach((e)->{
             tilePane.getChildren().add(newNote(e));
         });
+
+        filterComboBox.getSelectionModel().select(0);
     }
 }
 
