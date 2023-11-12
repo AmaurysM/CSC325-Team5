@@ -122,7 +122,6 @@ public class EmployeesTabController implements Initializable {
 
     @FXML
     void getSelectedUser(MouseEvent  event) throws IOException {
-
         if(event.getClickCount() == 2){
             User selectedUser = tableView.getSelectionModel().getSelectedItem();
             createPopupWindow(selectedUser, event);
@@ -175,7 +174,6 @@ public class EmployeesTabController implements Initializable {
         createOrEditUserController.getCreateOrEditUserButton().setText("EDIT");
 
         managerController.getStackPane().getChildren().add(createOrEditUserController.getStackPane());
-
 
     }
 
