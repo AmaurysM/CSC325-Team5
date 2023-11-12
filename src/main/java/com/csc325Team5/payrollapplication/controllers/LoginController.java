@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -48,6 +50,13 @@ public class LoginController implements Initializable {
         this.primaryStage = primaryStage;
     }
 
+    @FXML
+    void loginKey(KeyEvent event) throws IOException {
+        if(event.getCode() == KeyCode.ENTER){
+            login();
+        }
+    }
+
     public void clearFields(){
         usernameTextField.clear();
         passwordField.clear();
@@ -55,30 +64,43 @@ public class LoginController implements Initializable {
 
     @FXML
         // This tries to find the user based on username and password.
-    void validateUserNameAndPassword(ActionEvent event) throws IOException {
+    void loginButtonPressed(ActionEvent event) throws IOException {
+        login();
+    }
+
+    public void login() throws IOException {
         User foundUser = UserBag.findUser(new User("0", usernameTextField.getText(), passwordField.getText(), 0, 0, null,"0"));
 
-        if(!allFieldsFilled()){
+        if(!ableToLogin(foundUser,usernameTextField.getText())){
             return;
         }
-
-        if(!usernameExists(usernameTextField.getText())){
-            warningLabel.setVisible(true);
-            warningLabel.setText("THIS USER DOES NOT EXIST");
-            return;
-        }
-
-        if (foundUser == null) {
-            warningLabel.setVisible(true);
-            warningLabel.setText("THIS USERNAME AND PASSWORD DON'T MATCH");
-            return;
-        }
-        
         warningLabel.setVisible(false);
 
         clearFields();
         UserBag.setCurrentUser(foundUser);
         loadViews();
+    }
+
+    public boolean ableToLogin(User user, String username){
+
+        if(!allFieldsFilled()){
+            return false;
+        }
+        if(!usernameExists(username)){
+            warningLabel.setVisible(true);
+            warningLabel.setText("THIS USER DOES NOT EXIST");
+            return false;
+        }
+
+        if (user == null) {
+            warningLabel.setVisible(true);
+            warningLabel.setText("THIS USERNAME AND PASSWORD DON'T MATCH");
+            return false;
+        }
+
+
+
+        return true;
     }
 
     public boolean usernameExists(String username){
