@@ -54,7 +54,7 @@ public class App extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
             @Override
             public void handle(WindowEvent event) {
-                if(PopOverManager.getPop().getPopOver().isShowing()){
+                if(PopOverManager.getPop() != null){
                     event.consume();
                     PopOverManager.getPop().getPopOver().hide(new Duration(0));
                     stage.close();
