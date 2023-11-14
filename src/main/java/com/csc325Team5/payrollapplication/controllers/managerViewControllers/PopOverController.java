@@ -6,8 +6,12 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.PopOver;
 
-public class PopOverController {
+import java.util.Comparator;
+import java.util.Objects;
+
+public class PopOverController{
 
     @FXML
     private MFXButton deleteButton;
@@ -20,6 +24,9 @@ public class PopOverController {
 
     private final EmployeesTabController employees = (EmployeesTabController) ScreenController.findController("employeesTab");
 
+    private User user;
+
+    private PopOver popOver;
 
     @FXML
     void deleteUser(ActionEvent event) {
@@ -32,6 +39,22 @@ public class PopOverController {
     void editUser(ActionEvent event) {
         employees.editUser();
         employees.getPopOver().hide();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public PopOver getPopOver() {
+        return popOver;
+    }
+
+    public void setPopOver(PopOver popOver) {
+        this.popOver = popOver;
     }
 
 }
