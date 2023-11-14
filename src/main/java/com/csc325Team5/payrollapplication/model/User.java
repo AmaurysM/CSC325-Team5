@@ -147,6 +147,35 @@ public class User implements Comparable<User>{
     public void setRole(String role) {
         this.role = role;
     }
+    // Calculate pay based on hours worked and hourly rate
+    public double calculatePay(double hoursWorked, double hourlyRate) {
+        // Ensure hours worked is non-negative
+        if (hoursWorked < 0) {
+            throw new IllegalArgumentException("Hours worked cannot be negative.");
+        }
+
+        // Ensure hourly rate is non-negative
+        if (hourlyRate < 0) {
+            throw new IllegalArgumentException("Hourly rate cannot be negative.");
+        }
+
+        // Calculate pay
+        double pay = hoursWorked * hourlyRate;
+        return pay;
+    }
+
+    // Generate a pay stub for the employee
+    public void generatePayStub(double hoursWorked, double hourlyRate) {
+        // Calculate the pay
+        double pay = calculatePay(hoursWorked, hourlyRate);
+
+
+
+        System.out.println("Hours Worked: " + hoursWorked);
+        System.out.println("Hourly Rate: $" + hourlyRate);
+        System.out.println("Total Pay: $" + pay);
+        System.out.println("Role: " + getRole());
+    }
 
     @Override
     public boolean equals(Object o) {

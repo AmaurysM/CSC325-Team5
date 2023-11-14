@@ -16,6 +16,19 @@
       <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/21/javafx-swing-21-win.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/fx/countries/17.0.39/countries-17.0.39-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/fx/heatmap/17.0.29/heatmap-17.0.29-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/toolboxfx/17.0.49/toolboxfx-17.0.49-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/eu/hansolo/toolbox/17.0.57/toolbox-17.0.57-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/21/javafx-base-21-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/21/javafx-base-21-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/21/javafx-graphics-21-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/21/javafx-graphics-21-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/21/javafx-controls-21-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/21/javafx-controls-21-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/21/javafx-swing-21-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-swing/21/javafx-swing-21-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
