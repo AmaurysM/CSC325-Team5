@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EmployeesTabController implements Initializable {
@@ -122,10 +123,10 @@ public class EmployeesTabController implements Initializable {
 
     @FXML
     void getSelectedUser(MouseEvent  event) throws IOException {
-        if(event.getClickCount() == 2){
-            User selectedUser = tableView.getSelectionModel().getSelectedItem();
-            createPopupWindow(selectedUser, event);
-        }
+
+        User selectedUser = tableView.getSelectionModel().getSelectedItem();
+        createPopupWindow(selectedUser, event);
+
     }
     private PopOver popOver;
 
@@ -139,16 +140,28 @@ public class EmployeesTabController implements Initializable {
 
     private void createPopupWindow(User user, MouseEvent event) throws IOException {
 
+        if(user == null){
+            return;
+        }
+
         popOver = new PopOver();
-
-        if(!popOver.isShowing() && !popOver.isDetached()) {
-
+        if(PopOverManager.getPop() == null && event.getClickCount() == 2){
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("managerView/popOver.fxml"));
             fxmlLoader.load();
+            PopOverController popOverController = fxmlLoader.getController();
+            popOverController.setUser(user);
+            popOverController.setPopOver(popOver);
 
             popOver.setContentNode(fxmlLoader.getRoot());
-            popOver.show(tableView, event.getScreenX(), event.getScreenY());
+            popOver.show(tableView,event.getScreenX(),event.getScreenY());
+            PopOverManager.setPop(popOverController);
+            return;
+        }
 
+        if (PopOverManager.getPop() != null){
+            PopOverManager.getPop().getPopOver().hide();
+            PopOverManager.setPop(null);
+            return;
         }
 
     }
@@ -161,7 +174,6 @@ public class EmployeesTabController implements Initializable {
     void editUser(){// runs when you hit the user edit button on the drop-down menu
         CreateOrEditUserController createOrEditUserController = ((CreateOrEditUserController) ScreenController.findController("createOrEditUser"));
         ManagerController managerController = (ManagerController) ScreenController.findController("manager");
-        //createUserController.().setVisible(true);
 
         User userToBeEdited = tableView.getSelectionModel().getSelectedItem();
         createOrEditUserController.getNameTextField().setText(userToBeEdited.getName());

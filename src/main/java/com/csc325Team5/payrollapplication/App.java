@@ -26,10 +26,10 @@ public class App extends Application {
         fstore = contxtFirebase.firebase();
         fauth = FirebaseAuth.getInstance();
 
-        // 2 basic users to check log into the manager view and employee view
+        // 2 basic users to log into the manager view and employee view
         UserBag.createUser("a","a","a",0,0,"manager");
         UserBag.createUser("b","b","b",0,0,"employee");
-        //s
+        //
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login-View.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
