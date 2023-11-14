@@ -2,6 +2,7 @@ package com.csc325Team5.payrollapplication.controllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.managerViewControllers.ManagerController;
+import com.csc325Team5.payrollapplication.controllers.managerViewControllers.PopOverManager;
 import com.csc325Team5.payrollapplication.model.UserBag;
 import com.csc325Team5.payrollapplication.model.User;
 import com.csc325Team5.payrollapplication.utilities.Role;
@@ -9,6 +10,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -127,6 +131,7 @@ public class LoginController implements Initializable {
     }
 
     public void loadViews() throws IOException {
+
         FXMLLoader loader = new FXMLLoader(App.class.getResource("managerView/manager-View.fxml"));
 
         if (Role.MANAGER.name().compareTo(UserBag.getCurrentUser().getRole().toUpperCase()) == 0) {
@@ -144,6 +149,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //System.out.println(primaryStage);
 
 
     }
