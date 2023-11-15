@@ -3,7 +3,7 @@ package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
 import com.csc325Team5.payrollapplication.model.User;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.utilities.Role;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
@@ -155,7 +155,7 @@ public class CreateOrEditUserController implements Initializable {
         {
             addUserToDatabase();
 
-            UserBag.createUser(nameTextField.getText(),
+            UserManager.createUser(nameTextField.getText(),
                     userNameTextField.getText(),
                     passwordTextField.getText(),
                     Integer.valueOf(ageTextField.getText()),
@@ -178,12 +178,12 @@ public class CreateOrEditUserController implements Initializable {
         System.out.println("updating");
         User user = (User) (employeesTabController).getTableView().getSelectionModel().getSelectedItem();
 
-        UserBag.findUser(user).setName(nameTextField.getText());
-        UserBag.findUser(user).setUsername(userNameTextField.getText());
-        UserBag.findUser(user).setPassword(passwordTextField.getText());
+        UserManager.findUser(user).setName(nameTextField.getText());
+        UserManager.findUser(user).setUsername(userNameTextField.getText());
+        UserManager.findUser(user).setPassword(passwordTextField.getText());
         user.setAge(Integer.valueOf(ageTextField.getText()));
         user.setSalary(Integer.valueOf(SalaryTextField.getText()));
-        UserBag.findUser(user).setRole(roleComboBox.getSelectionModel().getSelectedItem().toString());
+        UserManager.findUser(user).setRole(roleComboBox.getSelectionModel().getSelectedItem().toString());
 
         quitCreatingOrEditingUser(event);
     }

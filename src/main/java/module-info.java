@@ -29,4 +29,6 @@ module com.example.payrollapplication {
     opens com.csc325Team5.payrollapplication.controllers.managerViewControllers to javafx.fxml;
     exports com.csc325Team5.payrollapplication.controllers.employeeViewControllers;
     opens com.csc325Team5.payrollapplication.controllers.employeeViewControllers to javafx.fxml;
+    exports com.csc325Team5.payrollapplication.controllers.loginViewControllers;
+    opens com.csc325Team5.payrollapplication.controllers.loginViewControllers to javafx.fxml;
 }

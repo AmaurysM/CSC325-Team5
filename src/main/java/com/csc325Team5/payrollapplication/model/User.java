@@ -1,7 +1,5 @@
 package com.csc325Team5.payrollapplication.model;
 
-import com.csc325Team5.payrollapplication.utilities.Role;
-
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -12,8 +10,6 @@ import java.util.Objects;
 
 public class User implements Comparable<User>{
 
-
-
     private String name;
     private String username;
     private String password;
@@ -21,10 +17,12 @@ public class User implements Comparable<User>{
     private String ID;
     private int salary;
     private String role;
+    private double hoursWorkedThisWeek = 0.0;
     private boolean clockedIn;
     private String clockInTime;
     private String clockOutTime;
     private LinkedList<Note> notes = new LinkedList<>();
+    private PayStubManager payStubs = new PayStubManager();
 
     public User(String name, String username, String password, int age, int salary, String role, String ID) {
         this.name = name;
@@ -112,6 +110,22 @@ public class User implements Comparable<User>{
     public void setClockOutTime(String clockOutTime) {
         this.clockOutTime = clockOutTime;
     }
+    
+    public Double getHoursWorkedThisWeek() {
+        return hoursWorkedThisWeek;
+    }
+
+    public void setHoursWorkedThisWeek(Double hoursWorkedThisWeek) {
+        this.hoursWorkedThisWeek = hoursWorkedThisWeek;
+    }
+
+    public PayStubManager getPayStubs() {
+        return payStubs;
+    }
+
+    public void setPayStubs(PayStubManager payStubs) {
+        this.payStubs = payStubs;
+    }
 
     //Returns the current time in "HH:mm:ss" format as a string in 24-hour format
     public String getCurrentTime(){
@@ -121,17 +135,21 @@ public class User implements Comparable<User>{
         return dateFormat.format(date);
     }
     //Method for calculating the clock-in and clock-out time. Returns the time as String
-    public String getTimeDifference(String start_time, String end_time) throws ParseException {
+    public double getTimeDifference(String start_time, String end_time) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         Date date1 = format.parse(start_time);
         Date date2 = format.parse(end_time);
-        long difference = date2.getTime() - date1.getTime();
+        double difference = date2.getTime() - date1.getTime();
 
-        long differenceSeconds = difference / 1000 % 60;
-        long differenceMinutes = difference / (60 * 1000) % 60;
-        long differenceHours = difference / (60 * 60 * 1000) % 24;
-        return differenceHours+":"+differenceMinutes+":"+differenceSeconds;
+        double differenceSeconds = difference / 1000 % 60;
+        double differenceMinutes = difference / (60 * 1000) % 60;
+        double differenceHours = difference / (60 * 60 * 1000) % 24;
+
+        double hours = differenceHours+differenceMinutes/60+differenceSeconds/3600;
+        double roundedHours = (double) Math.round(hours * 10000)/10000;
+        return roundedHours;
     }
+
     public int getSalary() {
         return salary;
     }
@@ -168,8 +186,6 @@ public class User implements Comparable<User>{
     public void generatePayStub(double hoursWorked, double hourlyRate) {
         // Calculate the pay
         double pay = calculatePay(hoursWorked, hourlyRate);
-
-
 
         System.out.println("Hours Worked: " + hoursWorked);
         System.out.println("Hourly Rate: $" + hourlyRate);

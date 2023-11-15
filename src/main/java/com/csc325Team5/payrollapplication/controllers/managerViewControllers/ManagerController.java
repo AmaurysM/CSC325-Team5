@@ -2,9 +2,8 @@ package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 
-import com.csc325Team5.payrollapplication.model.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.UUID;
-
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.WriteResult;
 
 public class ManagerController implements Initializable {
 
@@ -77,8 +70,8 @@ public class ManagerController implements Initializable {
     @FXML
     private TextField passwordTextField;
 
-
-
+    @FXML
+    private MFXButton sendPayRollButton;
     @FXML
     private TextField roleTextField;
 
@@ -273,10 +266,10 @@ public class ManagerController implements Initializable {
 
     @FXML
     void logoutOfManagerView(ActionEvent event) throws IOException {
-
-        ScreenController.setMap( new HashMap<String, Object[]>());
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("login-View.fxml"));
-        ScreenController.addScreen("loginScreen", loader.load(),loader.getController());
+        ScreenController.setMap( new HashMap<String, FXMLLoader>());
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("loginView/login-View.fxml"));
+        loader.load();
+        ScreenController.addScreen("loginScreen", loader);
         ScreenController.activate("loginScreen");
 
     }
@@ -289,38 +282,49 @@ public class ManagerController implements Initializable {
     }
 
 
-
+    @FXML
+    void sendPayRoll(ActionEvent event) {
+        UserManager.getUserBag().forEach( e ->
+                    e.getPayStubs().addPayStub(e)
+                );
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("managerView/employeesTab.fxml"));
-            ScreenController.addScreen("employeesTab", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("employeesTab", loader);
             ((EmployeesTabController)loader.getController()).setPrimaryStage(primaryStage);
 
             loader = new FXMLLoader(App.class.getResource("managerView/notesTab.fxml"));
-            ScreenController.addScreen("notesTab", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("notesTab", loader);
 
             loader = new FXMLLoader(App.class.getResource("managerView/payrollTab.fxml"));
-            ScreenController.addScreen("payrollTab", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("payrollTab", loader);
 
             loader = new FXMLLoader(App.class.getResource("managerView/settingsTab.fxml"));
-            ScreenController.addScreen("settingsTab", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("settingsTab", loader);
 
             loader = new FXMLLoader(App.class.getResource("managerView/createNote-View.fxml"));
-            ScreenController.addScreen("createNote", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("createNote", loader);
 
             loader = new FXMLLoader(App.class.getResource("managerView/createOrEditUser-View.fxml"));
-            ScreenController.addScreen("createOrEditUser", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("createOrEditUser", loader);
 
             borderPane.setCenter(ScreenController.find("employeesTab"));
 
 
 
-            CurrentNameTextField.setText(UserBag.getCurrentUser().getName());
-            CurrentUserNameTextField.setText(UserBag.getCurrentUser().getUsername());
-            CurrentSalaryTextField.setText(String.valueOf(UserBag.getCurrentUser().getSalary()));
+            CurrentNameTextField.setText(UserManager.getCurrentUser().getName());
+            CurrentUserNameTextField.setText(UserManager.getCurrentUser().getUsername());
+            CurrentSalaryTextField.setText(String.valueOf(UserManager.getCurrentUser().getSalary()));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
