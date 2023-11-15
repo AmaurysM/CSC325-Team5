@@ -1,14 +1,12 @@
 package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.model.Note;
 import io.github.palexdev.materialfx.controls.MFXButton;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,11 +14,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class NotesTabController implements Initializable {
@@ -54,7 +49,7 @@ public class NotesTabController implements Initializable {
     public void populateTableView(){
         //UserBag.getCurrentUser().getNotes().stream().forEachOrdered(e->tableView.getItems().add(e));
 
-        tableView.setItems(FXCollections.observableArrayList(UserBag.getCurrentUser().getNotes()));
+        tableView.setItems(FXCollections.observableArrayList(UserManager.getCurrentUser().getNotes()));
 
         /*for(int i = UserBag.getCurrentUser().getNotes().size() -1; i >= 0; i--){
             tableView.

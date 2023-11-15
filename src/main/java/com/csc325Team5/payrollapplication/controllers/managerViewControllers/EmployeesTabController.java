@@ -2,7 +2,7 @@ package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.utilities.Role;
 import javafx.fxml.FXMLLoader;
 import org.controlsfx.control.PopOver;
@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EmployeesTabController implements Initializable {
@@ -167,7 +166,7 @@ public class EmployeesTabController implements Initializable {
     }
 
     void deleteUser(User user){
-        UserBag.removeUser(user);
+        UserManager.removeUser(user);
         refreshTableView();
     }
 
@@ -199,7 +198,7 @@ public class EmployeesTabController implements Initializable {
 
     public void populateTableView(){
         tableView.setItems(
-            FXCollections.observableArrayList(UserBag.getUserBag().stream().toList()).filtered(e->
+            FXCollections.observableArrayList(UserManager.getUserBag().stream().toList()).filtered(e->
                 Role.MANAGER.name().compareTo(e.getRole().toUpperCase()) != 0
             )
         );

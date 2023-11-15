@@ -1,21 +1,22 @@
 package com.csc325Team5.payrollapplication.controllers;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-public class ScreenController {
-    private static HashMap<String, Object[]> screenMap = new HashMap<>();
+public  class  ScreenController {
+    private static HashMap<String, FXMLLoader> screenMap = new HashMap<>();
     private static Scene main;
 
     public ScreenController(Scene main) {
         this.main = main;
     }
 
-    public static <T> void addScreen(String name,  Pane root, T controller) throws IOException {
-        screenMap.put(name, new Object[]{root,controller});
+    public static <T> void addScreen(String name, FXMLLoader loader) throws IOException {
+        screenMap.put(name, loader);
     }
 
     public static void removeScreen(String name){
@@ -23,7 +24,7 @@ public class ScreenController {
     }
 
     public static void activate(String name) throws IOException {
-        main.setRoot((Pane) screenMap.get(name)[0]);
+        main.setRoot(screenMap.get(name).getRoot());
     }
 
     public static Scene getMain(){
@@ -31,14 +32,14 @@ public class ScreenController {
     }
 
     public static Pane find(String name) throws IOException {
-        return (Pane)screenMap.get(name)[0];
+        return screenMap.get(name).getRoot();
     }
 
     public static Object findController(String name){
-        return screenMap.get(name)[1];
+        return screenMap.get(name).getController();
     }
 
-    public static void setMap(HashMap<String, Object[]> map){
+    public static void setMap(HashMap<String, FXMLLoader> map){
         screenMap = map;
     }
 

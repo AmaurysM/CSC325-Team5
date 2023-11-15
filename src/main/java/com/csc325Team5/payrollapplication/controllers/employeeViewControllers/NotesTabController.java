@@ -2,7 +2,7 @@ package com.csc325Team5.payrollapplication.controllers.employeeViewControllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.model.Note;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 import com.jfoenix.controls.JFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -79,7 +78,7 @@ public class NotesTabController implements Initializable {
     public void sortTilePane(Comparator<Note> compare){
         tilePane.getChildren().clear();
         PriorityQueue<Note> priorityQueue = new PriorityQueue<>(compare);
-        priorityQueue.addAll(UserBag.getCurrentUser().getNotes());
+        priorityQueue.addAll(UserManager.getCurrentUser().getNotes());
         while(!priorityQueue.isEmpty()){
             tilePane.getChildren().add(newNote(priorityQueue.poll()));
         }
@@ -87,7 +86,7 @@ public class NotesTabController implements Initializable {
     }
 
     public void filterNotes(Predicate<Note> predicate){
-        UserBag.getCurrentUser().getNotes().stream().filter(predicate).forEach((e)->{
+        UserManager.getCurrentUser().getNotes().stream().filter(predicate).forEach((e)->{
             tilePane.getChildren().add(newNote(e));
         });
     }
@@ -111,7 +110,7 @@ public class NotesTabController implements Initializable {
         String[] filters = {"RECENT","OLDEST","NAME A-Z", "NAME Z-A"};
         filterComboBox.getItems().addAll(filters);
 
-        UserBag.getCurrentUser().getNotes().stream().sorted(Comparator.comparing(Note::getTime).reversed()).forEach((e)->{
+        UserManager.getCurrentUser().getNotes().stream().sorted(Comparator.comparing(Note::getTime).reversed()).forEach((e)->{
             tilePane.getChildren().add(newNote(e));
         });
 

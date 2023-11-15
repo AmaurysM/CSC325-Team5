@@ -3,7 +3,7 @@ package com.csc325Team5.payrollapplication.controllers.employeeViewControllers;
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
 import com.csc325Team5.payrollapplication.model.User;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,31 +58,30 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void logoutOfEmployeeView(ActionEvent event) throws IOException {
-        ScreenController.setMap( new HashMap<String, Object[]>());
-
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("login-View.fxml"));
-        ScreenController.addScreen("loginScreen", loader.load(),loader.getController());
-
+        ScreenController.setMap( new HashMap<String, FXMLLoader>());
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("loginView/login-View.fxml"));
+        loader.load();
+        ScreenController.addScreen("loginScreen", loader);
         ScreenController.activate("loginScreen");
     }
 
     @FXML
     void clockIn(ActionEvent event) {
-        User user = UserBag.getCurrentUser();
+        User user = UserManager.getCurrentUser();
         if(!user.isClockedIn()) {
-            user.setClockInTime(UserBag.getCurrentUser().getCurrentTime());
+            user.setClockInTime(UserManager.getCurrentUser().getCurrentTime());
             user.setClockedIn(true);
         }
     }
 
     @FXML
     void clockOut(ActionEvent event) throws ParseException {
-        User user = UserBag.getCurrentUser();
+        User user = UserManager.getCurrentUser();
         if(user.isClockedIn()) {
-            user.setClockOutTime(UserBag.getCurrentUser().getCurrentTime());
+            user.setClockOutTime(UserManager.getCurrentUser().getCurrentTime());
             user.setClockedIn(false);
-
-            System.out.println(user.getTimeDifference(user.getClockInTime(),user.getClockOutTime()));
+            double hoursWorked = user.getTimeDifference(user.getClockInTime(),user.getClockOutTime());
+            user.setHoursWorkedThisWeek(user.getHoursWorkedThisWeek() + hoursWorked);
 
         }
 
@@ -97,13 +96,16 @@ public class EmployeeController implements Initializable {
             profilePictureCircle.setFill(new ImagePattern(image));
 
             FXMLLoader loader = new FXMLLoader(App.class.getResource("employeeView/payrollTab.fxml"));
-            ScreenController.addScreen("payrollTab", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("payrollTab", loader);
 
             loader = new FXMLLoader(App.class.getResource("employeeView/notesTab.fxml"));
-            ScreenController.addScreen("notesTab", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("notesTab", loader);
 
             loader = new FXMLLoader(App.class.getResource("employeeView/settingsTab.fxml"));
-            ScreenController.addScreen("settingsTab", loader.load(),loader.getController());
+            loader.load();
+            ScreenController.addScreen("settingsTab", loader);
 
             borderPane.setCenter(ScreenController.find("payrollTab"));
         } catch (IOException e) {

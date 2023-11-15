@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Stream;
 
-public class UserBag {
+public class UserManager {
     private static int numOfUsers = 0;
     private static User currentUser;
     private static TreeSet<User> userBag = new TreeSet<>();
+
+
 
     //private static final String roles;
 
@@ -44,7 +46,7 @@ public class UserBag {
     }
 
     public static boolean checkIDUniqueness(String ID){
-        return UserBag.findUserByID(ID) == null;
+        return UserManager.findUserByID(ID) == null;
     }
 
     public static String randomNumber(int max){
@@ -63,7 +65,7 @@ public class UserBag {
     }
 
     public static User findUser(User user){
-        List<User> foundUsers = UserBag.getUserBag().stream().filter(e->e.equals(user)).toList();
+        List<User> foundUsers = UserManager.getUserBag().stream().filter(e->e.equals(user)).toList();
         if(foundUsers.isEmpty()){
             return null;
         }else{
@@ -82,7 +84,7 @@ public class UserBag {
     }
 
     public static void setNumOfUsers(int numOfUsers) {
-        UserBag.numOfUsers = numOfUsers;
+        UserManager.numOfUsers = numOfUsers;
     }
 
     public static User getCurrentUser() {
@@ -90,7 +92,7 @@ public class UserBag {
     }
 
     public static void setCurrentUser(User currentUser) {
-        UserBag.currentUser = currentUser;
+        UserManager.currentUser = currentUser;
     }
 
     public static TreeSet<User> getUserBag() {
@@ -98,6 +100,6 @@ public class UserBag {
     }
 
     public static void setUserBag(TreeSet<User> userBag) {
-        UserBag.userBag = userBag;
+        UserManager.userBag = userBag;
     }
 }

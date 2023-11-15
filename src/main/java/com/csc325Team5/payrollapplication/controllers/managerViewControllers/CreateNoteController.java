@@ -1,7 +1,7 @@
 package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.model.User;
 import com.csc325Team5.payrollapplication.utilities.Role;
 import com.jfoenix.controls.JFXComboBox;
@@ -104,15 +104,15 @@ public class CreateNoteController implements Initializable {
 
         User user = employeeComboBox.getSelectionModel().getSelectedItem();
 
-        user.addNote(UserBag.getCurrentUser(), noteTextArea.getText(), user);
-        UserBag.getCurrentUser().addNote(user.getNotes().get(user.getNotes().size()-1));
+        user.addNote(UserManager.getCurrentUser(), noteTextArea.getText(), user);
+        UserManager.getCurrentUser().addNote(user.getNotes().get(user.getNotes().size()-1));
         refreshTableView();
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        UserBag.getUserBag().stream().filter(e -> Role.MANAGER.name().compareTo(e.getRole().toUpperCase()) != 0)
+        UserManager.getUserBag().stream().filter(e -> Role.MANAGER.name().compareTo(e.getRole().toUpperCase()) != 0)
                 .forEach(e-> employeeComboBox.getItems().add(e));
     }
 }

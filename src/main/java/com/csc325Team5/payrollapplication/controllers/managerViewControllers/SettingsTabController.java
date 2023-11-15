@@ -1,7 +1,7 @@
 package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,9 +39,9 @@ public class SettingsTabController implements Initializable {
             return;
         }
 
-        UserBag.getCurrentUser().setName(nameTextField.getText());
-        UserBag.getCurrentUser().setPassword(passwordTextField.getText());
-        UserBag.getCurrentUser().setUsername(usernameTextField.getText());
+        UserManager.getCurrentUser().setName(nameTextField.getText());
+        UserManager.getCurrentUser().setPassword(passwordTextField.getText());
+        UserManager.getCurrentUser().setUsername(usernameTextField.getText());
 
         ((EmployeesTabController)ScreenController.findController("employeesTab")).refreshTableView();
     }
@@ -70,9 +70,9 @@ public class SettingsTabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        nameTextField.setText(UserBag.getCurrentUser().getName());
-        usernameTextField.setText(UserBag.getCurrentUser().getUsername());
-        passwordTextField.setText(UserBag.getCurrentUser().getPassword());
-        idLabel.setText(UserBag.getCurrentUser().getID());
+        nameTextField.setText(UserManager.getCurrentUser().getName());
+        usernameTextField.setText(UserManager.getCurrentUser().getUsername());
+        passwordTextField.setText(UserManager.getCurrentUser().getPassword());
+        idLabel.setText(UserManager.getCurrentUser().getID());
     }
 }

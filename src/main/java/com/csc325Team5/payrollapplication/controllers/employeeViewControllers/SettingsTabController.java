@@ -1,7 +1,7 @@
 package com.csc325Team5.payrollapplication.controllers.employeeViewControllers;
 
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
-import com.csc325Team5.payrollapplication.model.UserBag;
+import com.csc325Team5.payrollapplication.model.UserManager;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,9 +45,9 @@ public class SettingsTabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iDLabel.setText(UserBag.getCurrentUser().getID());
-        nameLabel.setText(UserBag.getCurrentUser().getName());
-        usernameLabel.setText(UserBag.getCurrentUser().getUsername());
+        iDLabel.setText(UserManager.getCurrentUser().getID());
+        nameLabel.setText(UserManager.getCurrentUser().getName());
+        usernameLabel.setText(UserManager.getCurrentUser().getUsername());
     }
 }
 
