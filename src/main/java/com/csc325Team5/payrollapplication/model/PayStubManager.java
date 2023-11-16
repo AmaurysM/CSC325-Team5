@@ -29,7 +29,7 @@ public class PayStubManager {
     }
 
     public double round(double number){
-        return Math.round(number * 1000)/1000;
+        return (double) Math.round(number * 1000) /1000;
     }
 
     public String startPayPeriod(){
@@ -61,8 +61,7 @@ public class PayStubManager {
         }
 
         // Calculate pay
-        double pay = hoursWorked * hourlyRate;
-        return pay;
+        return hoursWorked * hourlyRate;
     }
 
     public void removePayStub(PayStub payStub){

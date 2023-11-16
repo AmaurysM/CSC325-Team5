@@ -119,11 +119,11 @@ public class User implements Comparable<User>{
         this.hoursWorkedThisWeek = hoursWorkedThisWeek;
     }
 
-    public PayStubManager getPayStubs() {
+    public PayStubManager getPayStubManager() {
         return payStubs;
     }
 
-    public void setPayStubs(PayStubManager payStubs) {
+    public void setPayStubManager(PayStubManager payStubs) {
         this.payStubs = payStubs;
     }
 
