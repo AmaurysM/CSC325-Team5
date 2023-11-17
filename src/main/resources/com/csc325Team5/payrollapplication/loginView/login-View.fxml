@@ -43,7 +43,7 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
                      <effect>
-                        <Shadow height="255.0" radius="127.0" width="255.0" />
+                        <Shadow height="102.59" radius="49.3275" width="96.72" />
                      </effect></Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647" />
                   <MFXTextField fx:id="usernameTextField" floatMode="BORDER" floatingText="Username" floatingTextGap="6.0" prefHeight="45.0" prefWidth="280.0" promptText="First name &amp; last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />

@@ -40,7 +40,6 @@ public class App extends Application {
         UserManager.createUser("b","b","b",20,20,"employee");
         //
 
-
         // System.out.println(ScreenController.find("titleBar"));
 
         setUpStage();
@@ -58,12 +57,7 @@ public class App extends Application {
 
         new ScreenController(scene);
         ScreenController.setMainPaneLoader(fxmlLoader);
-
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("loginView/login-View.fxml"));
-        loader.load();
-        ((LoginController)loader.getController()).setPrimaryStage(stage);
-        ScreenController.addScreen("loginView", loader);
-        ScreenController.activate("loginView");
+        controller.start();
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
             @Override

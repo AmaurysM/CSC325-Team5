@@ -165,5 +165,19 @@ public class TitleBarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+    }
+
+    public void start() {
+        try {
+
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("loginView/login-View.fxml"));
+        loader.load();
+        ((LoginController)loader.getController()).setPrimaryStage(stage);
+        ScreenController.addScreen("loginView", loader);
+        ScreenController.activate("loginView");
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
     }
 }
