@@ -78,7 +78,7 @@ public class NotesTabController implements Initializable {
     public void sortTilePane(Comparator<Note> compare){
         tilePane.getChildren().clear();
         PriorityQueue<Note> priorityQueue = new PriorityQueue<>(compare);
-        priorityQueue.addAll(UserManager.getCurrentUser().getNotes());
+        priorityQueue.addAll(UserManager.getCurrentUser().getNoteManager().getNotes());
         while(!priorityQueue.isEmpty()){
             tilePane.getChildren().add(newNote(priorityQueue.poll()));
         }
@@ -86,7 +86,7 @@ public class NotesTabController implements Initializable {
     }
 
     public void filterNotes(Predicate<Note> predicate){
-        UserManager.getCurrentUser().getNotes().stream().filter(predicate).forEach((e)->{
+        UserManager.getCurrentUser().getNoteManager().getNotes().stream().filter(predicate).forEach((e)->{
             tilePane.getChildren().add(newNote(e));
         });
     }
@@ -110,7 +110,7 @@ public class NotesTabController implements Initializable {
         String[] filters = {"RECENT","OLDEST","NAME A-Z", "NAME Z-A"};
         filterComboBox.getItems().addAll(filters);
 
-        UserManager.getCurrentUser().getNotes().stream().sorted(Comparator.comparing(Note::getTime).reversed()).forEach((e)->{
+        UserManager.getCurrentUser().getNoteManager().getNotes().stream().sorted(Comparator.comparing(Note::getTime).reversed()).forEach((e)->{
             tilePane.getChildren().add(newNote(e));
         });
 

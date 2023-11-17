@@ -21,7 +21,7 @@ public class User implements Comparable<User>{
     private boolean clockedIn;
     private String clockInTime;
     private String clockOutTime;
-    private LinkedList<Note> notes = new LinkedList<>();
+    private NoteManager notes = new NoteManager();
     private PayStubManager payStubs = new PayStubManager();
 
     public User(String name, String username, String password, int age, int salary, String role, String ID) {
@@ -34,8 +34,15 @@ public class User implements Comparable<User>{
         this.role = role;
     }
 
+    public NoteManager getNoteManager() {
+        return notes;
+    }
 
-    public void addNote(User sender,String note,User receiver){
+    public void setNoteManager(NoteManager notes) {
+        this.notes = notes;
+    }
+
+    /*public void addNote(User sender,String note,User receiver){
         notes.add(new Note(sender,note,getCurrentTime(),receiver));
     }
 
@@ -49,7 +56,7 @@ public class User implements Comparable<User>{
 
     public LinkedList<Note> getNotes(){
         return notes;
-    }
+    }*/
 
     public String getName() {
         return name;
