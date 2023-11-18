@@ -271,6 +271,8 @@ public class ManagerController implements Initializable {
         loader.load();
         ScreenController.addScreen("loginScreen", loader);
         ScreenController.activate("loginScreen");
+        primaryStage.setWidth(620);
+        primaryStage.setHeight(400);
 
     }
 
