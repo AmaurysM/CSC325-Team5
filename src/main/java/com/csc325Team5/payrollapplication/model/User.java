@@ -33,6 +33,15 @@ public class User implements Comparable<User>{
         this.salary = salary;
         this.role = role;
     }
+    public User() {
+        this.name = "";
+        this.username = "";
+        this.password = "";
+        this.age = 0;
+        this.ID = "";
+        this.salary = 0;
+        this.role = "";
+    }
 
 
     public void addNote(User sender,String note,User receiver){
