@@ -47,14 +47,7 @@ public class NotesTabController implements Initializable {
     }
 
     public void populateTableView(){
-        //UserBag.getCurrentUser().getNotes().stream().forEachOrdered(e->tableView.getItems().add(e));
-
-        tableView.setItems(FXCollections.observableArrayList(UserManager.getCurrentUser().getNotes()));
-
-        /*for(int i = UserBag.getCurrentUser().getNotes().size() -1; i >= 0; i--){
-            tableView.
-        }*/
-
+        tableView.setItems(FXCollections.observableArrayList(UserManager.getCurrentUser().getNoteManager().getNotes()));
     }
 
     public void refreshTableView(){

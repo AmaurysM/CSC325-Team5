@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane fx:id="borderPane" maxWidth="1.7976931348623157E308" minWidth="0.0" onMouseDragged="#borderPaneDragged" onMouseMoved="#borderPaneMouseMoved" onMousePressed="#borderPaneMousePressed" onMouseReleased="#borderPaneMouseReleased" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csc325Team5.payrollapplication.controllers.TitleBarController">
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="0.0" />
+            <ColumnConstraints hgrow="NEVER" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <HBox fx:id="titleBar" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" style="-fx-background-color: #0e1325;" />
+            <HBox GridPane.columnIndex="1">
+               <children>
+                  <Pane fx:id="minimizePageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#minimize" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: #25c639;" />
+                  <Pane fx:id="enlargePageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#enlarge" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: #fdb929;" />
+                  <Pane fx:id="closePageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#exit" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: #fe554d;" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </top>
+</BorderPane>

@@ -9,10 +9,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
 
 
 import java.io.IOException;
@@ -22,6 +27,8 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
+
+    private Stage primaryStage;
 
     @FXML
     private MFXButton LogoutButton;
@@ -42,6 +49,84 @@ public class EmployeeController implements Initializable {
     private BorderPane borderPane;
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private ScrollPane scrollPane;
+
+    public MFXButton getLogoutButton() {
+        return LogoutButton;
+    }
+
+    public void setLogoutButton(MFXButton logoutButton) {
+        LogoutButton = logoutButton;
+    }
+
+    public MFXButton getNotesButton() {
+        return NotesButton;
+    }
+
+    public void setNotesButton(MFXButton notesButton) {
+        NotesButton = notesButton;
+    }
+
+    public MFXButton getPayrollButton() {
+        return PayrollButton;
+    }
+
+    public void setPayrollButton(MFXButton payrollButton) {
+        PayrollButton = payrollButton;
+    }
+
+    public MFXButton getSettingsButton() {
+        return SettingsButton;
+    }
+
+    public void setSettingsButton(MFXButton settingsButton) {
+        SettingsButton = settingsButton;
+    }
+
+    public Circle getProfilePictureCircle() {
+        return profilePictureCircle;
+    }
+
+    public void setProfilePictureCircle(Circle profilePictureCircle) {
+        this.profilePictureCircle = profilePictureCircle;
+    }
+
+    public BorderPane getBorderPane() {
+        return borderPane;
+    }
+
+    public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
+
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
+    }
+
+    public void setAnchorPane(AnchorPane anchorPane) {
+        this.anchorPane = anchorPane;
+    }
+
+    public ScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void setScrollPane(ScrollPane scrollPane) {
+        this.scrollPane = scrollPane;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    @FXML
     void goToNotesTab(ActionEvent event) throws IOException {
         borderPane.setCenter(ScreenController.find("notesTab"));
     }
@@ -56,6 +141,10 @@ public class EmployeeController implements Initializable {
         borderPane.setCenter(ScreenController.find("settingsTab"));
     }
 
+    public void resizeView(){
+        anchorPane.setPrefSize(scrollPane.getWidth(),scrollPane.getHeight());
+    }
+
     @FXML
     void logoutOfEmployeeView(ActionEvent event) throws IOException {
         ScreenController.setMap( new HashMap<String, FXMLLoader>());
@@ -63,6 +152,8 @@ public class EmployeeController implements Initializable {
         loader.load();
         ScreenController.addScreen("loginScreen", loader);
         ScreenController.activate("loginScreen");
+        primaryStage.setWidth(620);
+        primaryStage.setHeight(400);
     }
 
     @FXML
@@ -86,6 +177,7 @@ public class EmployeeController implements Initializable {
         }
 
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

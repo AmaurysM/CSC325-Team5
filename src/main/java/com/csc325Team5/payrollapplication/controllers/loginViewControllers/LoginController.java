@@ -2,6 +2,7 @@ package com.csc325Team5.payrollapplication.controllers.loginViewControllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
+import com.csc325Team5.payrollapplication.controllers.employeeViewControllers.EmployeeController;
 import com.csc325Team5.payrollapplication.controllers.managerViewControllers.ManagerController;
 import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.model.User;
@@ -200,10 +201,14 @@ public class LoginController implements Initializable {
         } else {
             loader = new FXMLLoader(App.class.getResource("employeeView/employee-View.fxml"));
             loader.load();
+            ((EmployeeController) (loader.getController())).setPrimaryStage(primaryStage);
             ScreenController.addScreen("employee", loader);
             ScreenController.activate("employee");
 
         }
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(800);
+
     }
 
     @Override

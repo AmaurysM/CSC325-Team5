@@ -1,7 +1,9 @@
 package com.csc325Team5.payrollapplication.controllers;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -9,7 +11,10 @@ import java.util.HashMap;
 
 public  class  ScreenController {
     private static HashMap<String, FXMLLoader> screenMap = new HashMap<>();
+    private static FXMLLoader mainPaneLoader;
     private static Scene main;
+
+
 
     public ScreenController(Scene main) {
         this.main = main;
@@ -24,7 +29,10 @@ public  class  ScreenController {
     }
 
     public static void activate(String name) throws IOException {
-        main.setRoot(screenMap.get(name).getRoot());
+        TitleBarController controller = mainPaneLoader.getController();
+        controller.getBorderPane().setCenter(screenMap.get(name).getRoot());
+        controller.getBorderPane().getCenter().setStyle("-fx-padding: 5px; -fx-background-color: #212d59;");
+
     }
 
     public static Scene getMain(){
@@ -32,6 +40,9 @@ public  class  ScreenController {
     }
 
     public static Pane find(String name) throws IOException {
+        if(screenMap.get(name) == null){
+            return null;
+        }
         return screenMap.get(name).getRoot();
     }
 
@@ -43,4 +54,11 @@ public  class  ScreenController {
         screenMap = map;
     }
 
+    public static FXMLLoader getMainPaneLoader() {
+        return mainPaneLoader;
+    }
+
+    public static void setMainPaneLoader(FXMLLoader mainPaneLoader) {
+        ScreenController.mainPaneLoader = mainPaneLoader;
+    }
 }

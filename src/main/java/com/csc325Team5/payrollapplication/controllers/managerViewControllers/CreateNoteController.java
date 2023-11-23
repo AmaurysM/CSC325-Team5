@@ -104,8 +104,8 @@ public class CreateNoteController implements Initializable {
 
         User user = employeeComboBox.getSelectionModel().getSelectedItem();
 
-        user.addNote(UserManager.getCurrentUser(), noteTextArea.getText(), user);
-        UserManager.getCurrentUser().addNote(user.getNotes().get(user.getNotes().size()-1));
+        user.getNoteManager().addNote(UserManager.getCurrentUser(), noteTextArea.getText(), user);
+        UserManager.getCurrentUser().getNoteManager().addNote(user.getNoteManager().getNotes().get(user.getNoteManager().getNotes().size()-1));
         refreshTableView();
 
     }
