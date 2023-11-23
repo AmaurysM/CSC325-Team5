@@ -16,11 +16,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TitleBarController implements Initializable {
+public class TitleBarController implements Initializable  {
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -117,11 +118,14 @@ public class TitleBarController implements Initializable {
         stage.setWidth(bounds.getWidth());
         stage.setHeight(bounds.getHeight());
 
+
     }
 
     @FXML
     void exit(MouseEvent event) {
-        stage.close();
+        if(!isResizing) {
+            stage.close();
+        }
     }
 
     @FXML
@@ -131,8 +135,10 @@ public class TitleBarController implements Initializable {
 
     @FXML
     void titleBarDragged(MouseEvent event) {
-        stage.setX(event.getScreenX() - xOffset);
-        stage.setY(event.getScreenY() - yOffset);
+        if(!isResizing) {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        }
     }
 
     @FXML
@@ -147,42 +153,76 @@ public class TitleBarController implements Initializable {
         if (!isResizing) {
             return;
         }
+        
+        if(onRightBorder){
+            double newWidth = event.getX() + resizeOffsetX;
 
-        double newWidth = event.getX() + resizeOffsetX;
-        double newHeight = event.getY() + resizeOffsetY;
+            if(newWidth < 125){
+                return;
+            }
+            stage.getScene().getWindow().setWidth(newWidth);
 
-        if(newWidth < 150 || newHeight < 45){
-            return;
         }
-        stage.getScene().getWindow().setWidth(newWidth);
-        stage.getScene().getWindow().setHeight(newHeight);
+        if(onBottomBorder){
+            double newHeight = event.getY() + resizeOffsetY;
+
+            if(newHeight < 25){
+                return;
+            }
+            stage.getScene().getWindow().setHeight(newHeight);
+        }
+
+        if(onLeftBorder){
+            double valueX = event.getX();
+            double width = stage.getScene().getWindow().getWidth();
+
+            if(width-valueX < 125 ){
+                return;
+            }
+
+            stage.getScene().getWindow().setWidth(width - valueX);
+            stage.getScene().getWindow().setX(stage.getScene().getWindow().getX() + valueX);
+        }
+
+        if(onTopBorder){
+            double valueY = event.getY();
+            double height = stage.getScene().getWindow().getHeight();
+
+            if(height-valueY < 25){
+                return;
+            }
+
+            stage.getScene().getWindow().setHeight(height - valueY);
+            stage.getScene().getWindow().setY(stage.getY() + valueY);
+        }
+
     }
 
     @FXML
     void borderPaneMouseMoved(MouseEvent event) {
-        double border = 10; // Resize border width
+        double border = 10;
         onRightBorder = event.getX() > borderPane.getWidth() - border;
         onLeftBorder = event.getX() < border;
         onBottomBorder = event.getY() > borderPane.getHeight() - border;
         onTopBorder = event.getY() < border;
 
         if (onRightBorder && onBottomBorder) {
-            //borderPane.setStyle("-fx-border-width: 1 0 0 1; -fx-border-color: #3498db;");
             stage.getScene().setCursor(Cursor.SE_RESIZE);
+        } else if(onLeftBorder && onBottomBorder){
+            stage.getScene().setCursor(Cursor.NE_RESIZE);
+        }else if(onLeftBorder && onTopBorder){
+            stage.getScene().setCursor(Cursor.SE_RESIZE);
+        }else if(onTopBorder && onRightBorder){
+            stage.getScene().setCursor(Cursor.NE_RESIZE);
         } else if (onRightBorder) {
-            //borderPane.setStyle("-fx-border-width: 0 1 0 0; -fx-border-color: #3498db;");
             stage.getScene().setCursor(Cursor.H_RESIZE);
         } else if (onBottomBorder) {
-            //borderPane.setStyle("-fx-border-width: 0 0 1 0; -fx-border-color: #3498db;");
             stage.getScene().setCursor(Cursor.V_RESIZE);
         } else if (onLeftBorder) {
-            //borderPane.setStyle("-fx-border-width: 0 0 0 1; -fx-border-color: #3498db;");
             stage.getScene().setCursor(Cursor.H_RESIZE);
         } else if (onTopBorder) {
-            //borderPane.setStyle("-fx-border-width: 1 0 0 0; -fx-border-color: #3498db;");
             stage.getScene().setCursor(Cursor.V_RESIZE);
         }else {
-            //borderPane.setStyle("-fx-border-width: 0;");
             stage.getScene().setCursor(Cursor.DEFAULT);
         }
 
@@ -191,11 +231,28 @@ public class TitleBarController implements Initializable {
     @FXML
     void borderPaneMousePressed(MouseEvent event) {
 
-        if (onRightBorder || onBottomBorder) {
+
+        if (onRightBorder) {
             isResizing = true;
             resizeOffsetX = borderPane.getWidth() - event.getX();
+
+        }
+
+        if (onBottomBorder){
+            isResizing = true;
             resizeOffsetY = borderPane.getHeight() - event.getY();
         }
+
+        if(onLeftBorder){
+            isResizing = true;
+
+        }
+
+        if(onTopBorder){
+            isResizing = true;
+        }
+
+
 
     }
 
