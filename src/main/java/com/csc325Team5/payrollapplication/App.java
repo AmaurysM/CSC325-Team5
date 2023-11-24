@@ -49,6 +49,7 @@ public class App extends Application {
 
     public static void setUpStage() throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(true);
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("titleBar.fxml"));
         App.scene = new Scene(fxmlLoader.load());
