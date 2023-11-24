@@ -29,6 +29,8 @@ public class TitleBarController implements Initializable  {
     private boolean isResizing = false;
     private double resizeOffsetX = 0;
     private double resizeOffsetY = 0;
+    private double rightSideOfScreenX = 0;
+    private double topOfScreenY = 0;
 
     private boolean onRightBorder;
     private boolean onLeftBorder;
@@ -174,26 +176,30 @@ public class TitleBarController implements Initializable  {
 
         if(onLeftBorder){
             double valueX = event.getX();
-            double width = stage.getScene().getWindow().getWidth();
+            double width = stage.getWidth();
+            double newRightSideOfScreenX = event.getScreenX() + stage.getWidth();
+            double newWidth = width + (rightSideOfScreenX - newRightSideOfScreenX);
 
             if(width-valueX < 125 ){
                 return;
             }
 
-            stage.getScene().getWindow().setWidth(width - valueX);
-            stage.getScene().getWindow().setX(stage.getScene().getWindow().getX() + valueX);
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setWidth(newWidth);
         }
 
         if(onTopBorder){
             double valueY = event.getY();
             double height = stage.getScene().getWindow().getHeight();
+            double newTopOfScreenY = event.getScreenY() + stage.getHeight();
+            double newHeight = height + (topOfScreenY - newTopOfScreenY);
 
             if(height-valueY < 25){
                 return;
             }
 
-            stage.getScene().getWindow().setHeight(height - valueY);
-            stage.getScene().getWindow().setY(stage.getY() + valueY);
+            stage.setY(event.getScreenY() - yOffset);
+            stage.setHeight(newHeight);
         }
 
     }
@@ -245,11 +251,16 @@ public class TitleBarController implements Initializable  {
 
         if(onLeftBorder){
             isResizing = true;
-
+            xOffset = event.getSceneX();
+            rightSideOfScreenX = event.getScreenX() + stage.getWidth();
+            resizeOffsetX = borderPane.getWidth() - event.getX();
         }
 
         if(onTopBorder){
             isResizing = true;
+            yOffset = event.getSceneY();
+            topOfScreenY = event.getScreenY() + stage.getHeight();
+            resizeOffsetY = borderPane.getHeight() - event.getY();
         }
 
 
