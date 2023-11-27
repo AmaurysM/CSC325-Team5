@@ -177,6 +177,15 @@ public class CreateOrEditUserController implements Initializable {
         }
         System.out.println("updating");
         User user = (User) (employeesTabController).getTableView().getSelectionModel().getSelectedItem();
+        DocumentReference docRef = App.fstore.collection("Users").document(userNameTextField.getText());
+        System.out.println("The editing user is " + docRef);
+
+        docRef.update("User_Name",userNameTextField.getText());
+        docRef.update("Name", nameTextField.getText());
+        docRef.update("Age",ageTextField.getText());
+        docRef.update("Salary",SalaryTextField.getText());
+        docRef.update("Password",passwordTextField.getText());
+        docRef.update("Role",roleComboBox.getSelectionModel().getSelectedItem().toString() );
 
         UserManager.findUser(user).setName(nameTextField.getText());
         UserManager.findUser(user).setUsername(userNameTextField.getText());
@@ -218,7 +227,7 @@ public class CreateOrEditUserController implements Initializable {
     //This function adds user to firebase based on "User_Name"
     public void addUserToDatabase() {
 
-        DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
+        DocumentReference docRef = App.fstore.collection("Users").document(userNameTextField.getText());
        if(foundUserInDatabase()){
            System.out.println("User with this User Name already exists in database!!!");
 
@@ -231,6 +240,7 @@ public class CreateOrEditUserController implements Initializable {
            data.put("Password",passwordTextField.getText());
            data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
            data.put("Salary",SalaryTextField.getText());
+           data.put("ID", roleComboBox.getSelectionModel().getSelectedItem().toString());
            //asynchronously write data
            ApiFuture<WriteResult> result = docRef.set(data);
        }

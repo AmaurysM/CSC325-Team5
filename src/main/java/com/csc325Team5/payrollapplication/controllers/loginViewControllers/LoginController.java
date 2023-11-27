@@ -123,6 +123,13 @@ public class LoginController implements Initializable {
 
                 }
             }
+            else
+            {
+                warningLabel.setVisible(true);
+                warningLabel.setText("THIS USER DOES NOT EXIST");
+                System.out.println("in the else block");
+                return;
+            }
 
         }
         catch (InterruptedException | ExecutionException ex)

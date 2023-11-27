@@ -4,6 +4,11 @@ import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
 import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.utilities.Role;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import javafx.fxml.FXMLLoader;
 import org.controlsfx.control.PopOver;
 import com.csc325Team5.payrollapplication.model.User;
@@ -23,7 +28,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class EmployeesTabController implements Initializable {
 
@@ -165,9 +171,14 @@ public class EmployeesTabController implements Initializable {
 
     }
 
-    void deleteUser(User user){
+    void deleteUser(User user)  {
         UserManager.removeUser(user);
         refreshTableView();
+        System.out.println("about to delete a user");
+        DocumentReference docRef = App.fstore.collection("Users").document(user.getUsername());
+       docRef.delete();
+
+
     }
 
     void editUser(){// runs when you hit the user edit button on the drop-down menu
@@ -175,6 +186,8 @@ public class EmployeesTabController implements Initializable {
         ManagerController managerController = (ManagerController) ScreenController.findController("manager");
 
         User userToBeEdited = tableView.getSelectionModel().getSelectedItem();
+        System.out.println("here we are...");
+        System.out.println(userToBeEdited.getUsername());
         createOrEditUserController.getNameTextField().setText(userToBeEdited.getName());
         createOrEditUserController.getUserNameTextField().setText(userToBeEdited.getUsername());
         createOrEditUserController.getPasswordTextField().setText(userToBeEdited.getPassword());
@@ -200,7 +213,9 @@ public class EmployeesTabController implements Initializable {
         tableView.setItems(
             FXCollections.observableArrayList(UserManager.getUserBag().stream().toList()).filtered(e->
                 Role.MANAGER.name().compareTo(e.getRole().toUpperCase()) != 0
+
             )
+
         );
     }
 
