@@ -9,7 +9,7 @@
 
 <BorderPane fx:id="borderPane" maxWidth="1.7976931348623157E308" minWidth="0.0" onMouseDragged="#borderPaneDragged" onMouseMoved="#borderPaneMouseMoved" onMousePressed="#borderPaneMousePressed" onMouseReleased="#borderPaneMouseReleased" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csc325Team5.payrollapplication.controllers.TitleBarController">
    <top>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane style="-fx-background-color: #fe554d;" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="0.0" />
             <ColumnConstraints hgrow="NEVER" />
@@ -19,7 +19,7 @@
          </rowConstraints>
          <children>
             <HBox fx:id="titleBar" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" style="-fx-background-color: #0e1325;" />
-            <HBox GridPane.columnIndex="1">
+            <HBox prefWidth="130.0" style="-fx-background-color: #fe554d;" GridPane.columnIndex="1">
                <children>
                   <Pane fx:id="minimizePageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#minimize" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: #25c639;" />
                   <Pane fx:id="enlargePageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#enlarge" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: #fdb929;" />

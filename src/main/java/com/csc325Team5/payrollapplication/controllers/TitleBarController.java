@@ -137,6 +137,9 @@ public class TitleBarController implements Initializable  {
 
     @FXML
     void titleBarDragged(MouseEvent event) {
+        if(stage.isMaximized()){
+            stage.setMaximized(false);
+        }
         if(!isResizing) {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
@@ -159,7 +162,7 @@ public class TitleBarController implements Initializable  {
         if(onRightBorder){
             double newWidth = event.getX() + resizeOffsetX;
 
-            if(newWidth < 125){
+            if(newWidth < 135){
                 return;
             }
             stage.getScene().getWindow().setWidth(newWidth);
@@ -168,7 +171,7 @@ public class TitleBarController implements Initializable  {
         if(onBottomBorder){
             double newHeight = event.getY() + resizeOffsetY;
 
-            if(newHeight < 25){
+            if(newHeight < 30){
                 return;
             }
             stage.getScene().getWindow().setHeight(newHeight);
@@ -180,7 +183,7 @@ public class TitleBarController implements Initializable  {
             double newRightSideOfScreenX = event.getScreenX() + stage.getWidth();
             double newWidth = width + (rightSideOfScreenX - newRightSideOfScreenX);
 
-            if(width-valueX < 125 ){
+            if(width-valueX < 135 ){
                 return;
             }
 
@@ -194,7 +197,7 @@ public class TitleBarController implements Initializable  {
             double newTopOfScreenY = event.getScreenY() + stage.getHeight();
             double newHeight = height + (topOfScreenY - newTopOfScreenY);
 
-            if(height-valueY < 25){
+            if(height-valueY < 30){
                 return;
             }
 
