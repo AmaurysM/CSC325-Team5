@@ -2,6 +2,7 @@ package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
+import com.csc325Team5.payrollapplication.controllers.loginViewControllers.LoginController;
 import com.csc325Team5.payrollapplication.model.UserManager;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -269,6 +270,7 @@ public class ManagerController implements Initializable {
         ScreenController.setMap( new HashMap<String, FXMLLoader>());
         FXMLLoader loader = new FXMLLoader(App.class.getResource("loginView/login-View.fxml"));
         loader.load();
+        ((LoginController)loader.getController()).setPrimaryStage(primaryStage);
         ScreenController.addScreen("loginScreen", loader);
         ScreenController.activate("loginScreen");
         primaryStage.setWidth(620);
