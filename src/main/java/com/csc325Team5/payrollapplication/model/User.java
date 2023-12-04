@@ -5,7 +5,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.Objects;
 
 public class User implements Comparable<User>{
@@ -13,9 +12,9 @@ public class User implements Comparable<User>{
     private String name;
     private String username;
     private String password;
-    private int age;
+    private long age;
     private String ID;
-    private int salary;
+    private long salary;
     private String role;
     private double hoursWorkedThisWeek = 0.0;
     private boolean clockedIn;
@@ -24,7 +23,7 @@ public class User implements Comparable<User>{
     private NoteManager notes = new NoteManager();
     private PayStubManager payStubs = new PayStubManager();
 
-    public User(String name, String username, String password, int age, int salary, String role, String ID) {
+    public User(String name, String username, String password, Long age, long salary, String role, String ID) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -91,11 +90,11 @@ public class User implements Comparable<User>{
         this.password = password;
     }
 
-    public int getAge() {
+    public long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(long age) {
         this.age = age;
     }
 
@@ -166,11 +165,11 @@ public class User implements Comparable<User>{
         return roundedHours;
     }
 
-    public int getSalary() {
+    public long getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(long salary) {
         this.salary = salary;
     }
 

@@ -209,15 +209,69 @@ public class EmployeesTabController implements Initializable {
         createOrEditUserController.getCreateOrEditUserButton().setText("ADD");
     }
 
-    public void populateTableView(){
-        tableView.setItems(
-            FXCollections.observableArrayList(UserManager.getUserBag().stream().toList()).filtered(e->
-                Role.MANAGER.name().compareTo(e.getRole().toUpperCase()) != 0
 
-            )
+    public void populateTableView(){
+        ApiFuture<QuerySnapshot> future =  App.fstore.collection("Users").get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents;
+        User[] arr = new User[100];
+
+        int i = 0;
+        try
+        {
+            documents = future.get().getDocuments();
+            if(documents.size()>0)
+            {
+
+                for (QueryDocumentSnapshot document : documents)
+                {
+                    if(document.getData().get("Role").equals("MANAGER"))
+                    {
+
+                    }
+                    else
+                    {
+                        System.out.println("The type is ");
+                        System.out.println(((Object)document.getData().get("Age")).getClass().getSimpleName());
+                        arr[i] = new User((String) document.getData().get("Name"),
+                                (String) document.getData().get("User_Name"),
+                                (String) document.getData().get("Password"),
+                                (Long) document.getData().get("Age"),
+                                (Long) document.getData().get("Salary"),
+                                (String)  document.getData().get("Role"),
+                                (String) document.getData().get("ID"));
+                        i++;
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("No data");
+            }
+
+
+        }
+        catch (InterruptedException | ExecutionException ex)
+        {
+            ex.printStackTrace();
+        }
+        tableView.setItems(
+                FXCollections.observableArrayList(
+                        arr
+                )
 
         );
     }
+
+//    public void populateTableView(){
+//        tableView.setItems(
+//                FXCollections.observableArrayList(UserManager.getUserBag().stream().toList()).filtered(e->
+//                        Role.MANAGER.name().compareTo(e.getRole().toUpperCase()) != 0
+//
+//                )
+//
+//        );
+//    }
 
     public void refreshTableView() {
         tableView.refresh();

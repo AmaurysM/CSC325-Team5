@@ -182,19 +182,20 @@ public class CreateOrEditUserController implements Initializable {
 
         docRef.update("User_Name",userNameTextField.getText());
         docRef.update("Name", nameTextField.getText());
-        docRef.update("Age",ageTextField.getText());
-        docRef.update("Salary",SalaryTextField.getText());
+        docRef.update("Age",Integer.valueOf(ageTextField.getText()));
+        docRef.update("Salary",Integer.valueOf(SalaryTextField.getText()));
         docRef.update("Password",passwordTextField.getText());
         docRef.update("Role",roleComboBox.getSelectionModel().getSelectedItem().toString() );
-
-        UserManager.findUser(user).setName(nameTextField.getText());
-        UserManager.findUser(user).setUsername(userNameTextField.getText());
-        UserManager.findUser(user).setPassword(passwordTextField.getText());
-        user.setAge(Integer.valueOf(ageTextField.getText()));
-        user.setSalary(Integer.valueOf(SalaryTextField.getText()));
-        UserManager.findUser(user).setRole(roleComboBox.getSelectionModel().getSelectedItem().toString());
+//
+//        UserManager.findUser(user).setName(nameTextField.getText());
+//        UserManager.findUser(user).setUsername(userNameTextField.getText());
+//        UserManager.findUser(user).setPassword(passwordTextField.getText());
+//        user.setAge(Integer.valueOf(ageTextField.getText()));
+//        user.setSalary(Integer.valueOf(SalaryTextField.getText()));
+//        UserManager.findUser(user).setRole(roleComboBox.getSelectionModel().getSelectedItem().toString());
 
         quitCreatingOrEditingUser(event);
+
     }
 
     public boolean allFieldsFilled(){
@@ -235,11 +236,11 @@ public class CreateOrEditUserController implements Initializable {
        else{
            Map<String, Object> data = new HashMap<>();
            data.put("Name", nameTextField.getText());
-           data.put("Age", Integer.parseInt(ageTextField.getText()));
+           data.put("Age", Integer.valueOf(ageTextField.getText()));
            data.put("User_Name",userNameTextField.getText());
            data.put("Password",passwordTextField.getText());
            data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
-           data.put("Salary",SalaryTextField.getText());
+           data.put("Salary",Integer.valueOf(SalaryTextField.getText()));
            data.put("ID", roleComboBox.getSelectionModel().getSelectedItem().toString());
            //asynchronously write data
            ApiFuture<WriteResult> result = docRef.set(data);

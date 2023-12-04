@@ -17,7 +17,7 @@ public class UserManager {
     //private static final String roles;
 
     //String name, String username, String password, int age, String ID, int salary, String role
-    public static void createUser(String name, String username, String password, int age, int salary, String role){
+    public static void createUser(String name, String username, String password, long age, int salary, String role){
         User user = new User(name,username,password,age,salary,role,createID());
         userBag.add(user);
         numOfUsers++;
