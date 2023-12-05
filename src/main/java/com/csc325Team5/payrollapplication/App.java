@@ -35,8 +35,8 @@ public class App extends Application {
         fauth = FirebaseAuth.getInstance();
 
         // 2 basic users to log into the manager view and employee view
-        UserManager.createUser("a","a","a",10,10,"manager");
-        UserManager.createUser("b","b","b",20,20,"employee");
+        //UserManager.createUser("a","a","a",10,10,"manager");
+        //UserManager.createUser("b","b","b",20,20,"employee");
         //
 
         // System.out.println(ScreenController.find("titleBar"));
