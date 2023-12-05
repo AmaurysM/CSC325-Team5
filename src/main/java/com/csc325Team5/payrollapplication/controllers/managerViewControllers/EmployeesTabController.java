@@ -214,7 +214,7 @@ public class EmployeesTabController implements Initializable {
         ApiFuture<QuerySnapshot> future =  App.fstore.collection("Users").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
-        User[] arr = new User[100];
+        LinkedList<User> arr = new LinkedList<>();
 
         int i = 0;
         try
@@ -231,15 +231,16 @@ public class EmployeesTabController implements Initializable {
                     }
                     else
                     {
-                        System.out.println("The type is ");
-                        System.out.println(((Object)document.getData().get("Age")).getClass().getSimpleName());
-                        arr[i] = new User((String) document.getData().get("Name"),
+                        // System.out.println("The type is ");
+                        // System.out.println(((Object)document.getData().get("Age")).getClass().getSimpleName());
+                        User user = new User((String) document.getData().get("Name"),
                                 (String) document.getData().get("User_Name"),
                                 (String) document.getData().get("Password"),
                                 (Long) document.getData().get("Age"),
                                 (Long) document.getData().get("Salary"),
                                 (String)  document.getData().get("Role"),
                                 (String) document.getData().get("ID"));
+                        arr.add(user);
                         i++;
                     }
                 }
@@ -259,6 +260,7 @@ public class EmployeesTabController implements Initializable {
                 FXCollections.observableArrayList(
                         arr
                 )
+
 
         );
     }
