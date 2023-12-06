@@ -223,7 +223,7 @@ public class EmployeesTabController implements Initializable {
             documents = future.get().getDocuments();
             if(documents.size()>0)
             {
-
+                  System.out.println("The Current list of users is ===");
                 for (QueryDocumentSnapshot document : documents)
                 {
                     if(document.getData().get("Role").equals("MANAGER"))
@@ -232,7 +232,7 @@ public class EmployeesTabController implements Initializable {
                     }
                     else
                     {
-
+                        System.out.println(document.getData().get("Name"));
                         // System.out.println("The type is ");
                         // System.out.println(((Object)document.getData().get("Age")).getClass().getSimpleName());
                         User user = new User((String) document.getData().get("Name"),
@@ -246,6 +246,7 @@ public class EmployeesTabController implements Initializable {
                         i++;
                     }
                 }
+                System.out.println();
             }
             else
             {
