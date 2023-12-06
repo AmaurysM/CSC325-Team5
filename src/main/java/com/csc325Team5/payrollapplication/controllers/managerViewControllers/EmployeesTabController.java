@@ -173,11 +173,13 @@ public class EmployeesTabController implements Initializable {
 
     void deleteUser(User user)  {
         UserManager.removeUser(user);
-        refreshTableView();
+
         System.out.println("about to delete a user");
         DocumentReference docRef = App.fstore.collection("Users").document(user.getUsername());
        docRef.delete();
-
+       System.out.println("user deleted");
+        refreshTableView();
+        refreshTableView(); // Calling it twice to make sure changes reflect in manager view
 
     }
 
@@ -215,7 +217,6 @@ public class EmployeesTabController implements Initializable {
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         LinkedList<User> arr = new LinkedList<>();
-
         int i = 0;
         try
         {
@@ -231,6 +232,7 @@ public class EmployeesTabController implements Initializable {
                     }
                     else
                     {
+
                         // System.out.println("The type is ");
                         // System.out.println(((Object)document.getData().get("Age")).getClass().getSimpleName());
                         User user = new User((String) document.getData().get("Name"),
@@ -263,6 +265,7 @@ public class EmployeesTabController implements Initializable {
 
 
         );
+        System.out.println("Done updating the users list in view");
     }
 
 //    public void populateTableView(){
@@ -278,6 +281,7 @@ public class EmployeesTabController implements Initializable {
     public void refreshTableView() {
         tableView.refresh();
         populateTableView();
+
         tableView.sort();
     }
 

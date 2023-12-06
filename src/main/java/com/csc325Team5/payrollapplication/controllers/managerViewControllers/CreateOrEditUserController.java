@@ -22,6 +22,8 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+import static com.csc325Team5.payrollapplication.model.UserManager.createID;
+
 public class CreateOrEditUserController implements Initializable {
 
     @FXML
@@ -195,7 +197,7 @@ public class CreateOrEditUserController implements Initializable {
 //        UserManager.findUser(user).setRole(roleComboBox.getSelectionModel().getSelectedItem().toString());
 
         quitCreatingOrEditingUser(event);
-
+        quitCreatingOrEditingUser(event);
     }
 
     public boolean allFieldsFilled(){
@@ -241,7 +243,7 @@ public class CreateOrEditUserController implements Initializable {
            data.put("Password",passwordTextField.getText());
            data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
            data.put("Salary",Integer.valueOf(SalaryTextField.getText()));
-           data.put("ID", roleComboBox.getSelectionModel().getSelectedItem().toString());
+           data.put("ID", createID());
            //asynchronously write data
            ApiFuture<WriteResult> result = docRef.set(data);
        }
