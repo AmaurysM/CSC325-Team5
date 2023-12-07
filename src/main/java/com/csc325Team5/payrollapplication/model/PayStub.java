@@ -110,6 +110,7 @@ public class PayStub {
                 ", hourlyRate=" + hourlyRate +
                 ", totalPay=" + totalPay +
                 ", role=" + role +
+                ", user=" + user +
                 '}';
     }
 }

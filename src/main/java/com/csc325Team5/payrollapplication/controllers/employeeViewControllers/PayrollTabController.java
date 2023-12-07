@@ -82,6 +82,7 @@ public class PayrollTabController implements Initializable {
 
     public Node newPaystub(PayStub payStub){
         FXMLLoader loader = new FXMLLoader(App.class.getResource("employeeView/paystubWidget.fxml"));
+
         try {
             loader.load();
             PaystubWidgetController controller = loader.getController();
@@ -96,9 +97,13 @@ public class PayrollTabController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         String[] filters = {"RECENT","OLDEST","MOST PAY","LEAST PAY"};
         filterComboBox.getItems().addAll(filters);
-
-        UserManager.getCurrentUser().getPayStubManager().getPayStubs().forEach(e->{
-            tilePane.getChildren().add(newPaystub(e));
+        // I hate this.
+        UserManager.getUserBag().forEach(e->{
+            if(UserManager.getCurrentUser().getName().equals(e.getName())){
+                e.getPayStubManager().getPayStubs().forEach(b->{
+                    tilePane.getChildren().add(newPaystub(b));
+                });
+            }
         });
     }
 }
