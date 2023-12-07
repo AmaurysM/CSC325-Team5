@@ -288,9 +288,10 @@ public class ManagerController implements Initializable {
 
     @FXML
     void sendPayRoll(ActionEvent event) {
-        UserManager.getUserBag().forEach( e ->
-                    e.getPayStubManager().addPayStub(e)
-                );
+        UserManager.getUserBag().forEach( e ->{
+            e.getPayStubManager().addPayStub(e);
+            }
+        );
     }
 
     @Override

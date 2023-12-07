@@ -110,8 +110,13 @@ public class NotesTabController implements Initializable {
         String[] filters = {"RECENT","OLDEST","NAME A-Z", "NAME Z-A"};
         filterComboBox.getItems().addAll(filters);
 
-        UserManager.getCurrentUser().getNoteManager().getNotes().stream().sorted(Comparator.comparing(Note::getTime).reversed()).forEach((e)->{
-            tilePane.getChildren().add(newNote(e));
+        UserManager.getUserBag().forEach(e->{
+            if(UserManager.getCurrentUser().getName().equals(e.getName())){
+                e.getNoteManager().getNotes().forEach(b->{
+                    tilePane.getChildren().add(newNote(b));
+
+                });
+            }
         });
 
         filterComboBox.getSelectionModel().select(0);

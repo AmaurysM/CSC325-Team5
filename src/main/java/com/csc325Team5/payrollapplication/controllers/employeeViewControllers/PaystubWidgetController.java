@@ -88,7 +88,6 @@ public class PaystubWidgetController {
     }
 
     public void createWidget(PayStub payStub) {
-        //System.out.println(user.getHoursWorkedThisWeek() + ": USER");
         this.payDateLabel.setText(payStub.getTimeCreated().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
         this.employeeIDLabel.setText(payStub.getUser().getID());
         this.hoursLabel.setText(String.valueOf(payStub.getHoursWorked()));
