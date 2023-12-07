@@ -70,7 +70,7 @@ public class SettingsTabController implements Initializable {
 
     @FXML
     void logout(ActionEvent event) throws IOException {
-        ScreenController.activate("loginScreen");
+        ((ManagerController)ScreenController.findController("manager")).logoutOfManagerView(event);
     }
 
     @Override
