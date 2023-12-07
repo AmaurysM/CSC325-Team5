@@ -157,12 +157,7 @@ public class CreateOrEditUserController implements Initializable {
         {
             addUserToDatabase();
 
-            UserManager.createUser(nameTextField.getText(),
-                    userNameTextField.getText(),
-                    passwordTextField.getText(),
-                    Integer.valueOf(ageTextField.getText()),
-                    Integer.valueOf(SalaryTextField.getText()),
-                    roleComboBox.getSelectionModel().getSelectedItem().toString());
+
 
             quitCreatingOrEditingUser(event);
         }
@@ -188,13 +183,13 @@ public class CreateOrEditUserController implements Initializable {
         docRef.update("Salary",Integer.valueOf(SalaryTextField.getText()));
         docRef.update("Password",passwordTextField.getText());
         docRef.update("Role",roleComboBox.getSelectionModel().getSelectedItem().toString() );
-//
-//        UserManager.findUser(user).setName(nameTextField.getText());
-//        UserManager.findUser(user).setUsername(userNameTextField.getText());
-//        UserManager.findUser(user).setPassword(passwordTextField.getText());
-//        user.setAge(Integer.valueOf(ageTextField.getText()));
-//        user.setSalary(Integer.valueOf(SalaryTextField.getText()));
-//        UserManager.findUser(user).setRole(roleComboBox.getSelectionModel().getSelectedItem().toString());
+
+        UserManager.findUser(user).setName(nameTextField.getText());
+        UserManager.findUser(user).setUsername(userNameTextField.getText());
+        UserManager.findUser(user).setPassword(passwordTextField.getText());
+        user.setAge(Integer.valueOf(ageTextField.getText()));
+        user.setSalary(Integer.valueOf(SalaryTextField.getText()));
+        UserManager.findUser(user).setRole(roleComboBox.getSelectionModel().getSelectedItem().toString());
 
         quitCreatingOrEditingUser(event);
         quitCreatingOrEditingUser(event);
@@ -236,6 +231,7 @@ public class CreateOrEditUserController implements Initializable {
 
        }
        else{
+           String id = createID();
            Map<String, Object> data = new HashMap<>();
            data.put("Name", nameTextField.getText());
            data.put("Age", Integer.valueOf(ageTextField.getText()));
@@ -243,11 +239,21 @@ public class CreateOrEditUserController implements Initializable {
            data.put("Password",passwordTextField.getText());
            data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
            data.put("Salary",Integer.valueOf(SalaryTextField.getText()));
-           data.put("ID", createID());
+           data.put("ID", id);
            //asynchronously write data
            ApiFuture<WriteResult> result = docRef.set(data);
+
+           UserManager.createUser(nameTextField.getText(),
+                   userNameTextField.getText(),
+                   passwordTextField.getText(),
+                   Integer.valueOf(ageTextField.getText()),
+                   Integer.valueOf(SalaryTextField.getText()),
+                   roleComboBox.getSelectionModel().getSelectedItem().toString(),
+                   id);
        }
 
+
+       System.out.println("Total users after adding user are : "+ UserManager.getNumOfUsers());
     }
 
     //This function return true if the user exists in firebase database and false if not

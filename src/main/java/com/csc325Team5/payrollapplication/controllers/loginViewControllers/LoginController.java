@@ -102,6 +102,7 @@ public class LoginController implements Initializable {
                             user1.setRole((String) document.getData().get("Role"));
                             foundUser = true;
 
+
                         }
                         else
                         {
@@ -111,6 +112,14 @@ public class LoginController implements Initializable {
                         }
 
                     }
+
+                    UserManager.createUser((String) document.getData().get("Name"),
+                            (String) document.getData().get("User_Name"),
+                            (String) document.getData().get("Password"),
+                            (Long) document.getData().get("Age"),
+                            (Long) document.getData().get("Salary"),
+                            (String) document.getData().get("Role"),
+                            (String) document.getData().get("ID"));
 
 
                 }
@@ -148,6 +157,8 @@ public class LoginController implements Initializable {
         clearFields();
         UserManager.setCurrentUser(user1);
         loadViews();
+
+        System.out.println("Total users are: "+ UserManager.getNumOfUsers());
     }
 
     public boolean ableToLogin(User user, String username){

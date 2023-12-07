@@ -181,6 +181,10 @@ public class EmployeesTabController implements Initializable {
         refreshTableView();
         refreshTableView(); // Calling it twice to make sure changes reflect in manager view
 
+        System.out.println("Total users after deleting are : " + UserManager.getNumOfUsers());
+
+        UserManager.getUserBag().forEach(user1 -> System.out.println(user1.getUsername()));
+
     }
 
     void editUser(){// runs when you hit the user edit button on the drop-down menu

@@ -17,8 +17,8 @@ public class UserManager {
     //private static final String roles;
 
     //String name, String username, String password, int age, String ID, int salary, String role
-    public static void createUser(String name, String username, String password, long age, int salary, String role){
-        User user = new User(name,username,password,age,salary,role,createID());
+    public static void createUser(String name, String username, String password, long age, long salary, String role, String ID){
+        User user = new User(name,username,password,age,salary,role,ID);
         userBag.add(user);
         numOfUsers++;
     }
@@ -75,6 +75,7 @@ public class UserManager {
 
     public static void removeUser(User user){
         userBag.remove(user);
+        numOfUsers--;
     }
 
     public static void printUsers(){userBag.forEach(e -> System.out.println(e.getName() + "\n"));}
