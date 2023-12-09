@@ -183,7 +183,7 @@ public class EmployeeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        ScreenController.setTitleBarText("PAYROLL - Employee");
         try {
 
             Image image = new Image(String.valueOf(App.class.getResource("images/profile-pic.png")));

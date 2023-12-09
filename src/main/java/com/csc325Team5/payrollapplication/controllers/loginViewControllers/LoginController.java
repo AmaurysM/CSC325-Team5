@@ -2,6 +2,7 @@ package com.csc325Team5.payrollapplication.controllers.loginViewControllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
+import com.csc325Team5.payrollapplication.controllers.TitleBarController;
 import com.csc325Team5.payrollapplication.controllers.employeeViewControllers.EmployeeController;
 import com.csc325Team5.payrollapplication.controllers.managerViewControllers.ManagerController;
 import com.csc325Team5.payrollapplication.model.UserManager;
@@ -231,8 +232,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //System.out.println(primaryStage);
-
-
+        ScreenController.setTitleBarText("PAYROLL - Login");
     }
 }

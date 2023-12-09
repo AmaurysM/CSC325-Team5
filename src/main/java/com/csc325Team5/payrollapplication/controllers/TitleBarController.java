@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Label;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -31,12 +32,10 @@ public class TitleBarController implements Initializable  {
     private double resizeOffsetY = 0;
     private double rightSideOfScreenX = 0;
     private double topOfScreenY = 0;
-
     private boolean onRightBorder;
     private boolean onLeftBorder;
     private boolean onBottomBorder;
     private boolean onTopBorder;
-
 
     @FXML
     private BorderPane borderPane;
@@ -53,6 +52,8 @@ public class TitleBarController implements Initializable  {
     @FXML
     private HBox titleBar;
 
+    @FXML
+    private Label titleLable;
 
     private Stage stage;
 
@@ -104,6 +105,14 @@ public class TitleBarController implements Initializable  {
         this.borderPane = borderPane;
     }
 
+    public Label getTitleLable() {
+        return titleLable;
+    }
+
+    public void setTitleLable(Label titleLable) {
+        this.titleLable = titleLable;
+    }
+
     @FXML
     void enlarge(MouseEvent event) {
 
@@ -119,7 +128,6 @@ public class TitleBarController implements Initializable  {
         stage.setY(bounds.getMinY());
         stage.setWidth(bounds.getWidth());
         stage.setHeight(bounds.getHeight());
-
 
     }
 

@@ -61,4 +61,8 @@ public  class  ScreenController {
     public static void setMainPaneLoader(FXMLLoader mainPaneLoader) {
         ScreenController.mainPaneLoader = mainPaneLoader;
     }
+
+    public static void setTitleBarText(String title){
+        ((TitleBarController)mainPaneLoader.getController()).getTitleLable().setText(title);
+    }
 }

@@ -202,7 +202,7 @@ public class ManagerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        ScreenController.setTitleBarText("PAYROLL - Manager");
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("managerView/employeesTab.fxml"));
             loader.load();
