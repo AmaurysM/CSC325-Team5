@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,7 +20,14 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox fx:id="titleBar" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" style="-fx-background-color: #0e1325;" />
+            <HBox fx:id="titleBar" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" style="-fx-background-color: #0e1325;">
+               <children>
+                  <Label fx:id="titleLable" maxHeight="1.7976931348623157E308" text="***" textFill="WHITE">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+               </children></HBox>
             <HBox prefWidth="130.0" style="-fx-background-color: #fe554d;" GridPane.columnIndex="1">
                <children>
                   <Pane fx:id="minimizePageButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#minimize" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: #25c639;" />

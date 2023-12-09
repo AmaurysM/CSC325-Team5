@@ -105,5 +105,6 @@ public class PayrollTabController implements Initializable {
                 });
             }
         });
+        filterComboBox.getSelectionModel().select(0);
     }
 }
