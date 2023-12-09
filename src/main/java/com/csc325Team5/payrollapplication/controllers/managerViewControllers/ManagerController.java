@@ -29,32 +29,19 @@ public class ManagerController implements Initializable {
     private MFXButton EmployeesButton;
 
     @FXML
-    private TextField CurrentNameTextField;
-
-    @FXML
-    private TextField CurrentSalaryTextField;
-
-    @FXML
-    private TextField CurrentUserNameTextField;
+    private Label IDLabel;
 
     @FXML
     private MFXButton LogoutButton;
 
     @FXML
+    private Label NameLabel;
+
+    @FXML
     private MFXButton NotesButton;
 
     @FXML
-    private MFXButton PayrollButton;
-
-    @FXML
     private MFXButton SettingsButton;
-
-
-    @FXML
-    private StackPane addUserStackPane;
-
-    @FXML
-    private TextField ageTextField;
 
     @FXML
     private BorderPane borderPane;
@@ -63,24 +50,18 @@ public class ManagerController implements Initializable {
     private AnchorPane centerAnchorPane;
 
     @FXML
-    private TextField nameTextField;
-
-    @FXML
-    private TextField userNameTextField;
-
-    @FXML
-    private TextField passwordTextField;
-
-    @FXML
     private MFXButton sendPayRollButton;
-    @FXML
-    private TextField roleTextField;
-
-    @FXML
-    private TextField SalaryTextField;
 
     @FXML
     private StackPane stackPane;
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
 
     public ScreenController getManagerScreenController() {
         return managerScreenController;
@@ -88,22 +69,6 @@ public class ManagerController implements Initializable {
 
     public void setManagerScreenController(ScreenController managerScreenController) {
         this.managerScreenController = managerScreenController;
-    }
-
-    public TextField getCurrentNameTextField() {
-        return CurrentNameTextField;
-    }
-
-    public void setCurrentNameTextField(TextField currentNameTextField) {
-        CurrentNameTextField = currentNameTextField;
-    }
-
-    public TextField getCurrentUserNameTextField() {
-        return CurrentUserNameTextField;
-    }
-
-    public void setCurrentUserNameTextField(TextField currentUserNameTextField) {
-        CurrentUserNameTextField = currentUserNameTextField;
     }
 
     public MFXButton getEmployeesButton() {
@@ -114,12 +79,28 @@ public class ManagerController implements Initializable {
         EmployeesButton = employeesButton;
     }
 
+    public Label getIDLabel() {
+        return IDLabel;
+    }
+
+    public void setIDLabel(Label IDLabel) {
+        this.IDLabel = IDLabel;
+    }
+
     public MFXButton getLogoutButton() {
         return LogoutButton;
     }
 
     public void setLogoutButton(MFXButton logoutButton) {
         LogoutButton = logoutButton;
+    }
+
+    public Label getNameLabel() {
+        return NameLabel;
+    }
+
+    public void setNameLabel(Label nameLabel) {
+        NameLabel = nameLabel;
     }
 
     public MFXButton getNotesButton() {
@@ -130,61 +111,12 @@ public class ManagerController implements Initializable {
         NotesButton = notesButton;
     }
 
-    public MFXButton getPayrollButton() {
-        return PayrollButton;
-    }
-
-    public void setPayrollButton(MFXButton payrollButton) {
-        PayrollButton = payrollButton;
-    }
-
-    public TextField getCurrentSalaryTextField() {
-        return CurrentSalaryTextField;
-    }
-
-    public TextField getSalaryTextField() {
-        return SalaryTextField;
-    }
-
-    public void setSalaryTextField(TextField salaryTextField) {
-        SalaryTextField = salaryTextField;
-    }
-
-    public void setCurrentSalaryTextField(TextField currentSalaryTextField) {
-        CurrentSalaryTextField = currentSalaryTextField;
-    }
-
-    public StackPane getStackPane() {
-        return stackPane;
-    }
-
-    public void setStackPane(StackPane stackPane) {
-        this.stackPane = stackPane;
-    }
-
     public MFXButton getSettingsButton() {
         return SettingsButton;
     }
 
     public void setSettingsButton(MFXButton settingsButton) {
         SettingsButton = settingsButton;
-    }
-
-
-    public StackPane getAddUserStackPane() {
-        return addUserStackPane;
-    }
-
-    public void setAddUserStackPane(StackPane addUserStackPane) {
-        this.addUserStackPane = addUserStackPane;
-    }
-
-    public TextField getAgeTextField() {
-        return ageTextField;
-    }
-
-    public void setAgeTextField(TextField ageTextField) {
-        this.ageTextField = ageTextField;
     }
 
     public BorderPane getBorderPane() {
@@ -203,46 +135,20 @@ public class ManagerController implements Initializable {
         this.centerAnchorPane = centerAnchorPane;
     }
 
-    public TextField getNameTextField() {
-        return nameTextField;
+    public MFXButton getSendPayRollButton() {
+        return sendPayRollButton;
     }
 
-    public void setNameTextField(TextField nameTextField) {
-        this.nameTextField = nameTextField;
+    public void setSendPayRollButton(MFXButton sendPayRollButton) {
+        this.sendPayRollButton = sendPayRollButton;
     }
 
-    public TextField getUserNameTextField() {
-        return userNameTextField;
+    public StackPane getStackPane() {
+        return stackPane;
     }
 
-    public void setUserNameTextField(TextField userNameTextField) {
-        this.userNameTextField = userNameTextField;
-    }
-
-    public TextField getPasswordTextField() {
-        return passwordTextField;
-    }
-
-    public void setPasswordTextField(TextField passwordTextField) {
-        this.passwordTextField = passwordTextField;
-    }
-
-
-    public TextField getRoleTextField() {
-        return roleTextField;
-    }
-
-    public void setRoleTextField(TextField roleTextField) {
-        this.roleTextField = roleTextField;
-    }
-
-    public Stage getPrimaryStage() {
-
-        return primaryStage;
-    }
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public void setStackPane(StackPane stackPane) {
+        this.stackPane = stackPane;
     }
 
     @FXML
@@ -324,12 +230,9 @@ public class ManagerController implements Initializable {
             ScreenController.addScreen("createOrEditUser", loader);
 
             borderPane.setCenter(ScreenController.find("employeesTab"));
-
-
-
-            CurrentNameTextField.setText(UserManager.getCurrentUser().getName());
-            CurrentUserNameTextField.setText(UserManager.getCurrentUser().getUsername());
-            CurrentSalaryTextField.setText(String.valueOf(UserManager.getCurrentUser().getSalary()));
+            
+            NameLabel.setText(UserManager.getCurrentUser().getName());
+            IDLabel.setText(UserManager.getCurrentUser().getID());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
