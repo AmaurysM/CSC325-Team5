@@ -14,8 +14,6 @@ public  class  ScreenController {
     private static FXMLLoader mainPaneLoader;
     private static Scene main;
 
-
-
     public ScreenController(Scene main) {
         this.main = main;
     }

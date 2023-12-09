@@ -217,7 +217,7 @@ public class TitleBarController implements Initializable  {
 
     @FXML
     void borderPaneMouseMoved(MouseEvent event) {
-        double border = 10;
+        double border = 3;
         onRightBorder = event.getX() > borderPane.getWidth() - border;
         onLeftBorder = event.getX() < border;
         onBottomBorder = event.getY() > borderPane.getHeight() - border;
