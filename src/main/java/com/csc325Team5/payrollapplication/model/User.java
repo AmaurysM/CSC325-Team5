@@ -23,7 +23,7 @@ public class User implements Comparable<User>{
     private NoteManager notes = new NoteManager();
     private PayStubManager payStubs = new PayStubManager();
 
-    public User(String name, String username, String password, Long age, long salary, String role, String ID) {
+    public User(String name, String username, String password, long age, long salary, String role, String ID) {
         this.name = name;
         this.username = username;
         this.password = password;

@@ -3,6 +3,7 @@ package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
 import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.model.Note;
+import com.csc325Team5.payrollapplication.utilities.Role;
 import io.github.palexdev.materialfx.controls.MFXButton;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -43,6 +44,11 @@ public class NotesTabController implements Initializable {
         CreateNoteController noteController = (CreateNoteController) ScreenController.findController("createNote");
         ManagerController manager = (ManagerController)ScreenController.findController("manager");
         manager.getStackPane().getChildren().add(noteController.getAnchorPane());
+
+        noteController.getEmployeeComboBox().getItems().remove(0,noteController.getEmployeeComboBox().getItems().size());
+
+        UserManager.getUserBag().stream().filter(e -> Role.MANAGER.name().compareTo(e.getRole().toUpperCase()) != 0)
+                .forEach(e->  noteController.getEmployeeComboBox().getItems().add(e));
 
     }
 

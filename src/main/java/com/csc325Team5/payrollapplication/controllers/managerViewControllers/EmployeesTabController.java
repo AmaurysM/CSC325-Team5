@@ -221,7 +221,7 @@ public class EmployeesTabController implements Initializable {
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
         LinkedList<User> arr = new LinkedList<>();
-        int i = 0;
+
         try
         {
             documents = future.get().getDocuments();
@@ -247,7 +247,7 @@ public class EmployeesTabController implements Initializable {
                                 (String)  document.getData().get("Role"),
                                 (String) document.getData().get("ID"));
                         arr.add(user);
-                        i++;
+
                     }
                 }
                 System.out.println();
@@ -286,7 +286,7 @@ public class EmployeesTabController implements Initializable {
     public void refreshTableView() {
         tableView.refresh();
         populateTableView();
-
+        populateTableView();
         tableView.sort();
     }
 
