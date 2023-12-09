@@ -3,9 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -22,25 +20,7 @@
          <children>
               <BorderPane fx:id="borderPane" style="-fx-background-color: #ffffff;">
                   <top>
-                      <MenuBar minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
-                          <menus>
-                              <Menu mnemonicParsing="false" text="File">
-                                  <items>
-                                      <MenuItem mnemonicParsing="false" text="Close" />
-                                  </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Edit">
-                                  <items>
-                                      <MenuItem mnemonicParsing="false" text="Delete" />
-                                  </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Help">
-                                  <items>
-                                      <MenuItem mnemonicParsing="false" text="About" />
-                                  </items>
-                              </Menu>
-                          </menus>
-                      </MenuBar>
+                      <MenuBar minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER" />
                   </top>
                   <right>
                   <VBox maxHeight="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="CENTER">
@@ -89,9 +69,12 @@
                               <Insets />
                            </VBox.margin>
                         </StackPane>
-                        <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToEmployeesTab" text="Employees" />
-                        <MFXButton fx:id="NotesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToNotesTab" text="Notes" />
-                        <MFXButton fx:id="SettingsButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToSettingsTab" text="Settings" />
+                        <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToEmployeesTab" style="-fx-background-color: #212d59; -fx-background-radius: 0;" text="Employees" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></MFXButton>
+                        <MFXButton fx:id="NotesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToNotesTab" style="-fx-background-color: #212d59; -fx-background-radius: 0;" text="Notes" textFill="WHITE" />
+                        <MFXButton fx:id="SettingsButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToSettingsTab" style="-fx-background-color: #212d59; -fx-background-radius: 0;" text="Settings" textFill="WHITE" />
                         <MFXButton fx:id="sendPayRollButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#sendPayRoll" style="-fx-background-color: #ff0000;" text="Send PayRoll" textFill="WHITE" />
                         <GridPane maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                           <columnConstraints>
@@ -101,7 +84,7 @@
                             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" vgrow="ALWAYS" />
                           </rowConstraints>
                         </GridPane>
-                        <MFXButton fx:id="LogoutButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#logoutOfManagerView" text="Logout">
+                        <MFXButton fx:id="LogoutButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#logoutOfManagerView" style="-fx-background-color: #212d59; -fx-background-radius: 0;" text="Logout" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>

@@ -14,9 +14,9 @@
          <children>
             <TableView fx:id="tableView" prefHeight="371.0" prefWidth="418.0">
                <columns>
-                  <TableColumn fx:id="NameColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="115.20001065731049" sortable="false" text="Name" />
-                  <TableColumn fx:id="NoteColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="234.0" sortable="false" text="Note" />
-                  <TableColumn fx:id="IDColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="115.0" sortable="false" text="ID" />
+                  <TableColumn fx:id="NameColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="115.20001065731049" text="Name" />
+                  <TableColumn fx:id="NoteColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="234.0" text="Note" />
+                  <TableColumn fx:id="IDColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="115.0" text="ID" />
                   <TableColumn fx:id="TimeColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="115.0" text="Time" />
                </columns>
                <columnResizePolicy>
