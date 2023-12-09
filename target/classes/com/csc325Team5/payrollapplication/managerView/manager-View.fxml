@@ -2,15 +2,16 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -48,22 +49,44 @@
                            <children>
                               <VBox spacing="5.0">
                                  <children>
-                                    <TextField alignment="CENTER" editable="false" opacity="0.0" prefHeight="0.0" prefWidth="150.0" />
-                                          <TextField fx:id="CurrentNameTextField" alignment="CENTER" editable="false" text="First Name" />
-                                          <TextField fx:id="CurrentUserNameTextField" alignment="CENTER" editable="false" text="Last Name" />
-                                          <TextField fx:id="CurrentSalaryTextField" alignment="CENTER" editable="false" text="Salary" />
+                                    <HBox>
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Name:" />
+                                          <Label fx:id="NameLabel" prefHeight="25.0" text="*******">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="ID:" />
+                                          <Label fx:id="IDLabel" prefHeight="25.0" text="*******">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Separator prefWidth="200.0" />
                                  </children>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
                               </VBox>
-                              <Region />
                            </children>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                            <VBox.margin>
-                              <Insets top="-20.0" />
+                              <Insets />
                            </VBox.margin>
                         </StackPane>
                         <MFXButton fx:id="EmployeesButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#goToEmployeesTab" text="Employees" />
