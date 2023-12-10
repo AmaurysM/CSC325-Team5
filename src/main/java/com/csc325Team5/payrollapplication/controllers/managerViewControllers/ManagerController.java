@@ -199,7 +199,10 @@ public class ManagerController implements Initializable {
             }
         );
     }
-
+    public void setUpInfo(){
+        NameLabel.setText(UserManager.getCurrentUser().getName());
+        IDLabel.setText(UserManager.getCurrentUser().getID());
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ScreenController.setTitleBarText("PAYROLL - Manager");
@@ -230,9 +233,8 @@ public class ManagerController implements Initializable {
             ScreenController.addScreen("createOrEditUser", loader);
 
             borderPane.setCenter(ScreenController.find("employeesTab"));
-            
-            NameLabel.setText(UserManager.getCurrentUser().getName());
-            IDLabel.setText(UserManager.getCurrentUser().getID());
+
+            setUpInfo();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -5,6 +5,7 @@ import com.csc325Team5.payrollapplication.utilities.Role;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 public class UserManager {
@@ -103,8 +104,20 @@ public class UserManager {
         UserManager.numOfUsers = numOfUsers;
     }
 
+/*    public static void currentUserCheck(){
+        UserManager.getUserBag().forEach(e->{
+            System.out.println(e);
+        });
+    }*/
     public static User getCurrentUser() {
-        return currentUser;
+        AtomicReference<User> newUser = new AtomicReference<User>();
+        UserManager.getUserBag().forEach(e->{
+            if(e.compareTo(currentUser) == 0){
+                newUser.set(currentUser);
+            }
+        });
+        // System.out.println(currentUser + ": " + currentUser.getNoteManager().getNotes().size());
+        return newUser.get();
     }
 
     public static void setCurrentUser(User currentUser) {
