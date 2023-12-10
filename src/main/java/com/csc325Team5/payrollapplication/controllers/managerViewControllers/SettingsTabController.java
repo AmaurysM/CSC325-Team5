@@ -47,15 +47,28 @@ public class SettingsTabController implements Initializable {
         if(!allFieldsFilled()){
             return;
         }
+        DocumentReference docRef = App.fstore.collection("Users").document(UserManager.getCurrentUser().getUsername());
+        docRef.delete();
 
         UserManager.getCurrentUser().setName(nameTextField.getText());
         UserManager.getCurrentUser().setPassword(passwordTextField.getText());
         UserManager.getCurrentUser().setUsername(usernameTextField.getText());
-        DocumentReference docRef = App.fstore.collection("Users").document(UserManager.getCurrentUser().getUsername());
 
-        docRef.update("User_Name",usernameTextField.getText());
-        docRef.update("Name", nameTextField.getText());
-        docRef.update("Password",passwordTextField.getText());
+        System.out.println("The just deleted user is "+ UserManager.getCurrentUser().getUsername());
+        Map<String, Object> data = new HashMap<>();
+        data.put("Name", nameTextField.getText());
+        data.put("Age",  UserManager.getCurrentUser().getAge());
+        data.put("User_Name",usernameTextField.getText());
+        data.put("Password",passwordTextField.getText());
+        data.put("Role", UserManager.getCurrentUser().getRole());
+        data.put("Salary",UserManager.getCurrentUser().getSalary());
+        data.put("ID", UserManager.getCurrentUser().getID());
+        data.put("Notes",new ArrayList<>());
+        data.put("SenderList",new ArrayList<>());
+
+
+        DocumentReference newDocRef = App.fstore.collection("Users").document(usernameTextField.getText());
+        newDocRef.set(data);
         ((EmployeesTabController)ScreenController.findController("employeesTab")).refreshTableView();
     }
 
