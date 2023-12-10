@@ -5,14 +5,21 @@ import com.csc325Team5.payrollapplication.utilities.Role;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.Year;
 import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class PayStubManager {
     private LinkedList<PayStub> payStubs = new LinkedList<>();
 
     public void addPayStub(User user){
-        double totalPay = calculatePay(user.getHoursWorkedThisWeek(),user.getSalary());
+        AtomicReference<User> newUser = new AtomicReference<User>();
+        UserManager.getUserBag().forEach(e->{
+            if(e.compareTo(user) == 0){
+                newUser.set(user);
+            }
+        });
+
+        double totalPay = calculatePay(newUser.get().getHoursWorkedThisWeek(),newUser.get().getSalary());
         payStubs.add(
                 new PayStub(
                         startPayPeriod()

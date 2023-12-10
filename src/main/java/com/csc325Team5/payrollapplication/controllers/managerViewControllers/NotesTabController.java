@@ -65,7 +65,7 @@ public class NotesTabController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        NameColumn.setCellValueFactory(p -> new ReadOnlyObjectWrapper(p.getValue().getReceiver().getName()));
+        NameColumn.setCellValueFactory(p -> new ReadOnlyObjectWrapper(p.getValue().getReceiver()));
         NoteColumn.setCellValueFactory(new PropertyValueFactory<Note,String>("note"));
         IDColumn.setCellValueFactory((new PropertyValueFactory<Note,String>("receiverID")));
         TimeColumn.setCellValueFactory(new PropertyValueFactory<Note,String>("time"));

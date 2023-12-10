@@ -2,6 +2,7 @@ package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
+import com.csc325Team5.payrollapplication.controllers.TitleBarController;
 import com.csc325Team5.payrollapplication.model.User;
 import com.csc325Team5.payrollapplication.model.UserManager;
 import com.google.api.core.ApiFuture;
@@ -39,8 +40,6 @@ public class SettingsTabController implements Initializable {
     @FXML
     private TextField passwordTextField;
 
-    @FXML
-    private TextField usernameTextField;
 
     @FXML
     void editCurrentUser(ActionEvent event) throws ExecutionException, InterruptedException {
@@ -52,13 +51,13 @@ public class SettingsTabController implements Initializable {
 
         UserManager.getCurrentUser().setName(nameTextField.getText());
         UserManager.getCurrentUser().setPassword(passwordTextField.getText());
-        UserManager.getCurrentUser().setUsername(usernameTextField.getText());
+
 
         System.out.println("The just deleted user is "+ UserManager.getCurrentUser().getUsername());
         Map<String, Object> data = new HashMap<>();
         data.put("Name", nameTextField.getText());
         data.put("Age",  UserManager.getCurrentUser().getAge());
-        data.put("User_Name",usernameTextField.getText());
+        data.put("User_Name",UserManager.getCurrentUser().getUsername());
         data.put("Password",passwordTextField.getText());
         data.put("Role", UserManager.getCurrentUser().getRole());
         data.put("Salary",UserManager.getCurrentUser().getSalary());
@@ -66,8 +65,8 @@ public class SettingsTabController implements Initializable {
         data.put("Notes",new ArrayList<>());
         data.put("SenderList",new ArrayList<>());
 
-
-        DocumentReference newDocRef = App.fstore.collection("Users").document(usernameTextField.getText());
+        ((ManagerController)ScreenController.findController("manager")).setUpInfo();
+        DocumentReference newDocRef = App.fstore.collection("Users").document(UserManager.getCurrentUser().getUsername());
         newDocRef.set(data);
         ((EmployeesTabController)ScreenController.findController("employeesTab")).refreshTableView();
     }
@@ -77,9 +76,6 @@ public class SettingsTabController implements Initializable {
             return false;
         }
 
-        if(usernameTextField.getText().isBlank()){
-            return false;
-        }
 
         if(passwordTextField.getText().isBlank()){
             return false;
@@ -94,11 +90,15 @@ public class SettingsTabController implements Initializable {
         ((ManagerController)ScreenController.findController("manager")).logoutOfManagerView(event);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void setUpManagerView(){
+
         nameTextField.setText(UserManager.getCurrentUser().getName());
-        usernameTextField.setText(UserManager.getCurrentUser().getUsername());
         passwordTextField.setText(UserManager.getCurrentUser().getPassword());
         idLabel.setText(UserManager.getCurrentUser().getID());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setUpManagerView();
     }
 }

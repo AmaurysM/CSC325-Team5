@@ -26,6 +26,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class EmployeeController implements Initializable {
 
@@ -160,16 +161,27 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void clockIn(ActionEvent event) {
+        //
+        /*AtomicReference<User> newUser = new AtomicReference<User>();
+        UserManager.getUserBag().forEach(e->{
+            if(e.compareTo(UserManager.getCurrentUser()) == 0){
+                newUser.set(UserManager.getCurrentUser());
+            }
+        });*/
         User user = UserManager.getCurrentUser();
         if(!user.isClockedIn()) {
+
             user.setClockInTime(UserManager.getCurrentUser().getCurrentTime());
             user.setClockedIn(true);
+            System.out.println("Clock in --------- " + user.getClockInTime());
         }
     }
 
     @FXML
     void clockOut(ActionEvent event) throws ParseException {
+
         User user = UserManager.getCurrentUser();
+
         if(user.isClockedIn()) {
             user.setClockOutTime(UserManager.getCurrentUser().getCurrentTime());
             user.setClockedIn(false);

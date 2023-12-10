@@ -63,7 +63,7 @@ public class NotesWidgetController {
 
 
     public void createWidget(Note note, NotesWidgetController controller){
-        managerNameLabel.setText("Manager: "+note.getSender().getName());
+        managerNameLabel.setText("Manager: "+note.getSender());
         noteTextFlow.getChildren().add(new Text(note.getNote()));
         timeLabel.setText(note.getTime());
         this.controller = controller;
