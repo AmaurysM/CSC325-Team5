@@ -2,8 +2,11 @@ package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
 import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
+import com.csc325Team5.payrollapplication.model.User;
 import com.csc325Team5.payrollapplication.model.UserManager;
+import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +16,11 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 public class SettingsTabController implements Initializable {
 
@@ -36,7 +43,7 @@ public class SettingsTabController implements Initializable {
     private TextField usernameTextField;
 
     @FXML
-    void editCurrentUser(ActionEvent event) {
+    void editCurrentUser(ActionEvent event) throws ExecutionException, InterruptedException {
         if(!allFieldsFilled()){
             return;
         }

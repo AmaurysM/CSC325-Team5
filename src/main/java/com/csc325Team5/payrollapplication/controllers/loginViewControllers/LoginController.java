@@ -102,6 +102,9 @@ public class LoginController implements Initializable {
                             user1.setUsername((String) document.getData().get("User_Name"));
                             user1.setPassword((String) document.getData().get("Password"));
                             user1.setRole((String) document.getData().get("Role"));
+                            user1.setID((String) document.getData().get("ID"));
+                            user1.setAge((long) document.getData().get("Age"));
+                            user1.setSalary((long) document.getData().get("Salary"));
                             foundUser = true;
 
 

@@ -101,7 +101,7 @@ public class User implements Comparable<User>{
     public String getID() {
         return ID;
     }
-
+    public void setID(String id){this.ID = id;}
     public boolean isClockedIn() {
         return clockedIn;
     }
