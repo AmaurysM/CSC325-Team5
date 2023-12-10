@@ -59,6 +59,9 @@ public class NotesWidgetController {
         this.gridPane = gridPane;
     }
 
+
+
+
     public void createWidget(Note note, NotesWidgetController controller){
         managerNameLabel.setText("Manager: "+note.getSender().getName());
         noteTextFlow.getChildren().add(new Text(note.getNote()));

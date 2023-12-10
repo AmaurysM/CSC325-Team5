@@ -240,6 +240,8 @@ public class CreateOrEditUserController implements Initializable {
            data.put("Role",roleComboBox.getSelectionModel().getSelectedItem().toString());
            data.put("Salary",Integer.valueOf(SalaryTextField.getText()));
            data.put("ID", id);
+           data.put("Notes",new ArrayList<>());
+           data.put("SenderList",new ArrayList<>());
            //asynchronously write data
            ApiFuture<WriteResult> result = docRef.set(data);
 

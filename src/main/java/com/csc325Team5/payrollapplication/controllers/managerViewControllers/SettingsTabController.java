@@ -45,6 +45,7 @@ public class SettingsTabController implements Initializable {
         UserManager.getCurrentUser().setPassword(passwordTextField.getText());
         UserManager.getCurrentUser().setUsername(usernameTextField.getText());
         DocumentReference docRef = App.fstore.collection("Users").document(UserManager.getCurrentUser().getUsername());
+
         docRef.update("User_Name",usernameTextField.getText());
         docRef.update("Name", nameTextField.getText());
         docRef.update("Password",passwordTextField.getText());

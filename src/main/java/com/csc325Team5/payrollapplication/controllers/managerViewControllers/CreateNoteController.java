@@ -1,9 +1,13 @@
 package com.csc325Team5.payrollapplication.controllers.managerViewControllers;
 
+import com.csc325Team5.payrollapplication.App;
 import com.csc325Team5.payrollapplication.controllers.ScreenController;
 import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.model.User;
 import com.csc325Team5.payrollapplication.utilities.Role;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.jfoenix.controls.JFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
@@ -12,8 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 public class CreateNoteController implements Initializable {
 
@@ -96,13 +104,43 @@ public class CreateNoteController implements Initializable {
         controller.refreshTableView();
     }
 
+    private static class Note {
+        private String sender;
+        private String reciever;
+        private String note;
+
+        public Note(String sender, String reciever, String note){
+            this.sender = sender;
+            this.reciever = reciever;
+            this.note = note;
+        }
+    }
+
+    ArrayList notesList = new ArrayList();
+    ArrayList senderList = new ArrayList();
+
     @FXML
-    void sendNewNote(ActionEvent event) {
+    void sendNewNote(ActionEvent event) throws ExecutionException, InterruptedException {
         if(!allFieldsFilled()){
             return;
         }
 
         User user = employeeComboBox.getSelectionModel().getSelectedItem();
+        DocumentReference docRef = App.fstore.collection("Users").document(user.getUsername());
+//        new Note(UserManager.getCurrentUser().getName(),noteTextArea.getText(),user.getName())
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+
+        DocumentSnapshot document = future.get();
+        notesList = (ArrayList) document.getData().get("Notes");
+        senderList = (ArrayList) document.getData().get("SenderList");
+
+        notesList.add(noteTextArea.getText());
+        senderList.add(UserManager.getCurrentUser().getUsername());
+
+        docRef.update("Notes",notesList);
+        docRef.update("SenderList",senderList);
+
+
 
         user.getNoteManager().addNote(UserManager.getCurrentUser(), noteTextArea.getText(), user);
         UserManager.getCurrentUser().getNoteManager().addNote(user.getNoteManager().getNotes().get(user.getNoteManager().getNotes().size()-1));

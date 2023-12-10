@@ -5,6 +5,7 @@ import com.csc325Team5.payrollapplication.controllers.ScreenController;
 import com.csc325Team5.payrollapplication.controllers.TitleBarController;
 import com.csc325Team5.payrollapplication.controllers.employeeViewControllers.EmployeeController;
 import com.csc325Team5.payrollapplication.controllers.managerViewControllers.ManagerController;
+import com.csc325Team5.payrollapplication.model.NoteManager;
 import com.csc325Team5.payrollapplication.model.UserManager;
 import com.csc325Team5.payrollapplication.model.User;
 import com.csc325Team5.payrollapplication.utilities.Role;
@@ -124,6 +125,8 @@ public class LoginController implements Initializable {
 
 
                 }
+
+
                 if(!foundUser)
                 {
                     warningLabel.setVisible(true);
@@ -159,7 +162,7 @@ public class LoginController implements Initializable {
         UserManager.setCurrentUser(user1);
         loadViews();
 
-        System.out.println("Total users are: "+ UserManager.getNumOfUsers());
+
     }
 
     public boolean ableToLogin(User user, String username){

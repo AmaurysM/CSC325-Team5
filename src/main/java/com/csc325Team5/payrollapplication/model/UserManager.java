@@ -36,7 +36,13 @@ public class UserManager {
     public static Stream<User> findUserByName(String name){
         return userBag.stream().filter(u-> u.getName().equals(name));
     }
-
+//    public static User findUserByUserName(String username){
+//        UserManager.getUserBag().forEach(user ->{
+//            if(user.getUsername().equals(username)){
+//                return user;
+//            }
+//        });
+//    }
     public static String createID(){
         String tempID = randomNumber(1000) + "-"  + randomNumber(1000) + "-" + randomNumber(1000);
         if(!checkIDUniqueness(tempID)){
@@ -63,7 +69,16 @@ public class UserManager {
         }
 
     }
+    public static User findUserByUserName(String username){
+        Stream<User> foundUsers = userBag.stream().filter(u-> u.getName().equals(username));
 
+        if(foundUsers.toList().isEmpty()){
+            return null;
+        }else{
+            return userBag.stream().filter(u-> u.getName().equals(username)).toList().get(0);
+        }
+
+    }
     public static User findUser(User user){
         List<User> foundUsers = UserManager.getUserBag().stream().filter(e->e.equals(user)).toList();
         if(foundUsers.isEmpty()){
